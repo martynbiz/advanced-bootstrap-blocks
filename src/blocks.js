@@ -10,4 +10,8 @@
  */
 
 import './container';
+import './row';
+import './column';
 import './card';
+
+import './blocks.editor.scss'; 
