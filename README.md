@@ -1,6 +1,6 @@
 # Gutenstrap - Bootstrap 4 Blocks for Gutenberg
 
-No-mess Bootstrap 4 blocks for the Gutenberg editor. The following components are supported: 
+No-mess Bootstrap 4 blocks for the Wordpress Gutenberg editor. The following components are supported: 
 
  * Container
  * Row
@@ -8,7 +8,7 @@ No-mess Bootstrap 4 blocks for the Gutenberg editor. The following components ar
 
 Bootstrap styles are included in the Gutenberg editor but will need to be included in your theme (at least the bootstrap grid) for these blocks to appear correctly on your public-facing website. 
 
-This plugin was intended to be used with [Understrap](https://understrap.com/).
+This plugin is intended to be used with the [Understrap Theme](https://understrap.com/). Please submit issues and pull requests through [https://gitlab.com/helpful.dev/gutenstrap](https://gitlab.com/helpful.dev/gutenstrap). 
 
 ---
 
