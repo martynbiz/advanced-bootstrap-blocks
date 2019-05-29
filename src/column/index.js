@@ -33,8 +33,8 @@ const {
 } = wp.editor;
 
 registerBlockType('gutenstrap/column', {
-  title: __('Column Block'),
-  description: __('Bootstrap - Columns'),
+  title: __('Column (Gutenstrap)', 'gutenstrap'),
+  description: __(''),
   icon: 'layout',
   category: 'layout',
   keywords: [

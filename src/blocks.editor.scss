@@ -6,16 +6,16 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins/breakpoints";
+@import "../node_modules/bootstrap/scss/mixins/grid-framework";
+@import "../node_modules/bootstrap/scss/mixins/grid";
 
-@import "../../understrap-child/src/sass/bootstrap4/functions";
-@import "../../understrap-child/src/sass/bootstrap4/variables";
-@import "../../understrap-child/src/sass/bootstrap4/mixins/breakpoints";
-@import "../../understrap-child/src/sass/bootstrap4/mixins/grid-framework";
-@import "../../understrap-child/src/sass/bootstrap4/mixins/grid";
+@import "../node_modules/bootstrap/scss/grid";
+@import "../node_modules/bootstrap/scss/utilities/display";
 
-@import "../../understrap-child/src/sass/bootstrap4/grid";
-@import "../../understrap-child/src/sass/bootstrap4/utilities/display";
-// @import "../../understrap-child/src/sass/bootstrap4/utilities/flex";
+// contents of: @import "../node_modules/bootstrap/scss/utilities/flex";
 @each $breakpoint in map-keys($grid-breakpoints) {
   @include media-breakpoint-up($breakpoint) {
     $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
@@ -61,8 +61,11 @@
     .align-self#{$infix}-stretch .block-editor-block-list__layout [data-type="gutenstrap/column"]  { display: flex; align-self: stretch !important; }
   }
 }
-@import "../../understrap-child/src/sass/bootstrap4/utilities/spacing";
+@import "../node_modules/bootstrap/scss/utilities/spacing";
 
+/*
+ * Gutenberg Overrides
+ */
 [data-type="gutenstrap/container"] {
   .block-editor-inner-blocks > .block-editor-block-list__layout {
     @include make-container();

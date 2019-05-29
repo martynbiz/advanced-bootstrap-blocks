@@ -32,12 +32,15 @@ const {
   InnerBlocks
 } = wp.editor;
 
-// import "./editor.scss"; 
-
 registerBlockType( 'gutenstrap/container', {
-    title: __( 'Bootstrap - Container', 'gutenstrap' ),
+    title: __( 'Container (Gutenstrap)', 'gutenstrap' ),
+    description: __(''),
     icon: 'layout',
     category: 'layout',
+    keywords: [
+        __('gutenstrap'),
+        __('container'),
+    ],
     attributes: {
       fluid: {
         type: 'bool',
@@ -91,7 +94,7 @@ registerBlockType( 'gutenstrap/container', {
                           onClick={ onChangeToggleFluid }
                       />
                   </PanelRow>
-                  <div 
+                  {/* <div 
                     style={{
                       display: `block`, 
                       width: `100%`,
@@ -112,7 +115,7 @@ registerBlockType( 'gutenstrap/container', {
                           max={ 12 }
                         />
                     </PanelRow>
-                  </div>
+                  </div> */}
                 </PanelBody>
             </InspectorControls> 
             <div 
