@@ -142,13 +142,22 @@ registerBlockType( 'gutenstrap/container', {
 
 const modifyBlockListBlockContainer = createHigherOrderComponent( ( BlockListBlock ) => {
   return ( props ) => {
+
+    if (props.block.name == "core/block") {
+      
+    }
     if (props.block.name == "gutenstrap/container") {
       props.className = [(!props.attributes.fluid ? "container-fluid" : "container")].join(" ");
     }
     return <BlockListBlock { ...props } />;
   };
 }, 'modifyBlockListBlockContainer' );
-wp.hooks.addFilter( 'editor.BlockListBlock', 'gutenstrap/container/modify-element-edit', modifyBlockListBlockContainer );
+
+wp.hooks.addFilter( 
+  'editor.BlockListBlock', 
+  'gutenstrap/container/modify-element-edit', 
+  modifyBlockListBlockContainer 
+);
 
 const modifyGetSaveElementContainer = (element, blockType, attributes ) => {
   if (!element) {
@@ -166,7 +175,9 @@ const modifyGetSaveElementContainer = (element, blockType, attributes ) => {
 
   return element;
 }
-wp.hooks.addFilter('blocks.getSaveElement', 'gutenstrap/container/modify-element-save', modifyGetSaveElementContainer);
 
-
-
+wp.hooks.addFilter(
+  'blocks.getSaveElement', 
+  'gutenstrap/container/modify-element-save', 
+  modifyGetSaveElementContainer
+);

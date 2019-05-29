@@ -1,1 +1,11 @@
 @import "./common.scss";
+
+.wp-block-gutenstrap-column {
+  p:empty {
+    display: none; 
+  }
+  .wp-block-cover, .wp-block-cover-image {
+    margin: 0; 
+  }
+
+}

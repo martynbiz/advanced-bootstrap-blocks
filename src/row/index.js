@@ -95,7 +95,12 @@ const modifyBlockListBlockRow = createHigherOrderComponent( ( BlockListBlock ) =
       return <BlockListBlock { ...props } />;
     };
 }, 'modifyBlockListBlockRow' );
-wp.hooks.addFilter( 'editor.BlockListBlock', 'gutenstrap/row/modify-element-edit', modifyBlockListBlockRow );
+
+wp.hooks.addFilter( 
+  'editor.BlockListBlock', 
+  'gutenstrap/row/modify-element-edit', 
+  modifyBlockListBlockRow 
+);
 
 const modifyGetSaveElementRow = (element, blockType, attributes ) => {
 	if (!element) {
@@ -112,4 +117,9 @@ const modifyGetSaveElementRow = (element, blockType, attributes ) => {
 
 	return element;
 }
-wp.hooks.addFilter('blocks.getSaveElement', 'gutenstrap/row/modify-element-save', modifyGetSaveElementRow);
+
+wp.hooks.addFilter(
+  'blocks.getSaveElement', 
+  'gutenstrap/row/modify-element-save', 
+  modifyGetSaveElementRow
+);

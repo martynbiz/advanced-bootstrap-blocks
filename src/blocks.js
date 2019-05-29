@@ -9,6 +9,7 @@
  * Webpack is compiling as the input file.
  */
 
+import './core'; 
 import './container';
 import './row';
 import './column';

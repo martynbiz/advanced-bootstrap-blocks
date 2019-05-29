@@ -1,0 +1,5 @@
+.wp-block-gutenstrap-column p:empty {
+  display: none; }
+
+.wp-block-gutenstrap-column .wp-block-cover, .wp-block-gutenstrap-column .wp-block-cover-image {
+  margin: 0; }

@@ -62,7 +62,7 @@ function gutenstrap_block_assets() { // phpcs:ignore
 	 *
 	 * @link https://wordpress.org/gutenberg/handbook/blocks/writing-your-first-block-type#enqueuing-block-scripts
 	 * @since 1.16.0
-	 */
+	 */	
 	register_block_type(
 		'gutenstrap/container', array(
 			// Enqueue blocks.style.build.css on both frontend & backend.
@@ -71,8 +71,27 @@ function gutenstrap_block_assets() { // phpcs:ignore
 			'editor_script' => 'gutenstrap-block-js',
 			// Enqueue blocks.editor.build.css in the editor only.
 			'editor_style'  => 'gutenstrap-block-editor-css',
+			// Allow block to be saved and re-used
+			'reusable'			=> true,
 		)
 	);
+	
+	add_theme_support( 'align-wide' );
+	// add_theme_support( 'align-full' );
+
+	add_action( 'admin_menu', 'reusable_blocks_adminbar_item' );
+	function reusable_blocks_adminbar_item() {
+		// add_menu_page( $page_title, $menu_title, $capability, $menu_slug, $function, $icon_url, $position );
+		add_menu_page( 
+			'Reusable Blocks', 
+			'Reusable Blocks', 
+			'manage_options', 
+			'edit.php?post_type=wp_block', 
+			'', 
+			'dashicons-welcome-widgets-menus', 
+			20 
+		);
+	}
 }
 
 // Hook: Block assets.
