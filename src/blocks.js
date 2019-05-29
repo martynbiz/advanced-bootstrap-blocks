@@ -12,6 +12,7 @@
 import './container';
 import './row';
 import './column';
-import './card';
 
-import './blocks.editor.scss'; 
+import './blocks.editor.scss';
+import './blocks.style.scss';
+import './common.scss';

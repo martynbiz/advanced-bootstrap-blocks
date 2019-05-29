@@ -32,13 +32,13 @@ const {
   InnerBlocks
 } = wp.editor;
 
-registerBlockType('bootstrap-blocks/column', {
+registerBlockType('gutenstrap/column', {
   title: __('Column Block'),
   description: __('Bootstrap - Columns'),
   icon: 'layout',
   category: 'layout',
   keywords: [
-      __('bootstrap-blocks'),
+      __('gutenstrap'),
       __('column'),
   ],
   attributes: {
@@ -69,20 +69,20 @@ registerBlockType('bootstrap-blocks/column', {
 
 const modifyBlockListBlockColumn = createHigherOrderComponent( ( BlockListBlock ) => {
     return ( props ) => {
-      if (props.block.name == "bootstrap-blocks/column") {
+      if (props.block.name == "gutenstrap/column") {
         props.className = [props.block.attributes.className, "col"].join(" ");
       }
       return <BlockListBlock { ...props } />;
     };
 }, 'modifyBlockListBlockColumn' );
-wp.hooks.addFilter( 'editor.BlockListBlock', 'bootstrap-blocks/column/modify-element-edit', modifyBlockListBlockColumn );
+wp.hooks.addFilter( 'editor.BlockListBlock', 'gutenstrap/column/modify-element-edit', modifyBlockListBlockColumn );
 
 const modifyGetSaveElementColumn = (element, blockType, attributes ) => {
 	if (!element) {
 		return;
 	}
 
-  if (blockType.name == 'bootstrap-blocks/column') {
+  if (blockType.name == 'gutenstrap/column') {
     return (
       <div className={ [element.props.className, "col"].join(" ") }>
         {element}
@@ -92,4 +92,4 @@ const modifyGetSaveElementColumn = (element, blockType, attributes ) => {
 
 	return element;
 }
-wp.hooks.addFilter('blocks.getSaveElement', 'bootstrap-blocks/column/modify-element-save', modifyGetSaveElementColumn);
+wp.hooks.addFilter('blocks.getSaveElement', 'gutenstrap/column/modify-element-save', modifyGetSaveElementColumn);

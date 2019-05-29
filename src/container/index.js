@@ -34,8 +34,8 @@ const {
 
 // import "./editor.scss"; 
 
-registerBlockType( 'bootstrap-blocks/container', {
-    title: __( 'Bootstrap - Container', 'bootstrap-blocks' ),
+registerBlockType( 'gutenstrap/container', {
+    title: __( 'Bootstrap - Container', 'gutenstrap' ),
     icon: 'layout',
     category: 'layout',
     attributes: {
@@ -44,11 +44,11 @@ registerBlockType( 'bootstrap-blocks/container', {
         default: false
       },
       columns: {},
-      allowedBlocks: ['bootstrap-blocks/row'],
+      allowedBlocks: ['gutenstrap/row'],
       TEMPLATE: {
         type: 'array',
         default: [
-          ['bootstrap-blocks/row', {} ,[]]
+          ['gutenstrap/row', {} ,[]]
         ]
       }
     },
@@ -76,17 +76,17 @@ registerBlockType( 'bootstrap-blocks/container', {
           <Fragment>
             <InspectorControls>
                 <PanelBody
-                    title={ __( 'Container Settings', 'bootstrap-blocks' ) }
+                    title={ __( 'Container Settings', 'gutenstrap' ) }
                 >
                   <PanelRow>
                       <label
                           htmlFor="form-toggle-fluid"
                       >
-                          { __( 'Full-width Container', 'bootstrap-blocks' ) }
+                          { __( 'Full-width Container', 'gutenstrap' ) }
                       </label>
                       <FormToggle
                           id="form-toggle-fluid"
-                          label={ __( 'Full-width Container', 'bootstrap-blocks' ) }
+                          label={ __( 'Full-width Container', 'gutenstrap' ) }
                           checked={ !fluid }
                           onClick={ onChangeToggleFluid }
                       />
@@ -101,7 +101,7 @@ registerBlockType( 'bootstrap-blocks/container', {
                     <label
                         htmlFor="form-column-count"
                     >
-                      { __( 'Columns', 'bootstrap-blocks' ) }
+                      { __( 'Columns', 'gutenstrap' ) }
                     </label>
                     <PanelRow>
                       <RangeControl
@@ -120,12 +120,13 @@ registerBlockType( 'bootstrap-blocks/container', {
             >
               <InnerBlocks 
                 template={ TEMPLATE }
-                allowedBlocks={['bootstrap-blocks/row']}
+                allowedBlocks={['gutenstrap/row']}
               /> 
             </div>
           </Fragment>
         );
     },
+    
     save: function( props ) {
         return (
           <Fragment>
@@ -133,26 +134,25 @@ registerBlockType( 'bootstrap-blocks/container', {
           </Fragment>
         );
     },
-    
 } );
 
 
 const modifyBlockListBlockContainer = createHigherOrderComponent( ( BlockListBlock ) => {
   return ( props ) => {
-    if (props.block.name == "bootstrap-blocks/container") {
+    if (props.block.name == "gutenstrap/container") {
       props.className = [(!props.attributes.fluid ? "container-fluid" : "container")].join(" ");
     }
     return <BlockListBlock { ...props } />;
   };
 }, 'modifyBlockListBlockContainer' );
-wp.hooks.addFilter( 'editor.BlockListBlock', 'bootstrap-blocks/container/modify-element-edit', modifyBlockListBlockContainer );
+wp.hooks.addFilter( 'editor.BlockListBlock', 'gutenstrap/container/modify-element-edit', modifyBlockListBlockContainer );
 
 const modifyGetSaveElementContainer = (element, blockType, attributes ) => {
   if (!element) {
     return;
   }
 
-  if (blockType.name === 'bootstrap-blocks/container') {
+  if (blockType.name === 'gutenstrap/container') {
     element.props.className = [element.props.className, (!attributes.fluid ? "container-fluid" : "container")].join(" ");
     return (
       <div className={ element.props.className }>
@@ -163,7 +163,7 @@ const modifyGetSaveElementContainer = (element, blockType, attributes ) => {
 
   return element;
 }
-wp.hooks.addFilter('blocks.getSaveElement', 'bootstrap-blocks/container/modify-element-save', modifyGetSaveElementContainer);
+wp.hooks.addFilter('blocks.getSaveElement', 'gutenstrap/container/modify-element-save', modifyGetSaveElementContainer);
 
 
 
