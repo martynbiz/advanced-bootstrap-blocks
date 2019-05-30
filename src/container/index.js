@@ -42,11 +42,14 @@ registerBlockType( 'gutenstrap/container', {
         __('container'),
     ],
     attributes: {
-      fluid: {
+      isFluid: {
         type: 'bool',
         default: false
       },
-      columns: {},
+      isWrapped: {
+        type: 'bool',
+        default: false
+      },
       allowedBlocks: ['gutenstrap/row'],
       TEMPLATE: {
         type: 'array',
@@ -60,21 +63,25 @@ registerBlockType( 'gutenstrap/container', {
         const {
           className,
           attributes: {
-            fluid,
+            isFluid,
+            isWrapped,
             TEMPLATE,
-            columnCount
           },
           setAttributes
         } = props;
 
-        const onChangeToggleFluid = ( ) => {
-          setAttributes( { fluid: !fluid } );
+        const onChangeToggleFluid = () => {
+          setAttributes( { isFluid: !isFluid } );
+        }
+
+        const onChangeToggleWrapped = () => {
+          setAttributes( { isWrapped: !isWrapped } );
         }
         
         const onChangeColumnCount = ( value ) => {
           setAttributes( { columnCount: value } );
         }
-        
+
         return (
           <Fragment>
             <InspectorControls>
@@ -89,43 +96,35 @@ registerBlockType( 'gutenstrap/container', {
                       </label>
                       <FormToggle
                           id="form-toggle-fluid"
-                          label={ __( 'Full-width Container', 'gutenstrap' ) }
-                          checked={ !fluid }
+                          label={ __( 'Full-width container', 'gutenstrap' ) }
+                          checked={ isFluid }
                           onClick={ onChangeToggleFluid }
                       />
                   </PanelRow>
-                  {/* <div 
-                    style={{
-                      display: `block`, 
-                      width: `100%`,
-                      marginTop: `15px`
-                    }}
-                  >
-                    <label
-                        htmlFor="form-column-count"
-                    >
-                      { __( 'Columns', 'gutenstrap' ) }
-                    </label>
-                    <PanelRow>
-                      <RangeControl
-                          id="form-column-count"
-                          value={ columnCount }
-                          onChange={ onChangeColumnCount }
-                          min={ 1 }
-                          max={ 12 }
-                        />
-                    </PanelRow>
-                  </div> */}
+                  <PanelRow>
+                      <label
+                          htmlFor="form-toggle-fluid"
+                      >
+                          { __( 'Wrap container', 'gutenstrap' ) }
+                      </label>
+                      <FormToggle
+                          id="form-toggle-fluid"
+                          label={ __( 'Add Wrapper', 'gutenstrap' ) }
+                          checked={ isWrapped }
+                          onClick={ onChangeToggleWrapped }
+                      />
+                  </PanelRow>
                 </PanelBody>
             </InspectorControls> 
-            <div 
-              style={{ border: '1px dashed red'}}
-            >
-              <InnerBlocks 
-                template={ TEMPLATE }
-                allowedBlocks={['gutenstrap/row']}
-              /> 
-            </div>
+              <div 
+                className={ isFluid ? "container-fluid" : "container" }
+                style={{ border: '1px dashed red'}}
+              >
+                <InnerBlocks 
+                  template={ TEMPLATE }
+                  allowedBlocks={['gutenstrap/row']}
+                />
+              </div>
           </Fragment>
         );
     },
@@ -142,12 +141,8 @@ registerBlockType( 'gutenstrap/container', {
 
 const modifyBlockListBlockContainer = createHigherOrderComponent( ( BlockListBlock ) => {
   return ( props ) => {
-
-    if (props.block.name == "core/block") {
-      
-    }
     if (props.block.name == "gutenstrap/container") {
-      props.className = [(!props.attributes.fluid ? "container-fluid" : "container")].join(" ");
+      props.className = props.attributes.isWrapped ? props.className : "";
     }
     return <BlockListBlock { ...props } />;
   };
@@ -165,9 +160,17 @@ const modifyGetSaveElementContainer = (element, blockType, attributes ) => {
   }
 
   if (blockType.name === 'gutenstrap/container') {
-    element.props.className = [element.props.className, (!attributes.fluid ? "container-fluid" : "container")].join(" ");
+    if (attributes.isWrapped) {
+      return (
+        <div className={element.props.className}>
+          <div className={ attributes.isFluid ? "container-fluid" : "container" }>
+            {element}
+          </div>
+        </div>
+      )
+    }
     return (
-      <div className={ element.props.className }>
+      <div className={ [element.props.className, (attributes.isFluid ? "container-fluid" : "container")].join(" ") }>
         {element}
       </div>
     )

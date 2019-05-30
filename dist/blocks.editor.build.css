@@ -3135,6 +3135,18 @@
 /*
  * Gutenberg Overrides
  */
+[data-type="gutenstrap/container"].wp-block,
+[data-type="gutenstrap/row"].wp-block,
+[data-type="gutenstrap/column"].wp-block {
+  max-width: 100%; }
+  [data-type="gutenstrap/container"].wp-block .container,
+  [data-type="gutenstrap/container"].wp-block .container-fluid,
+  [data-type="gutenstrap/row"].wp-block .container,
+  [data-type="gutenstrap/row"].wp-block .container-fluid,
+  [data-type="gutenstrap/column"].wp-block .container,
+  [data-type="gutenstrap/column"].wp-block .container-fluid {
+    padding: 0; }
+
 [data-type="gutenstrap/container"] .block-editor-inner-blocks > .block-editor-block-list__layout {
   width: 100%;
   padding-right: 15px;

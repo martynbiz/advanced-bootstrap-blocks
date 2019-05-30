@@ -66,6 +66,17 @@
 /*
  * Gutenberg Overrides
  */
+[data-type="gutenstrap/container"],
+[data-type="gutenstrap/row"],
+[data-type="gutenstrap/column"] {
+  &.wp-block {
+    max-width: 100%; 
+    .container, 
+    .container-fluid {
+      padding: 0; 
+    }
+  }
+}
 [data-type="gutenstrap/container"] {
   .block-editor-inner-blocks > .block-editor-block-list__layout {
     @include make-container();
