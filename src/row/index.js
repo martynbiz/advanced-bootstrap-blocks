@@ -32,13 +32,13 @@ const {
   InnerBlocks
 } = wp.editor;
 
-registerBlockType('gutenstrap/row', {
-  title: __('Row (Gutenstrap)', 'gutenstrap'),
+registerBlockType('advanced-bootstrap-blocks/row', {
+  title: __('Row (advanced-bootstrap-blocks)', 'advanced-bootstrap-blocks'),
   description: __(''),
   icon: 'layout',
   category: 'layout',
   keywords: [
-      __('gutenstrap'),
+      __('advanced-bootstrap-blocks'),
       __('column'),
   ],
   attributes: {
@@ -47,13 +47,13 @@ registerBlockType('gutenstrap/row', {
           type: 'array',
           source: 'children',
       },
-      allowedBlocks: ['gutenstrap/column'],
+      allowedBlocks: ['advanced-bootstrap-blocks/column'],
       TEMPLATE: {
         type: 'array',
         default: [
-          // ['gutenstrap/column', {} ,[]],
-          // ['gutenstrap/column', {} ,[]],
-          // ['gutenstrap/column', {} ,[]]
+          // ['advanced-bootstrap-blocks/column', {} ,[]],
+          // ['advanced-bootstrap-blocks/column', {} ,[]],
+          // ['advanced-bootstrap-blocks/column', {} ,[]]
         ]
       },
   },
@@ -73,7 +73,7 @@ registerBlockType('gutenstrap/row', {
       >
         <InnerBlocks 
           template={ TEMPLATE }
-          allowedBlocks={['gutenstrap/column']}
+          allowedBlocks={['advanced-bootstrap-blocks/column']}
         /> 
       </div>
     );
@@ -89,7 +89,7 @@ registerBlockType('gutenstrap/row', {
 
 const modifyBlockListBlockRow = createHigherOrderComponent( ( BlockListBlock ) => {
     return ( props ) => {
-      if (props.block.name == "gutenstrap/row") {
+      if (props.block.name == "advanced-bootstrap-blocks/row") {
         props.className = [props.className, "row"].join(" ");
       }
       return <BlockListBlock { ...props } />;
@@ -98,7 +98,7 @@ const modifyBlockListBlockRow = createHigherOrderComponent( ( BlockListBlock ) =
 
 wp.hooks.addFilter( 
   'editor.BlockListBlock', 
-  'gutenstrap/row/modify-element-edit', 
+  'advanced-bootstrap-blocks/row/modify-element-edit', 
   modifyBlockListBlockRow 
 );
 
@@ -107,7 +107,7 @@ const modifyGetSaveElementRow = (element, blockType, attributes ) => {
 		return;
 	}
 
-  if (blockType.name == 'gutenstrap/row') {
+  if (blockType.name == 'advanced-bootstrap-blocks/row') {
     return (
       <div className={ [element.props.className, "row"].join(" ") }>
         {element}
@@ -120,6 +120,6 @@ const modifyGetSaveElementRow = (element, blockType, attributes ) => {
 
 wp.hooks.addFilter(
   'blocks.getSaveElement', 
-  'gutenstrap/row/modify-element-save', 
+  'advanced-bootstrap-blocks/row/modify-element-save', 
   modifyGetSaveElementRow
 );

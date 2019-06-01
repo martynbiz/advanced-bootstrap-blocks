@@ -5,7 +5,7 @@
  * Enqueue CSS/JS of all the blocks.
  *
  * @since   1.0.0
- * @package gutenstrap
+ * @package advanced-bootstrap-blocks
  */
 
 // Exit if accessed directly.
@@ -27,10 +27,10 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @uses {wp-editor} for WP editor styles.
  * @since 1.0.0
  */
-function gutenstrap_block_assets() { // phpcs:ignore
+function advanced_bootstrap_blocks_block_assets() { // phpcs:ignore
 	// Register block styles for both frontend + backend.
 	wp_register_style(
-		'gutenstrap-style-css', // Handle.
+		'advanced-bootstrap-blocks-style-css', // Handle.
 		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
 		array( 'wp-editor' ), // Dependency to include the CSS after it.
 		null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: File modification time.
@@ -38,7 +38,7 @@ function gutenstrap_block_assets() { // phpcs:ignore
 
 	// Register block editor script for backend.
 	wp_register_script(
-		'gutenstrap-block-js', // Handle.
+		'advanced-bootstrap-blocks-block-js', // Handle.
 		plugins_url( '/dist/blocks.build.js', dirname( __FILE__ ) ), // Block.build.js: We register the block here. Built with Webpack.
 		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ), // Dependencies, defined above.
 		null, // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.build.js' ), // Version: filemtime — Gets file modification time.
@@ -47,7 +47,7 @@ function gutenstrap_block_assets() { // phpcs:ignore
 
 	// Register block editor styles for backend.
 	wp_register_style(
-		'gutenstrap-block-editor-css', // Handle.
+		'advanced-bootstrap-blocks-block-editor-css', // Handle.
 		plugins_url( 'dist/blocks.editor.build.css', dirname( __FILE__ ) ), // Block editor CSS.
 		array( 'wp-edit-blocks' ), // Dependency to include the CSS after it.
 		null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.editor.build.css' ) // Version: File modification time.
@@ -64,13 +64,13 @@ function gutenstrap_block_assets() { // phpcs:ignore
 	 * @since 1.16.0
 	 */	
 	register_block_type(
-		'gutenstrap/container', array(
+		'advanced-bootstrap-blocks/container', array(
 			// Enqueue blocks.style.build.css on both frontend & backend.
-			'style'         => 'gutenstrap-style-css',
+			'style'         => 'advanced-bootstrap-blocks-style-css',
 			// Enqueue blocks.build.js in the editor only.
-			'editor_script' => 'gutenstrap-block-js',
+			'editor_script' => 'advanced-bootstrap-blocks-block-js',
 			// Enqueue blocks.editor.build.css in the editor only.
-			'editor_style'  => 'gutenstrap-block-editor-css',
+			'editor_style'  => 'advanced-bootstrap-blocks-block-editor-css',
 			// Allow block to be saved and re-used
 			'reusable'			=> true,
 		)
@@ -95,4 +95,4 @@ function gutenstrap_block_assets() { // phpcs:ignore
 }
 
 // Hook: Block assets.
-add_action( 'init', 'gutenstrap_block_assets' );
+add_action( 'init', 'advanced_bootstrap_blocks_block_assets' );

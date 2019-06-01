@@ -16,7 +16,7 @@ const addSupportReusableCoreBlock = function( settings, name ) {
 }
 wp.hooks.addFilter(
   'blocks.registerBlockType',
-  'gutenstrap/core/block',
+  'advanced-bootstrap-blocks/core/block',
   addSupportReusableCoreBlock
 );
 
@@ -30,7 +30,7 @@ const modifyReusableCoreBlock = createHigherOrderComponent( ( BlockListBlock ) =
 }, 'modifyBlockListBlockContainer' );
 wp.hooks.addFilter( 
   'editor.BlockListBlock', 
-  'gutenstrap/core/modify-element-edit',
+  'advanced-bootstrap-blocks/core/modify-element-edit',
    modifyReusableCoreBlock 
 );
 

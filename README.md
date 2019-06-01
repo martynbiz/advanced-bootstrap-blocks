@@ -1,16 +1,22 @@
-# Gutenstrap - Bootstrap 4 Blocks for Gutenberg
+# Advanced Bootstrap Blocks
 
-No-mess Bootstrap 4 blocks for the Wordpress Gutenberg editor. The following components are supported: 
+This plugin allows you to build flexible, no-mess Bootstrap 4 layouts inside the Gutenberg editor. 
+
+The following components are currently supported: 
 
  * Container
  * Row
  * Column
 
-Bootstrap styles are included in the Gutenberg editor but will need to be included in your theme (at least the bootstrap grid) for these blocks to appear correctly on your public-facing website. 
+Bootstrap styles are included in the Gutenberg editor but need to be included in your theme (at least the bootstrap grid) for these blocks to appear correctly on your public-facing website. 
 
-This plugin is intended to be used with the [Understrap Theme](https://understrap.com/). Please submit issues and pull requests through [https://gitlab.com/helpful.dev/gutenstrap](https://gitlab.com/helpful.dev/gutenstrap). 
+After enabling this plugin, a `Reusable Blocks` menu item will be available in Wordpress admin menu.
+
+This plugin was developed and tested using [Understrap](https://understrap.com/). Please issues, feature-, and pull-requests through [https://gitlab.com/helpful.dev/advanced-bootstrap-blocks](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks).
 
 ---
+
+## Plugin Development
 
 This project was bootstrapped with [Create Guten Block](https://github.com/ahmadawais/create-guten-block).
 

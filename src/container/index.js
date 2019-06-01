@@ -32,13 +32,13 @@ const {
   InnerBlocks
 } = wp.editor;
 
-registerBlockType( 'gutenstrap/container', {
-    title: __( 'Container (Gutenstrap)', 'gutenstrap' ),
+registerBlockType( 'advanced-bootstrap-blocks/container', {
+    title: __( 'Container (advanced-bootstrap-blocks)', 'advanced-bootstrap-blocks' ),
     description: __(''),
     icon: 'layout',
     category: 'layout',
     keywords: [
-        __('gutenstrap'),
+        __('advanced-bootstrap-blocks'),
         __('container'),
     ],
     attributes: {
@@ -50,11 +50,11 @@ registerBlockType( 'gutenstrap/container', {
         type: 'bool',
         default: false
       },
-      allowedBlocks: ['gutenstrap/row'],
+      allowedBlocks: ['advanced-bootstrap-blocks/row'],
       TEMPLATE: {
         type: 'array',
         default: [
-          ['gutenstrap/row', {} ,[]]
+          ['advanced-bootstrap-blocks/row', {} ,[]]
         ]
       }
     },
@@ -86,17 +86,17 @@ registerBlockType( 'gutenstrap/container', {
           <Fragment>
             <InspectorControls>
                 <PanelBody
-                    title={ __( 'Container Settings', 'gutenstrap' ) }
+                    title={ __( 'Container Settings', 'advanced-bootstrap-blocks' ) }
                 >
                   <PanelRow>
                       <label
                           htmlFor="form-toggle-fluid"
                       >
-                          { __( 'Full-width Container', 'gutenstrap' ) }
+                          { __( 'Full-width Container', 'advanced-bootstrap-blocks' ) }
                       </label>
                       <FormToggle
                           id="form-toggle-fluid"
-                          label={ __( 'Full-width container', 'gutenstrap' ) }
+                          label={ __( 'Full-width container', 'advanced-bootstrap-blocks' ) }
                           checked={ isFluid }
                           onClick={ onChangeToggleFluid }
                       />
@@ -105,11 +105,11 @@ registerBlockType( 'gutenstrap/container', {
                       <label
                           htmlFor="form-toggle-fluid"
                       >
-                          { __( 'Wrap container', 'gutenstrap' ) }
+                          { __( 'Wrap container', 'advanced-bootstrap-blocks' ) }
                       </label>
                       <FormToggle
                           id="form-toggle-fluid"
-                          label={ __( 'Add Wrapper', 'gutenstrap' ) }
+                          label={ __( 'Add Wrapper', 'advanced-bootstrap-blocks' ) }
                           checked={ isWrapped }
                           onClick={ onChangeToggleWrapped }
                       />
@@ -122,7 +122,7 @@ registerBlockType( 'gutenstrap/container', {
               >
                 <InnerBlocks 
                   template={ TEMPLATE }
-                  allowedBlocks={['gutenstrap/row']}
+                  allowedBlocks={['advanced-bootstrap-blocks/row']}
                 />
               </div>
           </Fragment>
@@ -141,7 +141,7 @@ registerBlockType( 'gutenstrap/container', {
 
 const modifyBlockListBlockContainer = createHigherOrderComponent( ( BlockListBlock ) => {
   return ( props ) => {
-    if (props.block.name == "gutenstrap/container") {
+    if (props.block.name == "advanced-bootstrap-blocks/container") {
       props.className = props.attributes.isWrapped ? props.className : "";
     }
     return <BlockListBlock { ...props } />;
@@ -150,7 +150,7 @@ const modifyBlockListBlockContainer = createHigherOrderComponent( ( BlockListBlo
 
 wp.hooks.addFilter( 
   'editor.BlockListBlock', 
-  'gutenstrap/container/modify-element-edit', 
+  'advanced-bootstrap-blocks/container/modify-element-edit', 
   modifyBlockListBlockContainer 
 );
 
@@ -159,7 +159,7 @@ const modifyGetSaveElementContainer = (element, blockType, attributes ) => {
     return;
   }
 
-  if (blockType.name === 'gutenstrap/container') {
+  if (blockType.name === 'advanced-bootstrap-blocks/container') {
     if (attributes.isWrapped) {
       return (
         <div className={element.props.className}>
@@ -181,6 +181,6 @@ const modifyGetSaveElementContainer = (element, blockType, attributes ) => {
 
 wp.hooks.addFilter(
   'blocks.getSaveElement', 
-  'gutenstrap/container/modify-element-save', 
+  'advanced-bootstrap-blocks/container/modify-element-save', 
   modifyGetSaveElementContainer
 );
