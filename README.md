@@ -12,9 +12,9 @@ Build responsive Bootstrap 4 layouts inside the Gutenberg editor.
  
 The following components are currently supported: 
 
- * Container (fixed-width, fluid)
- * Row
- * Column
+* Container (fixed-width, fluid)
+* Row
+* Column
 
 Bootstrap styles are included in the Gutenberg editor but need to be included in your theme (at least the bootstrap grid) for these blocks to appear correctly on your public-facing website. This plugin was developed, tested, and intended to be used within [Understrap](https://understrap.com/). 
 

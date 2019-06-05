@@ -62,7 +62,6 @@
   }
 }
 @import "../node_modules/bootstrap/scss/utilities/spacing";
-
 /*
  * Gutenberg Overrides
  */
@@ -123,6 +122,18 @@
 
 [data-type="advanced-bootstrap-blocks/column"] {
   // @include make-col-ready()
+  [data-type="core/heading"],
+  [data-type="core/paragraph"] {
+    // &.is-selected {
+    //   margin-top: 50px;
+    // }
+  }
+  [data-type="core/heading"] + [data-type="core/paragraph"] {
+    margin-top: 10px;
+  }
+  [data-type="core/paragraph"] + [data-type="core/paragraph"] {
+    margin-top: 10px;
+  }
 }
 
 
@@ -157,10 +168,11 @@
         &:last-child {
           padding-right: 15px; 
         }
-        // & + [data-type="advanced-bootstrap-blocks/column"] {
-        //   padding-left: 0; 
-        // }
       }
     }
+  }
+  .block-editor-default-block-appender>.block-editor-default-block-appender__content {
+    margin-top: 0;
+    margin-bottom: 0; 
   }
 }
