@@ -47,6 +47,11 @@ const buttonStyle = ({ style, outline, block }) => {
   return styles; 
 }
 
+const buttonNewWindow = (newWindow) => {
+  if (newWindow) 
+   return "_blank";
+  return "_self";
+}
 
 registerBlockType( 'advanced-bootstrap-blocks/button', {
     title: __( 'Button (advanced-bootstrap-blocks)', 'advanced-bootstrap-blocks' ),
@@ -85,7 +90,11 @@ registerBlockType( 'advanced-bootstrap-blocks/button', {
       size: {
         type: 'string',
         default: ''
-      }
+      },
+      newWindow: {
+        type: 'bool',
+        default: false
+      },
     },
 
     edit: function( props ) {
@@ -98,7 +107,8 @@ registerBlockType( 'advanced-bootstrap-blocks/button', {
             style,
             outline,
             block,
-            size
+            size,
+            newWindow
           },
           setAttributes
         } = props;
@@ -125,6 +135,10 @@ registerBlockType( 'advanced-bootstrap-blocks/button', {
 
         const onChangeSize = ( value ) => {
           setAttributes( { size: value } );
+        }
+        
+        const onChangeNewWindow = () => {
+          setAttributes( { newWindow: !newWindow } );
         }
 
         return (
@@ -168,12 +182,12 @@ registerBlockType( 'advanced-bootstrap-blocks/button', {
                   </PanelRow>
                   <PanelRow>
                       <label
-                          htmlFor="form-toggle-fluid"
+                          htmlFor="form-toggle-outline"
                       >
                           { __( 'Button Outline Setting', 'advanced-bootstrap-blocks' ) }
                       </label>
                       <FormToggle
-                          id="form-toggle-fluid"
+                          id="form-toggle-outline"
                           label={ __( 'Toggle Outline', 'advanced-bootstrap-blocks' ) }
                           checked={outline}
                           onChange={onChangeOutline}
@@ -181,12 +195,12 @@ registerBlockType( 'advanced-bootstrap-blocks/button', {
                   </PanelRow>
                   <PanelRow>
                       <label
-                          htmlFor="form-toggle-fluid"
+                          htmlFor="form-toggle-block"
                       >
                           { __( 'Button Block Setting', 'advanced-bootstrap-blocks' ) }
                       </label>
                       <FormToggle
-                          id="form-toggle-fluid"
+                          id="form-toggle-block"
                           label={ __( 'Toggle block', 'advanced-bootstrap-blocks' ) }
                           checked={block}
                           onChange={onChangeBlock}
@@ -205,17 +219,49 @@ registerBlockType( 'advanced-bootstrap-blocks/button', {
                         onChange={onChangeSize}
                       />
                   </PanelRow>
+                  <PanelRow>
+                      <label
+                          htmlFor="form-toggle-window"
+                      >
+                          { __( 'Open link in new window', 'advanced-bootstrap-blocks' ) }
+                      </label>
+                      <FormToggle
+                          id="form-toggle-window"
+                          label={ __( 'Open link in new window', 'advanced-bootstrap-blocks' ) }
+                          checked={newWindow}
+                          onChange={onChangeNewWindow}
+                      />
+                  </PanelRow>
                 </PanelBody>
             </InspectorControls> 
             {
-              <a className={[className, size, buttonStyle(props.attributes), "btn"].join(" ")} href={link} role="button">{text}</a>
+              <a 
+                className={[className, size, buttonStyle(props.attributes), "btn"].join(" ")} 
+                href={link} 
+                target={newWindow && '_blank'}
+                role="button"
+                rel={newWindow && 'noopener noreferrer'}
+                onClick={(e) => e.preventDefault()}
+              >
+                {text}
+              </a>
             }
           </Fragment>
         );
     },
     
     save: function( props ) {
-        return <a className={[props.className, props.attributes.size, buttonStyle(props.attributes), "btn"].join(" ")} href={props.attributes.link} role="button">{props.attributes.text}</a>;
+        return (
+          <a 
+            className={[props.className, props.attributes.size, buttonStyle(props.attributes), "btn"].join(" ")} 
+            href={props.attributes.link} 
+            target={props.attributes.newWindow && "_blank"}
+            role="button"
+            rel={props.attributes.newWindow && 'noopener noreferrer'}
+          >
+            {props.attributes.text}
+          </a>
+        );
     },
 } );
 
