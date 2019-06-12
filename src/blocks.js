@@ -13,6 +13,7 @@ import './core';
 import './container';
 import './row';
 import './column';
+import './button';
 
 import './blocks.editor.scss';
 import './blocks.style.scss';
