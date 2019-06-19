@@ -25,7 +25,13 @@ This plugin is developed, tested, and intended to be used within [Understrap](ht
 Please submit issues, feature-, and pull-requests through [https://gitlab.com/helpful.dev/advanced-bootstrap-blocks](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks). 
 
 == Changelog ==
-## 1.0.4
+
+### 1.0.5
+* All Bootstrap styles are now included in editor by default (this may change in the future)
+* Fix bug with omission of custom container classNames in editor
+* Increase padding around main container layout
+
+### 1.0.4
 
 * Adding basic `Button` component (with style, block, size, outline, new-window settings) 
 * Minor README changes
