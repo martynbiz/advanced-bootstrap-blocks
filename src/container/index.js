@@ -116,8 +116,9 @@ registerBlockType( 'advanced-bootstrap-blocks/container', {
                   </PanelRow>
                 </PanelBody>
             </InspectorControls> 
+              
               <div 
-                className={ isFluid ? "container-fluid" : "container" }
+                className={ isFluid ? [className, "container-fluid"].join("") : [className, "container"].join("") }
                 style={{ border: '1px dashed red'}}
               >
                 <InnerBlocks 
