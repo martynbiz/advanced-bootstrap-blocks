@@ -52,7 +52,7 @@ registerBlockType('advanced-bootstrap-blocks/column', {
     return (
       <div 
         // className={props.className}
-        style={{ border: '1px dashed green'}}
+        style={{ outline: '1px dashed green'}}
       >
         <InnerBlocks />
       </div>

@@ -99,7 +99,6 @@ registerBlockType( 'advanced-bootstrap-blocks/button', {
 
     edit: function( props ) {
         const {
-          className,
           attributes: {
             type, 
             text,
@@ -108,8 +107,10 @@ registerBlockType( 'advanced-bootstrap-blocks/button', {
             outline,
             block,
             size,
-            newWindow
+            newWindow,
           },
+          className,
+          isSelected,
           setAttributes
         } = props;
         
@@ -147,20 +148,6 @@ registerBlockType( 'advanced-bootstrap-blocks/button', {
                 <PanelBody
                     title={ __( 'Button Settings', 'advanced-bootstrap-blocks' ) }
                 >
-                  <PanelRow>
-                    <TextControl
-                        label="Button text"
-                        value={ text }
-                        onChange={onChangeText}
-                    />
-                  </PanelRow>
-                  <PanelRow>
-                    <TextControl
-                        label="Button link"
-                        value={ link }
-                        onChange={onChangeLink}
-                    />
-                  </PanelRow>
                   <PanelRow>
                     <SelectControl
                       label="Button Style"
@@ -234,8 +221,8 @@ registerBlockType( 'advanced-bootstrap-blocks/button', {
                   </PanelRow>
                 </PanelBody>
             </InspectorControls> 
-            {
-              <a 
+            <Fragment>
+              <a
                 className={[className, size, buttonStyle(props.attributes), "btn"].join(" ")} 
                 href={link} 
                 target={newWindow && '_blank'}
@@ -245,7 +232,21 @@ registerBlockType( 'advanced-bootstrap-blocks/button', {
               >
                 {text}
               </a>
-            }
+              {
+                isSelected && <Toolbar>
+                  <TextControl
+                      label="Button text"
+                      value={ text }
+                      onChange={onChangeText}
+                  />
+                  <TextControl
+                      label="Button link"
+                      value={ link }
+                      onChange={onChangeLink}
+                  />
+                </Toolbar>
+              }
+            </Fragment>
           </Fragment>
         );
     },

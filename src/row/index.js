@@ -69,7 +69,7 @@ registerBlockType('advanced-bootstrap-blocks/row', {
     return (
       <div 
         className={props.className}
-        style={{ border: '1px dashed orange'}}
+        style={{ outline: '1px dashed orange'}}
       >
         <InnerBlocks 
           template={ TEMPLATE }

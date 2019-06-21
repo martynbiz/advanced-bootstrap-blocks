@@ -14,11 +14,82 @@
 // @import "../node_modules/bootstrap/scss/reboot";
 // @import "../node_modules/bootstrap/scss/type";
 // @import "../node_modules/bootstrap/scss/mixins/breakpoints";
-// @import "../node_modules/bootstrap/scss/mixins/grid-framework";
+// contents of "../node_modules/bootstrap/scss/mixins/grid-framework";
+
+@mixin make-advanced-grid-columns($columns: $grid-columns, $gutter: $grid-gutter-width, $breakpoints: $grid-breakpoints) {
+  // Common properties for all breakpoints
+  %grid-column {
+    position: relative;
+    width: 100%;
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+  }
+
+  @each $breakpoint in map-keys($breakpoints) {
+    $infix: breakpoint-infix($breakpoint, $breakpoints);
+
+    // Allow columns to stretch full width below their breakpoints
+    // @for $i from 1 through $columns {
+    //   .col#{$infix}-#{$i} {
+    //     @extend %grid-column;
+    //   }
+    // }
+    // .col#{$infix},
+    // .col#{$infix}-auto {
+    //   @extend %grid-column;
+    // }
+
+    @include media-breakpoint-up($breakpoint, $breakpoints) {
+      // Provide basic `.col-{bp}` classes for equal-width flexbox columns
+      // .col#{$infix} {
+      //   flex-basis: 0;
+      //   flex-grow: 1;
+      //   max-width: 100%;
+      // }
+      // .col#{$infix}-auto {
+      //   flex: 0 0 auto;
+      //   width: auto;
+      //   max-width: 100%; // Reset earlier grid tiers
+      // }
+
+      // @for $i from 1 through $columns {
+      //   .col#{$infix}-#{$i} {
+      //     @include make-col($i, $columns);
+      //   }
+      // }
+
+      .order#{$infix}-first .block-editor-block-list__layout [data-type="advanced-bootstrap-blocks/column"] { order: -1; }
+
+      .order#{$infix}-last .block-editor-block-list__layout [data-type="advanced-bootstrap-blocks/column"] { order: $columns + 1; }
+
+      @for $i from 0 through $columns {
+        .order#{$infix}-#{$i} .block-editor-block-list__layout [data-type="advanced-bootstrap-blocks/column"] { order: $i; }
+      }
+
+      // `$columns - 1` because offsetting by the width of an entire row isn't possible
+      // counting up to zero for using !important flag with mobile-first breakpoints... ;)
+      @for $i from -($columns - 1) through 0 {
+        @if not ($infix == "" and $i == 0) { // Avoid emitting useless .offset-0
+          .offset#{$infix}#{$i} {
+            @include make-advanced-col-offset($i, $columns);
+          }
+        }
+      }
+    }
+  }
+}
+
+@mixin make-advanced-col-offset($size, $columns: $grid-columns) {
+  $num: abs($size) / $columns;
+  margin-left: if($num == 0, 0, percentage($num)) !important;
+}
+
+@if $enable-grid-classes {
+  @include make-advanced-grid-columns();
+}
+
 // @import "../node_modules/bootstrap/scss/mixins/grid";
 // @import "../node_modules/bootstrap/scss/mixins/buttons";
-
-
 // @import "../node_modules/bootstrap/scss/grid";
 // @import "../node_modules/bootstrap/scss/buttons";
 // @import "../node_modules/bootstrap/scss/utilities/display";
@@ -76,6 +147,7 @@
 [data-type="advanced-bootstrap-blocks/container"],
 [data-type="advanced-bootstrap-blocks/row"],
 [data-type="advanced-bootstrap-blocks/column"] {
+
   &.wp-block {
     max-width: 100%; 
     .container, 
@@ -100,8 +172,8 @@
     }
   }
   .block-editor-block-list__block {
-    margin: 0;
-    padding: 0 !important; 
+    // margin: 0;
+    // padding: 0 !important; 
     max-width: 100%;
     width: 100%; 
   }
@@ -120,6 +192,22 @@
     flex-wrap: nowrap;
     margin-left: 0 !important;
     margin-right: 0 !important; 
+    > .block-list-appender {
+      &:not(:first-child) { 
+        position: absolute;
+        top: 8px;
+        right: 8px;
+      }
+      outline: none;
+      .block-list-appender__toggle {
+        padding: 8px;
+        // border: 0;
+        outline: 0;
+        &:focus {
+          outline: 1px solid;
+        }
+      }
+    }
   }
 }
 
@@ -143,12 +231,48 @@
     margin-top: 10px;
   }
 }
-
+[data-type="advanced-bootstrap-blocks/button"] {
+  .components-toolbar {
+    margin-top: $spacer / 2; 
+    padding: 0 $spacer / 2; 
+    @media (min-width: 600px) {
+      display: flex;
+      align-items: center;
+    }
+    .components-base-control {
+      margin: 0;
+      padding: $spacer / 2; 
+      width: 50%;
+      .components-base-control__field {
+        text-align: left; 
+        width: 100%;
+        padding: 0;
+        .components-base-control__label {
+          font-weight: bold;
+        }
+        .components-text-control__input {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
 
 
 .block-editor-block-list__layout {
-  padding-left: 85px;
-  padding-right: 85px;
+  @media (min-width: 600px) {
+    padding-left: 85px;
+    padding-right: 85px;
+  }
+  .block-editor-block-list__block {
+    padding: 5px;
+    .block-editor-block-list__block-edit:before {
+      left: 0;
+      right: 0;
+      bottom: 0;
+      top: 0; 
+    }
+  }
   .block-editor-block-list__block[data-align=full] {
     margin-left: auto;
     margin-right: auto;
@@ -184,5 +308,15 @@
   .block-editor-default-block-appender>.block-editor-default-block-appender__content {
     margin-top: 0;
     margin-bottom: 0; 
+  }
+}
+// floating insertion point 
+.editor-block-list__insertion-point {
+  &, 
+  .editor-block-list__insertion-point-inserter {
+    pointer-events: none; 
+  }
+  [type="button"]:not(:disabled) {
+    pointer-events: all;
   }
 }
