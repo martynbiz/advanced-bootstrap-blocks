@@ -11,32 +11,35 @@ Build responsive Bootstrap 4 layouts inside the Gutenberg editor.
 
 == Description ==
 
-This plugin implements flexible Bootstrap 4 blocks for building custom page layouts in the Wordpress editor (aka Gutenberg.) The following components are currently supported: 
+This plugin adds flexible Bootstrap 4 blocks to the Wordpress editor (a.k.a Gutenberg) to allow content-creators to build their own custom page layouts. The following components are currently supported: 
 
 * Container (fixed-width, fluid)
 * Row
 * Column
 * Button
 
-Bootstrap styles are included in the Gutenberg editor but need to be included in your theme (at least the bootstrap grid) for these blocks to appear correctly on your public-facing website. Once enabled, a `Reusable Blocks` menu will be available through the Wordpress Dashboard.
+Bootstrap 4 styles are included in the Gutenberg editor but need to be included in your theme for these blocks to appear correctly on your public-facing website.
 
-This plugin is developed, tested, and intended to be used within [Understrap](https://understrap.com/). 
+This plugin is developed, tested, and is intended to be used with [Understrap](https://understrap.com/). 
 
 Please submit issues, feature-, and pull-requests through [https://gitlab.com/helpful.dev/advanced-bootstrap-blocks](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks). 
 
 == Changelog ==
 
+### 1.0.7
+* Refine `Button` block (add URL picker, button text is directly editable)
+* General UI improvements
+
 ### 1.0.6
-* Make column .offset-* classes available in editor
-* Update Button editor UI (per standards in WP editor handbook)
+* Made column .offset-* classes available in editor
+* Updated Button editor UI (per standards in WP editor handbook)
 * Improved block selection w/ CSS pointer-events
 
 ### 1.0.5
-* All Bootstrap styles are now included in editor by default (this may change in the future)
-* Fix bug with omission of custom container classNames in editor
-* Increase padding around main container layout
+* All Bootstrap styles now included in editor by default (this may change in the future)
+* Fixed bug with omission of custom container classNames in editor
+* Increased padding around main container layout
 
 ### 1.0.4
-
-* Adding basic `Button` component (with style, block, size, outline, new-window settings) 
+* Added basic `Button` component (with style, block, size, outline, new-window settings) 
 * Minor README changes

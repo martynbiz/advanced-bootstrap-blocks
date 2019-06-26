@@ -1,22 +1,9 @@
 const { __ } = wp.i18n;
 
-const { 
-  createHigherOrderComponent 
-} = wp.compose;
-
-const { 
-  registerBlockType 
-} = wp.blocks;
-
 const {
-  Toolbar,
-  Button,
-  Tooltip,
-  Panel,
   PanelBody,
   PanelRow,
   FormToggle,
-  RangeControl
 } = wp.components;
 
 const {
@@ -24,10 +11,6 @@ const {
 } = wp.element; 
 
 const {
-  RichText,
-  AlignmentToolbar,
-  BlockControls,
-  BlockAlignmentToolbar,
   InspectorControls,
   InnerBlocks
 } = wp.editor;

@@ -5,7 +5,7 @@
  * Description: Flexible Bootstrap 4 blocks for building custom page layouts in the Wordpress editor (aka Gutenberg.) 
  * Author: helpful.dev
  * Author URI: https://helpful.dev/
- * Version: 1.0.6
+ * Version: 1.0.7
  * License: GPL3+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  *

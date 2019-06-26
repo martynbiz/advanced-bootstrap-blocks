@@ -7,34 +7,26 @@ const {
 const {
   SelectControl,
   RadioControl,
-  TextControl,
-  Toolbar,
-  Button,
-  Tooltip,
-  Panel,
   PanelBody,
   PanelRow,
   FormToggle,
-  RangeControl
 } = wp.components;
 
 const {
-  RichText,
-  AlignmentToolbar,
-  BlockControls,
-  BlockAlignmentToolbar,
   InspectorControls,
-  InnerBlocks
+  URLInputButton,
 } = wp.editor;
 
-import { 
+import {
   buttonStyle,
-} from './utils';
+  getCaretPosition,
+  setCaretPosition
+} from './utils'; 
+
 
 export const edit = (props) => {
   const {
     attributes: {
-      type, 
       text,
       link,
       style,
@@ -76,8 +68,41 @@ export const edit = (props) => {
     setAttributes( { newWindow: !newWindow } );
   }
 
+  const onInput = (e) => {
+    const target = e.target;
+    const position = getCaretPosition(target);
+    
+    if (text != target.text && typeof target === "Node") {
+      setAttributes( { text: target.text } );
+      setCaretPosition(target, position);
+      setTimeout(function() {
+        setCaretPosition(target, position);
+      }, 0);
+    }
+  }
+
   return (
     <Fragment>
+      <div className={[block ? "d-flex" : "d-inline-flex", "align-items-start"].join(" ")}>
+        <a
+          className={[className, size, buttonStyle(props.attributes), "btn"].join(" ")} 
+          href={link} 
+          target={newWindow && '_blank'}
+          role="button"
+          rel={newWindow && 'noopener noreferrer'}
+          contentEditable
+          onInput={onInput}
+          onClick={(e) => e.preventDefault()}
+          style={{ marginTop: '3px' }}
+        >
+          {text}
+        </a>
+        <URLInputButton
+          label="Link picker"
+          url={ link }
+          onChange={ ( link ) => setAttributes( { link } ) }
+        />
+      </div>
       <InspectorControls>
           <PanelBody
               title={ __( 'Button Settings', 'advanced-bootstrap-blocks' ) }
@@ -99,7 +124,6 @@ export const edit = (props) => {
                 ] }
                 onChange={onChangeStyle}
             />
-
             </PanelRow>
             <PanelRow>
                 <label
@@ -154,33 +178,7 @@ export const edit = (props) => {
                 />
             </PanelRow>
           </PanelBody>
-      </InspectorControls> 
-      <Fragment>
-        <a
-          className={[className, size, buttonStyle(props.attributes), "btn"].join(" ")} 
-          href={link} 
-          target={newWindow && '_blank'}
-          role="button"
-          rel={newWindow && 'noopener noreferrer'}
-          onClick={(e) => e.preventDefault()}
-        >
-          {text}
-        </a>
-        {
-          isSelected && <Toolbar>
-            <TextControl
-                label="Button text"
-                value={ text }
-                onChange={onChangeText}
-            />
-            <TextControl
-                label="Button link"
-                value={ link }
-                onChange={onChangeLink}
-            />
-          </Toolbar>
-        }
-      </Fragment>
+      </InspectorControls>
     </Fragment>
   );
 }

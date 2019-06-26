@@ -1,9 +1,4 @@
 const {
-  RichText,
-  AlignmentToolbar,
-  BlockControls,
-  BlockAlignmentToolbar,
-  InspectorControls,
   InnerBlocks
 } = wp.editor;
 

@@ -232,6 +232,23 @@
   }
 }
 [data-type="advanced-bootstrap-blocks/button"] {
+  > .editor-block-list__block-edit {
+    // position: relative; 
+    width: auto; 
+    .wp-block-advanced-bootstrap-blocks-button {
+      
+    }
+    .editor-url-input__button {
+      // position: absolute;
+      // top: 0; 
+      // right: 0; 
+    }
+    .editor-url-input__button-modal {
+      position: absolute; 
+      right: 0;
+      z-index: 1; 
+    }
+  }
   .components-toolbar {
     margin-top: $spacer / 2; 
     padding: 0 $spacer / 2; 

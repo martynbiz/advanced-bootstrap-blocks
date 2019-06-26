@@ -12,7 +12,7 @@ import {
 } from './utils'; 
 
 const settings = {
-  title: __( 'Container (bootstrap-blocks)', 'advanced-bootstrap-blocks' ),
+  title: __( 'Container (advanced-bootstrap-blocks)', 'advanced-bootstrap-blocks' ),
   description: __(''),
   icon: 'layout',
   category: 'layout',
