@@ -47,12 +47,6 @@ const buttonStyle = ({ style, outline, block }) => {
   return styles; 
 }
 
-const buttonNewWindow = (newWindow) => {
-  if (newWindow) 
-   return "_blank";
-  return "_self";
-}
-
 registerBlockType( 'advanced-bootstrap-blocks/button', {
     title: __( 'Button (advanced-bootstrap-blocks)', 'advanced-bootstrap-blocks' ),
     description: __(''),
