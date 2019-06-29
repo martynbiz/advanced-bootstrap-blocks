@@ -11,9 +11,15 @@ const {
 } = wp.element; 
 
 const {
+  MediaUpload,
   InspectorControls,
   InnerBlocks
 } = wp.editor;
+
+import {
+  checkStyles
+} from './utils'; 
+
 
 export const edit = (props) => {
   const {
@@ -21,6 +27,7 @@ export const edit = (props) => {
     attributes: {
       isFluid,
       isWrapped,
+      backgroundImage,
       TEMPLATE,
     },
     setAttributes
@@ -33,21 +40,38 @@ export const edit = (props) => {
   const onChangeToggleWrapped = () => {
     setAttributes( { isWrapped: !isWrapped } );
   }
-  
-  const onChangeColumnCount = ( value ) => {
-    setAttributes( { columnCount: value } );
+
+  const onSelectBackgroundImage = (value ) => {
+    setAttributes({
+      backgroundImage: value.sizes,
+    });
+  }
+
+  const classNameAttribute = () => {
+    const containerClass = isFluid ? "container-fluid" : "container"; 
+    return [className, containerClass].join(" ");
   }
 
   return (
     <Fragment>
-      <div 
-        className={ isFluid ? [className, "container-fluid"].join(" ") : [className, "container"].join(" ") }
-        style={{ outline: '1px dashed red'}}
-      >
-        <InnerBlocks 
-          template={ TEMPLATE }
-          allowedBlocks={['advanced-bootstrap-blocks/row']}
-        />
+      <div style={{outline: '1px dashed red'}}>
+        <div 
+          className={classNameAttribute()}
+          { // conditionally render style attribute with backgroundImage property
+            ...backgroundImage ? {
+              style: {
+                backgroundImage: `url(${backgroundImage.full.url})`
+              }
+            } : {
+
+            }
+          }
+        >
+          <InnerBlocks 
+            template={ TEMPLATE }
+            allowedBlocks={['advanced-bootstrap-blocks/row']}
+          />
+        </div>
       </div>
       <InspectorControls>
           <PanelBody
@@ -78,6 +102,45 @@ export const edit = (props) => {
                     checked={ isWrapped }
                     onClick={ onChangeToggleWrapped }
                 />
+            </PanelRow>
+            <PanelRow>
+              <div className="w-100">
+                <label
+                    htmlFor="form-media-select"
+                    style={{
+                      display: 'block'
+                    }}
+                >
+                    { __( 'Background image', 'advanced-bootstrap-blocks' ) }
+                </label>
+                <MediaUpload 
+                    id="form-media-select"
+                    onSelect={onSelectBackgroundImage}
+                    render={ ({open}) => {
+                        return backgroundImage && (
+                          <div>
+                            <img 
+                              src={backgroundImage.medium.url} 
+                              alt="Background image preview"
+                              className="w-100 mb-2 rounded-sm"
+                            />
+                            <div className="btn-group">
+                              <button className="btn btn-primary btn-sm" onClick={open}>
+                                Replace
+                              </button>
+                              <button className="btn btn-dark btn-sm" onClick={() => { setAttributes({backgroundImage: false})}}>
+                                Clear
+                              </button>
+                            </div>
+                          </div>
+                        ) || (
+                          <button className="btn btn-dark btn-sm" onClick={open}>
+                            Select
+                          </button>
+                        );
+                    }}
+                  />  
+              </div>
             </PanelRow>
           </PanelBody>
       </InspectorControls> 

@@ -29,6 +29,10 @@ const settings = {
       type: 'bool',
       default: false
     },
+    backgroundImage: {
+      type: 'object',
+      default: false,
+    },
     allowedBlocks: ['advanced-bootstrap-blocks/row'],
     TEMPLATE: {
       type: 'array',

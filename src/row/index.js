@@ -51,7 +51,7 @@ registerBlockType('advanced-bootstrap-blocks/row', {
       TEMPLATE: {
         type: 'array',
         default: [
-          // ['advanced-bootstrap-blocks/column', {} ,[]],
+          ['advanced-bootstrap-blocks/column', {} ,[]],
           // ['advanced-bootstrap-blocks/column', {} ,[]],
           // ['advanced-bootstrap-blocks/column', {} ,[]]
         ]

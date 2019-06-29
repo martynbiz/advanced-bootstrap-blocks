@@ -11,6 +11,16 @@ export const modifyBlockListBlockContainer = createHigherOrderComponent( ( Block
   };
 }, 'modifyBlockListBlockContainer' );
 
+export const checkStyles = (backgroundImage) => {
+  if (backgroundImage) {
+    return { 
+      backgroundImage: `url(${backgroundImage.full.url})`
+    };
+  } else {
+    return;
+  }
+}
+
 export const modifyGetSaveElementContainer = (element, blockType, attributes ) => {
   if (!element) {
     return;
@@ -18,7 +28,18 @@ export const modifyGetSaveElementContainer = (element, blockType, attributes ) =
   if (blockType.name === 'advanced-bootstrap-blocks/container') {
     if (attributes.isWrapped) {
       return (
-        <div className={element.props.className}>
+        <div 
+          className={element.props.className}
+          { // conditionally render style attribute with backgroundImage property
+            ...attributes.backgroundImage ? {
+              style: {
+                backgroundImage: `url(${attributes.backgroundImage.full.url})`
+              }
+            } : {
+
+            }
+          }
+        >
           <div className={ attributes.isFluid ? "container-fluid" : "container" }>
             {element}
           </div>
@@ -26,7 +47,12 @@ export const modifyGetSaveElementContainer = (element, blockType, attributes ) =
       )
     }
     return (
-      <div className={ [element.props.className, (attributes.isFluid ? "container-fluid" : "container")].join(" ") }>
+      <div 
+        className={ [element.props.className, (attributes.isFluid ? "container-fluid" : "container")].join(" ") }
+        style={{
+          backgroundImage: attributes.backgroundImage ? `url(${attributes.backgroundImage.full.url})` : '',
+        }}
+      >
         {element}
       </div>
     )
