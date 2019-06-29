@@ -26,8 +26,11 @@ Please submit issues, feature-, and pull-requests through [https://gitlab.com/he
 
 == Changelog ==
 
+### 1.0.8
+* Added background-image selector to `Container` block (adds `style="background-image:url();"` to `Container` markup)
+
 ### 1.0.7
-* Refine `Button` block (add URL picker, button text is directly editable)
+* Refined `Button` block (add URL picker, button text is directly editable)
 * General UI improvements
 
 ### 1.0.6
