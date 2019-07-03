@@ -7,6 +7,7 @@ const {
 const {
   SelectControl,
   RadioControl,
+  BaseControl,
   PanelBody,
   PanelRow,
   FormToggle,
@@ -22,7 +23,6 @@ import {
   getCaretPosition,
   setCaretPosition
 } from './utils'; 
-
 
 export const edit = (props) => {
   const {
@@ -102,25 +102,26 @@ export const edit = (props) => {
               title={ __( 'Button Settings', 'advanced-bootstrap-blocks' ) }
           >
             <PanelRow>
-              {text}
-            </PanelRow>
-            <PanelRow>
-              <SelectControl
-                label="Button Style"
-                value={ style }
-                options={ [
-                    { label: 'Primary', value: 'btn-primary' },
-                    { label: 'Secondary', value: 'btn-secondary' },
-                    { label: 'Success', value: 'btn-success' },
-                    { label: 'Danger', value: 'btn-danger' },
-                    { label: 'Warning', value: 'btn-warning' },
-                    { label: 'Info', value: 'btn-info' },
-                    { label: 'Light', value: 'btn-light' },
-                    { label: 'Dark', value: 'btn-dark' },
-                    { label: 'Link', value: 'btn-link' },
-                ] }
-                onChange={onChangeStyle}
-            />
+              <BaseControl
+                className="w-100"
+              >
+                <SelectControl
+                  label="Button Style"
+                  value={ style }
+                  options={ [
+                      { label: 'Primary', value: 'btn-primary' },
+                      { label: 'Secondary', value: 'btn-secondary' },
+                      { label: 'Success', value: 'btn-success' },
+                      { label: 'Danger', value: 'btn-danger' },
+                      { label: 'Warning', value: 'btn-warning' },
+                      { label: 'Info', value: 'btn-info' },
+                      { label: 'Light', value: 'btn-light' },
+                      { label: 'Dark', value: 'btn-dark' },
+                      { label: 'Link', value: 'btn-link' },
+                  ] }
+                  onChange={onChangeStyle}
+                />
+              </BaseControl>
             </PanelRow>
             <PanelRow>
                 <label
@@ -136,6 +137,7 @@ export const edit = (props) => {
                 />
             </PanelRow>
             <PanelRow>
+
                 <label
                     htmlFor="form-toggle-block"
                 >
@@ -149,17 +151,21 @@ export const edit = (props) => {
                 />
             </PanelRow>
             <PanelRow>
-              <RadioControl
-                  label="Button size"
-                  help=""
-                  selected={ size }
-                  options={ [
-                    { label: 'Default', value: '' },
-                    { label: 'Large', value: 'btn-lg' },
-                    { label: 'Small', value: 'btn-sm' },
-                  ] }
-                  onChange={onChangeSize}
-                />
+              <BaseControl
+                className="w-100"
+              >
+                <RadioControl
+                    label="Button size"
+                    help=""
+                    selected={ size }
+                    options={ [
+                      { label: 'Default', value: '' },
+                      { label: 'Large', value: 'btn-lg' },
+                      { label: 'Small', value: 'btn-sm' },
+                    ] }
+                    onChange={onChangeSize}
+                  />
+                </BaseControl>
             </PanelRow>
             <PanelRow>
                 <label

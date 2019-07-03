@@ -26,6 +26,10 @@ Please submit issues, feature-, and pull-requests through [https://gitlab.com/he
 
 == Changelog ==
 
+### 1.0.9
+* Fix bug with `Container` save markup
+* Fix bug with `Button` text state 
+
 ### 1.0.8
 * Added background-image selector to `Container` block (adds `style="background-image:url();"` to `Container` markup)
 
