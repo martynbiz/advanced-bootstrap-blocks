@@ -85,7 +85,7 @@ export const edit = (props) => {
           role="button"
           rel={newWindow && 'noopener noreferrer'}
           contentEditable
-          onInput={(e) => onInput(e)}
+          onInput={onInput}
           onClick={(e) => e.preventDefault()}
           style={{ marginTop: '3px' }}
         >
