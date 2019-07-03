@@ -33,8 +33,8 @@ export const getCaretPosition = (element) => {
 }
 
 export const setCaretPosition = (element, caretOffset) => {
-  element.focus();
-  let textNode = element.firstChild;
+  // element.focus();
+  let textNode = element.firstChild || element;
   let range = document.createRange();
   range.setStart(textNode, caretOffset);
   range.setEnd(textNode, caretOffset);

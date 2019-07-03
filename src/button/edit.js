@@ -36,17 +36,9 @@ export const edit = (props) => {
       newWindow,
     },
     className,
-    isSelected,
     setAttributes
   } = props;
   
-  const onChangeText = ( value ) => {
-    setAttributes( { text: value } );
-  }
-
-  const onChangeLink = ( value ) => {
-    setAttributes( { link: value } );
-  }
 
   const onChangeStyle = ( value ) => {
     setAttributes( { style: value } );
@@ -68,16 +60,18 @@ export const edit = (props) => {
     setAttributes( { newWindow: !newWindow } );
   }
 
+  let onInputTimer; 
+
   const onInput = (e) => {
     const target = e.target;
     const position = getCaretPosition(target);
-    
-    if (text != target.text && typeof target === "Node") {
-      setAttributes( { text: target.text } );
-      setCaretPosition(target, position);
-      setTimeout(function() {
+    const newText = target.text; 
+    clearTimeout(onInputTimer); 
+    if (text != newText) {
+      setAttributes( { text: newText } );
+      onInputTimer = setTimeout(function() { 
         setCaretPosition(target, position);
-      }, 0);
+      }, 1);
     }
   }
 
@@ -91,7 +85,7 @@ export const edit = (props) => {
           role="button"
           rel={newWindow && 'noopener noreferrer'}
           contentEditable
-          onInput={onInput}
+          onInput={(e) => onInput(e)}
           onClick={(e) => e.preventDefault()}
           style={{ marginTop: '3px' }}
         >
@@ -107,6 +101,9 @@ export const edit = (props) => {
           <PanelBody
               title={ __( 'Button Settings', 'advanced-bootstrap-blocks' ) }
           >
+            <PanelRow>
+              {text}
+            </PanelRow>
             <PanelRow>
               <SelectControl
                 label="Button Style"

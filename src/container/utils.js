@@ -49,9 +49,15 @@ export const modifyGetSaveElementContainer = (element, blockType, attributes ) =
     return (
       <div 
         className={ [element.props.className, (attributes.isFluid ? "container-fluid" : "container")].join(" ") }
-        style={{
-          backgroundImage: attributes.backgroundImage ? `url(${attributes.backgroundImage.full.url})` : '',
-        }}
+        { // conditionally render style attribute with backgroundImage property
+          ...attributes.backgroundImage ? {
+            style: {
+              backgroundImage: `url(${attributes.backgroundImage.full.url})`
+            }
+          } : {
+
+          }
+        }
       >
         {element}
       </div>
