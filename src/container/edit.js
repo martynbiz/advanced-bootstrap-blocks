@@ -1,6 +1,8 @@
 const { __ } = wp.i18n;
 
 const {
+  SelectControl,
+  BaseControl,
   PanelBody,
   PanelRow,
   FormToggle,
@@ -20,7 +22,6 @@ import {
   checkStyles
 } from './utils'; 
 
-
 export const edit = (props) => {
   const {
     className,
@@ -28,6 +29,8 @@ export const edit = (props) => {
       isFluid,
       isWrapped,
       backgroundImage,
+      backgroundRepeat,
+      backgroundSize,
       TEMPLATE,
     },
     setAttributes
@@ -44,6 +47,8 @@ export const edit = (props) => {
   const onSelectBackgroundImage = (value ) => {
     setAttributes({
       backgroundImage: value.sizes,
+      backgroundSize: '',
+      backgroundRepeat: false,
     });
   }
 
@@ -60,7 +65,9 @@ export const edit = (props) => {
           { // conditionally render style attribute with backgroundImage property
             ...backgroundImage ? {
               style: {
-                backgroundImage: `url(${backgroundImage.full.url})`
+                backgroundImage: `url(${backgroundImage.full.url})`,
+                ...backgroundSize ? { backgroundSize: `${backgroundSize}` } : { },
+                ...backgroundRepeat ? { backgroundRepeat: `${backgroundRepeat}` } : { }
               }
             } : {
 
@@ -103,6 +110,11 @@ export const edit = (props) => {
                     onClick={ onChangeToggleWrapped }
                 />
             </PanelRow>
+          </PanelBody>
+          <PanelBody
+            title={ __( 'Background Settings', 'advanced-bootstrap-blocks' ) }
+            initialOpen={false}
+          >
             <PanelRow>
               <div className="w-100">
                 <label
@@ -141,6 +153,55 @@ export const edit = (props) => {
                     }}
                   />  
               </div>
+            </PanelRow>
+            <PanelRow>
+                <SelectControl
+                    label="Background Size"
+                    value={ backgroundSize }
+                    className="d-block w-100 mb-2"
+                    options={ [
+                        { label: '', value: '' },
+                        { label: 'Cover', value: 'cover' },
+                        { label: 'Contain', value: 'contain' },
+                        { label: 'Custom', 
+                          value: typeof backgroundSize !== "undefined" && 
+                                 backgroundSize !== 'cover' && backgroundSize !== 'contain' &&
+                                 backgroundSize || '100% auto'  
+                        },
+                    ] }
+                    onChange={ ( backgroundSize ) => { setAttributes( { backgroundSize } ) } }
+                />
+            </PanelRow>
+              {
+              typeof backgroundSize !== "undefined" && backgroundSize.length > 0 && 
+              backgroundSize !== "cover" && backgroundSize !== "contain" && 
+                <PanelRow className="mt-0">
+                  <BaseControl
+                    className="d-block w-100"
+                  >
+                    <input 
+                      type="text"
+                      value={backgroundSize}
+                      onChange={(e) => {
+                        console.log(e.target.value)
+                        setAttributes({ backgroundSize: e.target.value })
+                      }}
+                    />
+                  </BaseControl>
+                </PanelRow>
+              }
+            <PanelRow className="mt-0">
+              <SelectControl
+                  label="Background Repeat"
+                  value={ backgroundRepeat }
+                  className="d-block w-100 mb-2"
+                  options={ [
+                      { label: '', value: '' },
+                      { label: 'Repeat', value: 'repeat' },
+                      { label: 'No-repeat', value: 'no-repeat' },
+                  ] }
+                  onChange={ ( backgroundRepeat ) => { setAttributes( { backgroundRepeat } ) } }
+              />
             </PanelRow>
           </PanelBody>
       </InspectorControls> 

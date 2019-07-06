@@ -33,6 +33,14 @@ const settings = {
       type: 'object',
       default: false,
     },
+    backgroundSize: {
+      type: 'string',
+      default: ''
+    },
+    backgroundRepeat: {
+      type: 'string',
+      default: ''
+    },
     allowedBlocks: ['advanced-bootstrap-blocks/row'],
     TEMPLATE: {
       type: 'array',

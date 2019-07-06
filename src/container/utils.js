@@ -25,6 +25,7 @@ export const modifyGetSaveElementContainer = (element, blockType, attributes ) =
   if (!element) {
     return;
   }
+  console.log(attributes);
   if (blockType.name === 'advanced-bootstrap-blocks/container') {
     if (attributes.isWrapped) {
       return (
@@ -33,7 +34,9 @@ export const modifyGetSaveElementContainer = (element, blockType, attributes ) =
           { // conditionally render style attribute with backgroundImage property
             ...attributes.backgroundImage ? {
               style: {
-                backgroundImage: `url(${attributes.backgroundImage.full.url})`
+                backgroundImage: `url(${attributes.backgroundImage.full.url})`,
+                ...attributes.backgroundSize ? { backgroundSize: `${attributes.backgroundSize}` } : { },
+                ...attributes.backgroundRepeat ? { backgroundRepeat: `${attributes.backgroundRepeat}` } : { }
               }
             } : {
 
@@ -52,7 +55,9 @@ export const modifyGetSaveElementContainer = (element, blockType, attributes ) =
         { // conditionally render style attribute with backgroundImage property
           ...attributes.backgroundImage ? {
             style: {
-              backgroundImage: `url(${attributes.backgroundImage.full.url})`
+              backgroundImage: `url(${attributes.backgroundImage.full.url})`,
+              ...attributes.backgroundSize ? { backgroundSize: `${attributes.backgroundSize}` } : { },
+              ...attributes.backgroundRepeat ? { backgroundRepeat: `${attributes.backgroundRepeat}` } : { }
             }
           } : {
 
