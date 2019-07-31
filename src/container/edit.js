@@ -55,8 +55,9 @@ export const edit = (props) => {
 
   return (
     <Fragment>
-      <div style={{outline: '1px dashed red'}}>
+      <Fragment>
         <div 
+          style={{outline: '1px dashed red'}}
           className={classNameAttribute()}
           { // conditionally render style attribute with backgroundImage property
             ...backgroundImage.hasOwnProperty("full") ? {
@@ -76,7 +77,7 @@ export const edit = (props) => {
             allowedBlocks={['advanced-bootstrap-blocks/row']}
           />
         </div>
-      </div>
+      </Fragment>
       <InspectorControls>
           <PanelBody
               title={ __( 'Container Settings', 'advanced-bootstrap-blocks' ) }
