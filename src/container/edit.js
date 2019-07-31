@@ -1,6 +1,7 @@
 const { __ } = wp.i18n;
 
 const {
+  FocalPointPicker,
   SelectControl,
   BaseControl,
   PanelBody,
@@ -18,10 +19,6 @@ const {
   InnerBlocks
 } = wp.editor;
 
-import {
-  checkStyles
-} from './utils'; 
-
 export const edit = (props) => {
   const {
     className,
@@ -31,6 +28,7 @@ export const edit = (props) => {
       backgroundImage,
       backgroundRepeat,
       backgroundSize,
+      backgroundPosition,
       TEMPLATE,
     },
     setAttributes
@@ -47,8 +45,6 @@ export const edit = (props) => {
   const onSelectBackgroundImage = (value ) => {
     setAttributes({
       backgroundImage: value.sizes,
-      backgroundSize: '',
-      backgroundRepeat: false,
     });
   }
 
@@ -63,11 +59,12 @@ export const edit = (props) => {
         <div 
           className={classNameAttribute()}
           { // conditionally render style attribute with backgroundImage property
-            ...backgroundImage ? {
+            ...backgroundImage.hasOwnProperty("full") ? {
               style: {
                 backgroundImage: `url(${backgroundImage.full.url})`,
                 ...backgroundSize ? { backgroundSize: `${backgroundSize}` } : { },
-                ...backgroundRepeat ? { backgroundRepeat: `${backgroundRepeat}` } : { }
+                ...backgroundRepeat ? { backgroundRepeat: `${backgroundRepeat}` } : { },
+                ...backgroundPosition ? backgroundPosition.hasOwnProperty("x") ? { backgroundPosition: `${ Math.round(backgroundPosition.x * 100) }% ${ Math.round(backgroundPosition.y * 100) }%` } : { } : { }
               }
             } : {
 
@@ -129,7 +126,7 @@ export const edit = (props) => {
                     id="form-media-select"
                     onSelect={onSelectBackgroundImage}
                     render={ ({open}) => {
-                        return backgroundImage && (
+                        return backgroundImage.hasOwnProperty("medium") && (
                           <div>
                             <img 
                               src={backgroundImage.medium.url} 
@@ -182,10 +179,7 @@ export const edit = (props) => {
                     <input 
                       type="text"
                       value={backgroundSize}
-                      onChange={(e) => {
-                        console.log(e.target.value)
-                        setAttributes({ backgroundSize: e.target.value })
-                      }}
+                      onChange={(e) => setAttributes({ backgroundSize: e.target.value })}
                     />
                   </BaseControl>
                 </PanelRow>
@@ -197,12 +191,110 @@ export const edit = (props) => {
                   className="d-block w-100 mb-2"
                   options={ [
                       { label: '', value: '' },
-                      { label: 'Repeat', value: 'repeat' },
-                      { label: 'No-repeat', value: 'no-repeat' },
+                      { label: 'repeat-x', value: 'repeat-x' },
+                      { label: 'repeat-y', value: 'repeat-y' },
+                      { label: 'repeat', value: 'repeat' },
+                      { label: 'space', value: 'space' },
+                      { label: 'round', value: 'round' },
+                      { label: 'no-repeat', value: 'no-repeat' },
+                      { label: 'repeat space', value: 'repeat space' },
+                      { label: 'repeat repeat', value: 'repeat repeat' },
+                      { label: 'round space', value: 'round space' },
+                      { label: 'no-repeat round', value: 'no-repeat round' },
                   ] }
                   onChange={ ( backgroundRepeat ) => { setAttributes( { backgroundRepeat } ) } }
               />
             </PanelRow>
+            <PanelRow className="mt-0">
+                <SelectControl
+                    label="Background Position"
+                    value={ JSON.stringify(backgroundPosition) }
+                    className="d-block w-100 mb-2"
+                    options={ [
+                        { label: '', value: '{}' },
+                        { 
+                          label: 'Focal point', 
+                          value: backgroundPosition.hasOwnProperty("x") ? 
+                                 JSON.stringify({ x: backgroundPosition.x, y: backgroundPosition.y }) : 
+                                 JSON.stringify({ x: 0.5, y: 0.5 })
+                        },
+                        { 
+                          label: 'Custom', 
+                          value: backgroundPosition.hasOwnProperty("z") ? 
+                                 JSON.stringify(backgroundPosition) : 
+                                 JSON.stringify({ x: backgroundPosition.x || 0.5, y: backgroundPosition.y || 0.5, z: 1 })
+                        },
+                    ] }
+                    onChange={( backgroundPosition ) => { 
+                      setAttributes( { backgroundPosition: JSON.parse(backgroundPosition) } )
+                    }}
+                />
+            </PanelRow>
+            
+            {
+              ( backgroundImage.hasOwnProperty("medium") && backgroundPosition.hasOwnProperty("x") && !backgroundPosition.hasOwnProperty("z") ) &&  
+              <PanelRow className="mt-0">
+                <FocalPointPicker 
+                    url={ backgroundImage.medium.url }
+                    dimensions={{ width: backgroundImage.medium.width, height: backgroundImage.medium.height }}
+                    value={ backgroundPosition }
+                    onChange={ ( backgroundPosition ) => { setAttributes( { backgroundPosition } ) } } 
+                />
+              </PanelRow>
+            }
+            {
+              ( backgroundPosition.hasOwnProperty("x") && backgroundPosition.hasOwnProperty("z") ) &&  
+              <Fragment>
+                <PanelRow className="my-0">
+                  <BaseControl
+                      className="d-block w-100"
+                    >
+                    <label
+                        htmlFor="backgroundPositionX"
+                        style={{
+                          display: 'block'
+                        }}
+                    >
+                        { __( 'Background Position X', 'advanced-bootstrap-blocks' ) }
+                    </label>
+                    <input 
+                      id="backgroundPositionX"
+                      type="number"
+                      value={backgroundPosition.hasOwnProperty("x") ? Math.round(backgroundPosition.x * 100) : '' }
+                      onChange={(e) => setAttributes({ backgroundPosition: { 
+                        x: e.target.value / 100, 
+                        y: backgroundPosition.y, 
+                        ...backgroundPosition.hasOwnProperty("z") ? { z: 1 } : { },
+                      }})}
+                    />
+                  </BaseControl>
+                </PanelRow>
+                <PanelRow className="my-0">
+                  <BaseControl
+                    className="d-block w-100"
+                  >
+                    <label
+                        htmlFor="backgroundPositionY"
+                        style={{
+                          display: 'block'
+                        }}
+                    >
+                        { __( 'Background Position Y', 'advanced-bootstrap-blocks' ) }
+                    </label>
+                    <input 
+                      id="backgroundPositionY"
+                      type="number"
+                      value={backgroundPosition.hasOwnProperty("y") ? Math.round(backgroundPosition.y * 100) : '' }
+                      onChange={(e) => setAttributes({ backgroundPosition: { 
+                        y: e.target.value / 100, 
+                        x: backgroundPosition.x,
+                        ...backgroundPosition.hasOwnProperty("z") ? { z: 1 } : { },
+                      }})}
+                    />
+                  </BaseControl>
+                </PanelRow>
+              </Fragment>
+            }
           </PanelBody>
       </InspectorControls> 
     </Fragment>

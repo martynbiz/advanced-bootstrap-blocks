@@ -31,7 +31,7 @@ const settings = {
     },
     backgroundImage: {
       type: 'object',
-      default: false,
+      default: {},
     },
     backgroundSize: {
       type: 'string',
@@ -40,6 +40,10 @@ const settings = {
     backgroundRepeat: {
       type: 'string',
       default: ''
+    },
+    backgroundPosition: {
+      type: 'object',
+      default: {},
     },
     allowedBlocks: ['advanced-bootstrap-blocks/row'],
     TEMPLATE: {
