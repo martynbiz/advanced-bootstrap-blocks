@@ -1,9 +1,10 @@
 # Advanced Bootstrap Blocks
 Contributors: helpfuldev
-Tags: bootstrap, blocks, editor, gutenberg, responsive
+Tags: bs, bs4, bootstrap, bootstrap 4, blocks, button, columns, grid, editor, gutenberg, responsive
 Donate link: https://paypal.me/helpfuldev
 Requires at least: 5.0.0
 Tested up to: 5.2.1
+Stable tag: trunk
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
 
@@ -11,24 +12,39 @@ Build responsive Bootstrap 4 layouts inside the Gutenberg editor.
 
 == Description ==
 
-This plugin adds flexible Bootstrap 4 blocks to the Wordpress editor (a.k.a Gutenberg) to allow content-creators to build their own custom page layouts. The following components are currently supported: 
+This plugin adds flexible Bootstrap 4 blocks to the WordPress editor which allow content-creators to build their own custom page layouts using the Bootstrap grid and helper classes.
 
-* Container (fixed-width, fluid)
+The following Bootstrap components are currently available: 
+
+* Container - fixed-width or fluid, inline background image
 * Row
 * Column
 * Button
 
-Bootstrap 4 styles are included in the Gutenberg editor but need to be included in your theme for these blocks to appear correctly on your public-facing website.
+== Frequently Asked Questions == 
+
+### Will this plugin apply Bootstrap styles or scripts available to my theme? 
+
+No. Bootstrap 4 styles have been included in the Gutenberg editor but need to be added to your theme for these blocks to appear correctly on your public-facing website.
 
 This plugin is developed, tested, and is intended to be used with [Understrap](https://understrap.com/). 
 
-Please submit issues, feature-, and pull-requests through [https://gitlab.com/helpful.dev/advanced-bootstrap-blocks](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks). 
+### This plugin is giving me trouble. Can you help?
+
+Yes. This plugin is under active development and maintenance--your feedback is important. 
+
+Please submit issues, feature requests through the [support page](http://wordpress.org/plugins/advanced-bootstrap-blocks), or browse the source at [https://gitlab.com/helpful.dev/advanced-bootstrap-blocks](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks). 
 
 == Changelog ==
 
+### 1.0.10
+* Added background size, repeat, and position settings to Container `Background Image` settings
+* Fixed namespacing and inheritance issues with editor-specific Bootstrap grid styles
+* Removed unneeded wrapping div from around Container in WP editor
+
 ### 1.0.9
-* Fix bug with `Container` save markup
-* Fix bug with `Button` text state 
+* Fixed bug with `Container` save markup
+* Fixed bug with `Button` text state 
 
 ### 1.0.8
 * Added background-image selector to `Container` block (adds `style="background-image:url();"` to `Container` markup)

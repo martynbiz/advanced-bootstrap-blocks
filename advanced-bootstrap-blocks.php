@@ -2,10 +2,10 @@
 /**
  * Plugin Name: Advanced Bootstrap Blocks
  * Plugin URI: https://www.wordpress.org/plugins/advanced-bootstrap-blocks/
- * Description: Flexible Bootstrap 4 blocks for building custom page layouts in the Wordpress editor (aka Gutenberg.) 
+ * Description: Flexible Bootstrap 4 blocks for building custom page layouts in the Wordpress editor.
  * Author: helpful.dev
  * Author URI: https://helpful.dev/
- * Version: 1.0.9
+ * Version: 1.0.10
  * License: GPL3+
  * License URI: https://www.gnu.org/licenses/gpl-3.0.txt
  *
