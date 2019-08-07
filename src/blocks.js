@@ -14,6 +14,10 @@ import './container';
 import './row';
 import './column';
 import './button';
+import './card';
+import './cardHeader';
+import './cardBody';
+import './cardFooter';
 
 import './blocks.editor.scss';
 import './blocks.style.scss';

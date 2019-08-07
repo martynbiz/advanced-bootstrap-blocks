@@ -12,8 +12,6 @@ export const modifyBlockListBlockContainer = createHigherOrderComponent( ( Block
 }, 'modifyBlockListBlockContainer' );
 
 export const modifyGetSaveElementContainer = (element, blockType, attributes ) => {
-  console.log({ ...attributes.backgroundPosition ? attributes.backgroundPosition.hasOwnProperty("x") ? { backgroundPosition: `${ Math.round(attributes.backgroundPosition.x * 100) }% ${ Math.round(attributes.backgroundPosition.y * 100) }%` } : { } : { } }); 
-
   if (!element) {
     return;
   }

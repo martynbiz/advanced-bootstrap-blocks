@@ -14,7 +14,7 @@ import {
 const settings = {
   title: __( 'Container (advanced-bootstrap-blocks)', 'advanced-bootstrap-blocks' ),
   description: __(''),
-  icon: 'layout',
+  icon: 'line_style',
   category: 'layout',
   keywords: [
       __('advanced-bootstrap-blocks'),
