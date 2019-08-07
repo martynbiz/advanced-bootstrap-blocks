@@ -28,6 +28,19 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 1.0.0
  */
 function advanced_bootstrap_blocks_block_assets() { // phpcs:ignore
+
+	add_filter( 'block_categories', function( $categories, $post ) {
+		return array_merge(
+				$categories,
+				array(
+						array(
+								'slug'  => 'advanced-bootstrap-blocks',
+								'title' => 'Advanced Bootstrap Blocks',
+						),
+				)
+		);
+	}, 10, 2 );
+
 	// Register block styles for both frontend + backend.
 	wp_register_style(
 		'advanced-bootstrap-blocks-style-css', // Handle.

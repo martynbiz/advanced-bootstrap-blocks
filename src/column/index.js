@@ -12,10 +12,10 @@ import {
 } from './utils';
 
 registerBlockType('advanced-bootstrap-blocks/column', {
-  title: __('Column (advanced-bootstrap-blocks)', 'advanced-bootstrap-blocks'),
+  title: __('Column (BS4)', 'advanced-bootstrap-blocks'),
   description: __(''),
   icon: 'layout',
-  category: 'layout',
+  category: 'advanced-bootstrap-blocks',
   keywords: [
       __('advanced-bootstrap-blocks'),
       __('column'),

@@ -15,9 +15,9 @@ import './row';
 import './column';
 import './button';
 import './card';
-import './cardHeader';
+// import './cardHeader';
 import './cardBody';
-import './cardFooter';
+// import './cardFooter';
 
 import './blocks.editor.scss';
 import './blocks.style.scss';

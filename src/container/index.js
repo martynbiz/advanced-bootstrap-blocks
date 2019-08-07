@@ -12,10 +12,10 @@ import {
 } from './utils'; 
 
 const settings = {
-  title: __( 'Container (advanced-bootstrap-blocks)', 'advanced-bootstrap-blocks' ),
+  title: __( 'Container (BS4)', 'advanced-bootstrap-blocks' ),
   description: __(''),
-  icon: 'line_style',
-  category: 'layout',
+  icon: 'layout',
+  category: 'advanced-bootstrap-blocks',
   keywords: [
       __('advanced-bootstrap-blocks'),
       __('container'),

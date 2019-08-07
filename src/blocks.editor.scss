@@ -113,11 +113,11 @@
     .flex#{$infix}-shrink-0 > .block-editor-inner-blocks > .block-editor-block-list__layout     { display: flex; flex-shrink: 0 !important; }
     .flex#{$infix}-shrink-1 > .block-editor-inner-blocks > .block-editor-block-list__layout     { display: flex; flex-shrink: 1 !important; }
 
-    .justify-content#{$infix}-start > .block-editor-inner-blocks > .block-editor-block-list__layout [data-type="advanced-bootstrap-blocks/column"]   { display: flex; justify-content: flex-start !important; }
-    .justify-content#{$infix}-end > .block-editor-inner-blocks > .block-editor-block-list__layout [data-type="advanced-bootstrap-blocks/column"]     { display: flex; justify-content: flex-end !important; }
-    .justify-content#{$infix}-center > .block-editor-inner-blocks > .block-editor-block-list__layout [data-type="advanced-bootstrap-blocks/column"]  { display: flex; justify-content: center !important; }
-    .justify-content#{$infix}-between > .block-editor-inner-blocks > .block-editor-block-list__layout [data-type="advanced-bootstrap-blocks/column"] { display: flex; justify-content: space-between !important; }
-    .justify-content#{$infix}-around > .block-editor-inner-blocks > .block-editor-block-list__layout [data-type="advanced-bootstrap-blocks/column"]  { display: flex; justify-content: space-around !important; }
+    .justify-content#{$infix}-start > .block-editor-inner-blocks > .block-editor-block-list__layout   { display: flex; justify-content: flex-start !important; }
+    .justify-content#{$infix}-end > .block-editor-inner-blocks > .block-editor-block-list__layout     { display: flex; justify-content: flex-end !important; }
+    .justify-content#{$infix}-center > .block-editor-inner-blocks > .block-editor-block-list__layout  { display: flex; justify-content: center !important; }
+    .justify-content#{$infix}-between > .block-editor-inner-blocks > .block-editor-block-list__layout { display: flex; justify-content: space-between !important; }
+    .justify-content#{$infix}-around > .block-editor-inner-blocks > .block-editor-block-list__layout  { display: flex; justify-content: space-around !important; }
 
     .align-items#{$infix}-start > .block-editor-inner-blocks > .block-editor-block-list__layout [data-type="advanced-bootstrap-blocks/column"]    { display: flex; align-items: flex-start !important; }
     .align-items#{$infix}-end > .block-editor-inner-blocks > .block-editor-block-list__layout [data-type="advanced-bootstrap-blocks/column"]      { display: flex; align-items: flex-end !important; }
@@ -153,6 +153,8 @@
 [data-type="advanced-bootstrap-blocks/card-footer"] {
   &.wp-block {
     max-width: 100%; 
+    margin-left: initial;
+    margin-right: initial;
     .container, 
     .container-fluid {
       padding: 0; 

@@ -12,10 +12,10 @@ import {
 } from './utils';
 
 const settings = {
-  title: __( 'Card Footer (advanced-bootstrap-blocks)', 'advanced-bootstrap-blocks' ),
+  title: __( 'Card Footer (BS4)', 'advanced-bootstrap-blocks' ),
   description: __(''),
   icon: 'layout',
-  category: 'layout',
+  category: 'advanced-bootstrap-blocks',
   keywords: [
       __('advanced-bootstrap-blocks'),
       __('card'),

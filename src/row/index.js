@@ -33,10 +33,10 @@ const {
 } = wp.editor;
 
 registerBlockType('advanced-bootstrap-blocks/row', {
-  title: __('Row (advanced-bootstrap-blocks)', 'advanced-bootstrap-blocks'),
+  title: __('Row (BS4)', 'advanced-bootstrap-blocks'),
   description: __(''),
   icon: 'layout',
-  category: 'layout',
+  category: 'advanced-bootstrap-blocks',
   keywords: [
       __('advanced-bootstrap-blocks'),
       __('column'),

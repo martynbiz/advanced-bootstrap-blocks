@@ -8,10 +8,10 @@ import { edit } from './edit';
 import { save } from './save'; 
 
 const settings = {
-  title: __( 'Button (advanced-bootstrap-blocks)', 'advanced-bootstrap-blocks' ),
+  title: __( 'Button (BS4)', 'advanced-bootstrap-blocks' ),
   description: __(''),
   icon: 'layout',
-  category: 'layout',
+  category: 'advanced-bootstrap-blocks',
   keywords: [
       __('advanced-bootstrap-blocks'),
       __('button'),
