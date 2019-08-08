@@ -1,6 +1,6 @@
 === Advanced Bootstrap Blocks ===
 Contributors: helpfuldev
-Tags: bs, bs4, bootstrap, bootstrap 4, blocks, button, columns, grid, editor, gutenberg, responsive
+Tags: bootstrap, responsive, layout, grid, page builder, container, columns, blocks, button, group, editor, gutenberg
 Donate link: https://paypal.me/helpfuldev
 Requires at least: 5.0.0
 Tested up to: 5.2.1
