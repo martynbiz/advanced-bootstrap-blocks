@@ -6,7 +6,6 @@ export const modifyBlockListBlockCardBody = createHigherOrderComponent( ( BlockL
   return ( props ) => {
     if (props.block.name == 'advanced-bootstrap-blocks/card-body') {
       props.className = [props.block.attributes.className, "card-body"].join(" ");
-      props.block.attributes.style = { border: `1px dashed #eee` };
     }
     return <BlockListBlock { ...props } />;
   };

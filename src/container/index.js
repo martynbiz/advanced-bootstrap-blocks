@@ -21,6 +21,10 @@ const settings = {
       __('container'),
   ],
   attributes: {
+    classNameFilter: {
+      type: 'string',
+      default: ''
+    },
     isFluid: {
       type: 'bool',
       default: false

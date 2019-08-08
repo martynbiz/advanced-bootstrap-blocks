@@ -1,6 +1,7 @@
 const { __ } = wp.i18n;
 
 const {
+  Autocomplete,
   FocalPointPicker,
   SelectControl,
   BaseControl,
@@ -21,8 +22,8 @@ const {
 
 export const edit = (props) => {
   const {
-    className,
     attributes: {
+      className,
       isFluid,
       isWrapped,
       backgroundImage,
@@ -81,6 +82,7 @@ export const edit = (props) => {
       <InspectorControls>
           <PanelBody
               title={ __( 'Container Settings', 'advanced-bootstrap-blocks' ) }
+              initialOpen={true}
           >
             <PanelRow>
                 <label
@@ -170,7 +172,7 @@ export const edit = (props) => {
                     onChange={ ( backgroundSize ) => { setAttributes( { backgroundSize } ) } }
                 />
             </PanelRow>
-              {
+            {
               typeof backgroundSize !== "undefined" && backgroundSize.length > 0 && 
               backgroundSize !== "cover" && backgroundSize !== "contain" && 
                 <PanelRow className="mt-0">
@@ -184,7 +186,7 @@ export const edit = (props) => {
                     />
                   </BaseControl>
                 </PanelRow>
-              }
+            }
             <PanelRow className="mt-0">
               <SelectControl
                   label="Background Repeat"

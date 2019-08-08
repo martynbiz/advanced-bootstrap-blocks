@@ -2,16 +2,16 @@ const {
   createHigherOrderComponent 
 } = wp.compose;
 
-export const modifyBlockListBlockCardHeader = createHigherOrderComponent( ( BlockListBlock ) => {
+export const modifyBlockListBlockCardFooter = createHigherOrderComponent( ( BlockListBlock ) => {
   return ( props ) => {
     if (props.block.name == 'advanced-bootstrap-blocks/card-footer') {
       props.className = [props.block.attributes.className, "card-footer"].join(" ");
     }
     return <BlockListBlock { ...props } />;
   };
-}, 'modifyBlockListBlockCardBody' );
+}, 'modifyBlockListBlockCardFooter' );
 
-export const modifyGetSaveElementCardHeader = (element, blockType, attributes ) => {
+export const modifyGetSaveElementCardFooter = (element, blockType, attributes ) => {
   if (!element) {
     return;
   }

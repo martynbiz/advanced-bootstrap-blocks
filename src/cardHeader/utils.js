@@ -9,7 +9,7 @@ export const modifyBlockListBlockCardHeader = createHigherOrderComponent( ( Bloc
     }
     return <BlockListBlock { ...props } />;
   };
-}, 'modifyBlockListBlockCardBody' );
+}, 'modifyBlockListBlockCardHeader' );
 
 export const modifyGetSaveElementCardHeader = (element, blockType, attributes ) => {
   if (!element) {
