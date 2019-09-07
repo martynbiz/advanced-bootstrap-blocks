@@ -3,7 +3,7 @@ Contributors: helpfuldev
 Tags: bootstrap, responsive, layout, grid, page builder, container, columns, blocks, button, group, editor, gutenberg
 Donate link: https://paypal.me/helpfuldev
 Requires at least: 5.0.0
-Tested up to: 5.2.1
+Tested up to: 5.2.3
 Stable tag: trunk
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
@@ -16,14 +16,14 @@ This plugin adds flexible Bootstrap 4 blocks to the WordPress editor which allow
 
 The following Bootstrap components are currently available: 
 
-* Container - fixed-width or fluid, inline background image
+* Container - fixed-width or fluid, with background image settings
 * Row
 * Column
 * Button
 
-== Frequently Asked Questions == 
+== Frequently Asked Questions ==
 
-### Will this plugin apply Bootstrap styles or scripts available to my theme? 
+### Does this plugin add Bootstrap styles or scripts to my theme? 
 
 No. Bootstrap 4 styles have been included in the Gutenberg editor but need to be added to your theme for these blocks to appear correctly on your public-facing website.
 

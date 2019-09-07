@@ -30,6 +30,7 @@ export const edit = (props) => {
       backgroundRepeat,
       backgroundSize,
       backgroundPosition,
+      backgroundAttachment,
       TEMPLATE,
     },
     setAttributes
@@ -66,7 +67,8 @@ export const edit = (props) => {
                 backgroundImage: `url(${backgroundImage.full.url})`,
                 ...backgroundSize ? { backgroundSize: `${backgroundSize}` } : { },
                 ...backgroundRepeat ? { backgroundRepeat: `${backgroundRepeat}` } : { },
-                ...backgroundPosition ? backgroundPosition.hasOwnProperty("x") ? { backgroundPosition: `${ Math.round(backgroundPosition.x * 100) }% ${ Math.round(backgroundPosition.y * 100) }%` } : { } : { }
+                ...backgroundPosition ? backgroundPosition.hasOwnProperty("x") ? { backgroundPosition: `${ Math.round(backgroundPosition.x * 100) }% ${ Math.round(backgroundPosition.y * 100) }%` } : { } : { },
+                ...backgroundAttachment ? { backgroundAttachment: `${backgroundAttachment}` } : { },
               }
             } : {
 
@@ -298,6 +300,24 @@ export const edit = (props) => {
                 </PanelRow>
               </Fragment>
             }
+            <PanelRow
+              className="mt-0"
+            >
+                <SelectControl
+                    label="Background Attachment"
+                    value={ backgroundAttachment }
+                    className="d-block w-100 mb-2"
+                    options={ [
+                        { label: '', value: '' },
+                        { label: 'scroll', value: 'scroll' },
+                        { label: 'fixed', value: 'fixed' },
+                        { label: 'local', value: 'local' },
+                        { label: 'initial', value: 'initial' },
+                        { label: 'inherit', value: 'inherit' },
+                    ] }
+                    onChange={ ( backgroundAttachment ) => { setAttributes( { backgroundAttachment } ) } }
+                />
+            </PanelRow>
           </PanelBody>
       </InspectorControls> 
     </Fragment>

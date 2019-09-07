@@ -26,7 +26,8 @@ export const modifyGetSaveElementContainer = (element, blockType, attributes ) =
                 backgroundImage: `url(${attributes.backgroundImage.full.url})`,
                 ...attributes.backgroundSize ? { backgroundSize: `${attributes.backgroundSize}` } : { },
                 ...attributes.backgroundRepeat ? { backgroundRepeat: `${attributes.backgroundRepeat}` } : { },
-                ...attributes.backgroundPosition ? attributes.backgroundPosition.hasOwnProperty("x") ? { backgroundPosition: `${ Math.round(attributes.backgroundPosition.x * 100) }% ${ Math.round(attributes.backgroundPosition.y * 100) }%` } : { } : { }
+                ...attributes.backgroundPosition ? attributes.backgroundPosition.hasOwnProperty("x") ? { backgroundPosition: `${ Math.round(attributes.backgroundPosition.x * 100) }% ${ Math.round(attributes.backgroundPosition.y * 100) }%` } : { } : { },
+                ...attributes.backgroundAttachment ? { backgroundAttachment: `${attributes.backgroundAttachment}` } : { },
               }
             } : {
 
@@ -48,7 +49,8 @@ export const modifyGetSaveElementContainer = (element, blockType, attributes ) =
               backgroundImage: `url(${attributes.backgroundImage.full.url})`,
               ...attributes.backgroundSize ? { backgroundSize: `${attributes.backgroundSize}` } : { },
               ...attributes.backgroundRepeat ? { backgroundRepeat: `${attributes.backgroundRepeat}` } : { },
-              ...attributes.backgroundPosition ? attributes.backgroundPosition.hasOwnProperty("x") ? { backgroundPosition: `${ Math.round(attributes.backgroundPosition.x * 100) }% ${ Math.round(attributes.backgroundPosition.y * 100) }%` } : { } : { }
+              ...attributes.backgroundPosition ? attributes.backgroundPosition.hasOwnProperty("x") ? { backgroundPosition: `${ Math.round(attributes.backgroundPosition.x * 100) }% ${ Math.round(attributes.backgroundPosition.y * 100) }%` } : { } : { },
+              ...attributes.backgroundAttachment ? { backgroundAttachment: `${attributes.backgroundAttachment}` } : { },
             }
           } : {
 

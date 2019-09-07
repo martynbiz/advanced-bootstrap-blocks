@@ -202,7 +202,6 @@
   }
   .wp-block-advanced-bootstrap-blocks-row > .block-editor-inner-blocks > .block-editor-block-list__layout {
     @include make-row();
-    flex-wrap: nowrap;
     margin-left: 0 !important;
     margin-right: 0 !important; 
     > .block-list-appender {

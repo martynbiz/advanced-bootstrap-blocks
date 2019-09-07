@@ -49,6 +49,10 @@ const settings = {
       type: 'object',
       default: {},
     },
+    backgroundAttachment: {
+      type: 'string',
+      default: ''
+    },
     allowedBlocks: ['advanced-bootstrap-blocks/row'],
     TEMPLATE: {
       type: 'array',
