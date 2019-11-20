@@ -36,6 +36,8 @@ Yes. This plugin is under active development and maintenance--your feedback is i
 Please submit issues, feature requests through the [support page](http://wordpress.org/plugins/advanced-bootstrap-blocks), or browse the source at [https://gitlab.com/helpful.dev/advanced-bootstrap-blocks](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks). 
 
 == Changelog ==
+### 1.1.1-1.1.2
+* Remove vertical margin from blocks in WordPress v5.3
 
 ### 1.1.0
 * Added `Card`, `CardHeader`, and `CardBody` blocks
