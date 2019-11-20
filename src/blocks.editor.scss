@@ -199,6 +199,9 @@
     margin: 0 !important; 
     width: 100%; 
     max-width: 100%; 
+    > [data-block] {
+      margin: 0;
+    }
   }
   .wp-block-advanced-bootstrap-blocks-row > .block-editor-inner-blocks > .block-editor-block-list__layout {
     @include make-row();
