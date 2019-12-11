@@ -1,6 +1,6 @@
 const { __ } = wp.i18n;
 const { Fragment } = wp.element;
-const { InspectorControls } = wp.editor;
+const { InspectorControls } = wp.blockEditor;
 const { PanelBody, PanelRow } = wp.components;
 const { addFilter } = wp.hooks;
 const { createHigherOrderComponent } = wp.compose;

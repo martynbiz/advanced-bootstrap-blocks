@@ -161,11 +161,11 @@
     }
   }
   div:last-child > .block-editor-default-block-appender {
-    display: none;
+    // display: none;
   }
   &.is-selected {
     div:last-child > .block-editor-default-block-appender {
-      display: block;
+      // display: block;
     }
   }
 }
@@ -252,7 +252,32 @@
     padding: 0;
   }
 }
-
+[data-type="advanced-bootstrap-blocks/button-group"] {
+  .block-editor-inner-blocks > .block-editor-block-list__layout {
+    display: flex;
+    > .block-list-appender {
+      &:not(:first-child) { 
+        position: absolute;
+        top: -15px;
+        right: -20px;
+      }
+      // outline: none;
+      // .block-list-appender__toggle {
+      //   padding: 8px;
+      //   // border: 0;
+      //   outline: 0;
+      //   &:focus {
+      //     outline: 1px solid;
+      //   }
+      // }
+    }
+    .block-editor-block-list__block {
+      display: inline-block;
+      width: auto;
+      margin: 0;
+    }
+  }
+}
 [data-type="advanced-bootstrap-blocks/button"] {
   > .editor-block-list__block-edit {
     // position: relative; 

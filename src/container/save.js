@@ -4,7 +4,7 @@ const {
 
 const {
   InnerBlocks
-} = wp.editor;
+} = wp.blockEditor;
 
 export const save = (props) => {
   return (

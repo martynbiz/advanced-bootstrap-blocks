@@ -20,15 +20,17 @@ const settings = {
       __('advanced-bootstrap-blocks'),
       __('card'),
   ],
-  // attributes: {
-  //   allowedBlocks: ['advanced-bootstrap-blocks/row'],
-  //   TEMPLATE: {
-  //     type: 'array',
-  //     default: [
-  //       ['advanced-bootstrap-blocks/row', {} ,[]]
-  //     ]
-  //   }
-  // },
+  attributes: {
+    // allowedBlocks: ['advanced-bootstrap-blocks/row'],
+    TEMPLATE: {
+      type: 'array',
+      default: [
+        ['advanced-bootstrap-blocks/card-header', {} ,[]],
+        ['advanced-bootstrap-blocks/card-body', {} ,[]],
+        ['advanced-bootstrap-blocks/card-footer', {} ,[]],
+      ]
+    }
+  },
   edit: edit,
   save: save,
 } 

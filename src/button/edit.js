@@ -16,7 +16,7 @@ const {
 const {
   InspectorControls,
   URLInputButton,
-} = wp.editor;
+} = wp.blockEditor;
 
 import {
   buttonStyle,

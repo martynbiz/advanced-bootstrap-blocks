@@ -30,7 +30,7 @@ const {
   BlockAlignmentToolbar,
   InspectorControls,
   InnerBlocks
-} = wp.editor;
+} = wp.blockEditor;
 
 registerBlockType('advanced-bootstrap-blocks/row', {
   title: __('Row (BS4)', 'advanced-bootstrap-blocks'),
@@ -52,8 +52,8 @@ registerBlockType('advanced-bootstrap-blocks/row', {
         type: 'array',
         default: [
           ['advanced-bootstrap-blocks/column', {} ,[]],
-          // ['advanced-bootstrap-blocks/column', {} ,[]],
-          // ['advanced-bootstrap-blocks/column', {} ,[]]
+          ['advanced-bootstrap-blocks/column', {} ,[]],
+          ['advanced-bootstrap-blocks/column', {} ,[]]
         ]
       },
   },
@@ -69,7 +69,7 @@ registerBlockType('advanced-bootstrap-blocks/row', {
     return (
       <div 
         className={props.className}
-        style={{ outline: '1px dashed orange'}}
+        // style={{ outline: '1px dashed orange'}}
       >
         <InnerBlocks 
           template={ TEMPLATE }

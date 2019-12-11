@@ -14,6 +14,7 @@ import './container';
 import './row';
 import './column';
 import './button';
+import './buttonGroup';
 import './card';
 import './cardHeader';
 import './cardBody';

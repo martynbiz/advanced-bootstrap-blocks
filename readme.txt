@@ -16,18 +16,18 @@ This plugin adds flexible Bootstrap 4 blocks to the WordPress editor which allow
 
 The following Bootstrap components are currently available: 
 
-* Container - fixed-width or fluid, with background image settings
+* Container (fixed-width or fluid, with background image settings)
 * Row
 * Column
-* Button
+* Button + Button Group (with role and aria-label)
 
 == Frequently Asked Questions ==
 
 ### Does this plugin add Bootstrap styles or scripts to my theme? 
 
-No. Bootstrap 4 styles have been included in the Gutenberg editor but need to be added to your theme for these blocks to appear correctly on your public-facing website.
+This plugin will not add styles or scripts to your website. Necessary Bootstrap 4 will be available in the editor but need to be added to your theme for these blocks to appear correctly on your public-facing website.
 
-This plugin is developed, tested, and is intended to be used with [Understrap](https://understrap.com/). 
+Not sure where to start? This plugin is developed, tested, and is intended to be used with [Understrap](https://understrap.com/). 
 
 ### This plugin is giving me trouble. Can you help?
 
@@ -36,8 +36,14 @@ Yes. This plugin is under active development and maintenance--your feedback is i
 Please submit issues, feature requests through the [support page](http://wordpress.org/plugins/advanced-bootstrap-blocks), or browse the source at [https://gitlab.com/helpful.dev/advanced-bootstrap-blocks](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks). 
 
 == Changelog ==
+### 1.1.3
+* Add Button Group block
+* Remove colored block outlines (made redundant by WP 5.3 release)
+* Modify initial state of Container block (defaults to 3 columns) 
+* Modify initial state of Card block (includes Card Header, Card Body, and Card Footer)
+
 ### 1.1.1-1.1.2
-* Remove vertical margin from blocks in WordPress v5.3
+* Removed vertical margin from blocks in WordPress v5.3
 
 ### 1.1.0
 * Added `Card`, `CardHeader`, and `CardBody` blocks

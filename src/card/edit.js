@@ -1,15 +1,22 @@
 const {
   InnerBlocks
-} = wp.editor;
+} = wp.blockEditor;
 
 const {
   Fragment
 } = wp.element; 
 
 export const edit = (props) => {
+  const {
+    attributes: {
+      TEMPLATE
+    },
+    className,
+    setAttributes
+  } = props;
   return (
     <Fragment>
-      <InnerBlocks />
+      <InnerBlocks template={TEMPLATE}/>
     </Fragment>
   );
 }
