@@ -19,7 +19,8 @@ The following Bootstrap components are currently available:
 * Container (fixed-width or fluid, with background image settings)
 * Row
 * Column
-* Button + Button Group (with role and aria-label)
+* Button 
+* Button Group
 
 == Frequently Asked Questions ==
 
