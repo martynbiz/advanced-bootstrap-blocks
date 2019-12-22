@@ -31,8 +31,6 @@ The following Bootstrap components are available:
 
 This plugin does not add styles or scripts to your website. Necessary Bootstrap 4 will be available in the editor but needs to be added to your theme for these blocks to appear correctly on your public-facing website.
 
-Not sure where to start? This plugin is developed, tested, and is intended to be used with [Understrap](https://understrap.com/). 
-
 ### This plugin is giving me trouble. Can you help?
 
 Yes. This plugin is under active development and maintenance--your feedback is important. 
