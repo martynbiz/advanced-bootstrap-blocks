@@ -3,7 +3,7 @@ Contributors: helpfuldev
 Tags: bootstrap, responsive, layout, grid, page builder, container, columns, blocks, button, group, editor, gutenberg
 Donate link: https://paypal.me/helpfuldev
 Requires at least: 5.0.0
-Tested up to: 5.3.0
+Tested up to: 5.3.1
 Stable tag: trunk
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
@@ -12,21 +12,24 @@ Build responsive Bootstrap 4 layouts inside the Gutenberg editor.
 
 == Description ==
 
-This plugin adds flexible Bootstrap 4 blocks to the WordPress editor which allow content-creators to build their own custom page layouts using the Bootstrap grid and helper classes.
+This plugin adds flexible Bootstrap 4 blocks to the WordPress editor for creating custom page layouts using the Bootstrap grid.
 
-The following Bootstrap components are currently available: 
+Are you using Advanced Bootstrap Blocks? Please [write a review](https://wordpress.org/plugins/advanced-bootstrap-blocks/#reviews)!
+
+== Blocks == 
+
+The following Bootstrap components are available: 
 
 * Container (fixed-width or fluid, with background image settings)
 * Row
 * Column
-* Button 
-* Button Group
+* Button and Button Group
 
 == Frequently Asked Questions ==
 
 ### Does this plugin add Bootstrap styles or scripts to my theme? 
 
-This plugin will not add styles or scripts to your website. Necessary Bootstrap 4 will be available in the editor but need to be added to your theme for these blocks to appear correctly on your public-facing website.
+This plugin does not add styles or scripts to your website. Necessary Bootstrap 4 will be available in the editor but needs to be added to your theme for these blocks to appear correctly on your public-facing website.
 
 Not sure where to start? This plugin is developed, tested, and is intended to be used with [Understrap](https://understrap.com/). 
 
@@ -37,11 +40,18 @@ Yes. This plugin is under active development and maintenance--your feedback is i
 Please submit issues, feature requests through the [support page](http://wordpress.org/plugins/advanced-bootstrap-blocks), or browse the source at [https://gitlab.com/helpful.dev/advanced-bootstrap-blocks](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks). 
 
 == Changelog ==
+### 1.1.4 
+* Override block outlines with original outline colors
+* Replaced icon on all blocks with Bootstrap-branded icon
+* Updated default state of Card block to match basic Bootstrap 4 example
+* Retitled Container "Background Settings" to "Background Image Settings"
+* Minor changes to block editor UI
+
 ### 1.1.3
-* Add Button Group block
-* Remove colored block outlines (made redundant by WP 5.3 release)
-* Modify initial state of Container block (defaults to 3 columns) 
-* Modify initial state of Card block (includes Card Header, Card Body, and Card Footer)
+* Added Button Group block
+* Removed colored block outlines (made redundant by WP 5.3 release)
+* Modified initial state of Container block (defaults to 3 columns) 
+* Modified initial state of Card block (includes Card Header, Card Body, and Card Footer)
 
 ### 1.1.1-1.1.2
 * Removed vertical margin from blocks in WordPress v5.3

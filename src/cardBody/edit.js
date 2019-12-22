@@ -7,9 +7,16 @@ const {
 } = wp.element; 
 
 export const edit = (props) => {
+  const {
+    attributes: {
+      TEMPLATE
+    },
+    className,
+    setAttributes
+  } = props;
   return (
     <Fragment>
-      <InnerBlocks />
+      <InnerBlocks template={TEMPLATE}/>
     </Fragment>
   );
 }

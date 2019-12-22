@@ -114,7 +114,7 @@ export const edit = (props) => {
             </PanelRow>
           </PanelBody>
           <PanelBody
-            title={ __( 'Background Settings', 'advanced-bootstrap-blocks' ) }
+            title={ __( 'Background Image Settings', 'advanced-bootstrap-blocks' ) }
             initialOpen={false}
           >
             <PanelRow>
@@ -125,7 +125,7 @@ export const edit = (props) => {
                       display: 'block'
                     }}
                 >
-                    { __( 'Background image', 'advanced-bootstrap-blocks' ) }
+                    { __( 'Background Image', 'advanced-bootstrap-blocks' ) }
                 </label>
                 <MediaUpload 
                     id="form-media-select"
