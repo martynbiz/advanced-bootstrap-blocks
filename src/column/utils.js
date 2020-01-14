@@ -17,7 +17,10 @@ export const modifyGetSaveElementColumn = (element, blockType, attributes ) => {
   }
   if (blockType.name == 'advanced-bootstrap-blocks/column') {
     return (
-      <div className={ [element.props.className, "col"].join(" ") }>
+      <div 
+        {...attributes.anchor ? { id: attributes.anchor } : { } }
+        className={ [element.props.className, "col"].join(" ") }
+      >
         {element}
       </div>
     )

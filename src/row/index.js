@@ -65,6 +65,7 @@ registerBlockType('advanced-bootstrap-blocks/row', {
     const {
       className,
       attributes: {
+        anchor,
         TEMPLATE,
       },
       setAttributes
@@ -72,6 +73,7 @@ registerBlockType('advanced-bootstrap-blocks/row', {
 
     return (
       <div 
+        {...anchor ? { id: anchor } : { } }
         className={props.className}
         // style={{ outline: '1px dashed orange'}}
       >
@@ -113,7 +115,10 @@ const modifyGetSaveElementRow = (element, blockType, attributes ) => {
 
   if (blockType.name == 'advanced-bootstrap-blocks/row') {
     return (
-      <div className={ [element.props.className, "row"].join(" ") }>
+      <div 
+        {...attributes.anchor ? { id: attributes.anchor } : { } } 
+        className={ [element.props.className, "row"].join(" ") }
+      >
         {element}
       </div>
     )

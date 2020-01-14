@@ -19,6 +19,7 @@ export const modifyGetSaveElementContainer = (element, blockType, attributes ) =
     if (attributes.isWrapped) {
       return (
         <div 
+          {...attributes.anchor ? { id: attributes.anchor } : { } }
           className={element.props.className}
           { // conditionally render style attribute with backgroundImage property
             ...attributes.backgroundImage.hasOwnProperty("full") ? {

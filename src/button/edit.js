@@ -27,6 +27,7 @@ import {
 export const edit = (props) => {
   const {
     attributes: {
+      anchor,
       text,
       link,
       style,
@@ -79,6 +80,7 @@ export const edit = (props) => {
     <Fragment>
       <div className={[block ? "d-flex" : "d-inline-flex", "align-items-start"].join(" ")}>
         <a
+          {...anchor ? { id: anchor } : { } }
           className={[className, size, buttonStyle(props.attributes), "btn"].join(" ")} 
           href={link} 
           target={newWindow && '_blank'}

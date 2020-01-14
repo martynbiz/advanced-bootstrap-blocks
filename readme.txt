@@ -38,6 +38,14 @@ Yes. This plugin is under active development and maintenance--your feedback is i
 Please submit issues, feature requests through the [support page](http://wordpress.org/plugins/advanced-bootstrap-blocks), or browse the source at [https://gitlab.com/helpful.dev/advanced-bootstrap-blocks](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks). 
 
 == Changelog ==
+
+### 1.1.6
+* Bugfix: Save Anchor (ID) when added to Container, Row, Column, and Button blocks ;)
+
+### 1.1.5
+* Add Anchor (ID) support to Container, Row, Column, and Button blocks
+* Bugfix: allow blocks to be dropped in empty Column blocks
+
 ### 1.1.4 
 * Override block outlines with original outline colors
 * Replaced icon on all blocks with Bootstrap-branded icon

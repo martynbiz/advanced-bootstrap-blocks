@@ -23,6 +23,7 @@ const {
 export const edit = (props) => {
   const {
     attributes: {
+      anchor,
       className,
       isFluid,
       isWrapped,
@@ -54,12 +55,13 @@ export const edit = (props) => {
     const containerClass = isFluid ? "container-fluid" : "container"; 
     return [className, containerClass].join(" ");
   }
-
+  if (typeof anchor != "undefined") console.log(anchor);
   return (
     <Fragment>
       <Fragment>
         <div 
           // style={{outline: '1px dashed red'}}
+          {...anchor ? { id: anchor } : { } }
           className={classNameAttribute()}
           { // conditionally render style attribute with backgroundImage property
             ...backgroundImage.hasOwnProperty("full") ? {
