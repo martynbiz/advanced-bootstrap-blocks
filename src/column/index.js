@@ -21,6 +21,9 @@ registerBlockType('advanced-bootstrap-blocks/column', {
       __('advanced-bootstrap-blocks'),
       __('column'),
   ],
+  supports: {
+    anchor: true,
+  },
   attributes: {
       customClassName: true,
       content: {

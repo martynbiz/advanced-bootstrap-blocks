@@ -15,7 +15,11 @@ const settings = {
   keywords: [
       __('advanced-bootstrap-blocks'),
       __('button'),
+      __('btn'),
   ],
+  supports: {
+    anchor: true,
+  },
   attributes: {
     type: {
       type: 'string',

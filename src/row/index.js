@@ -42,6 +42,9 @@ registerBlockType('advanced-bootstrap-blocks/row', {
       __('advanced-bootstrap-blocks'),
       __('row'),
   ],
+  supports: {
+    anchor: true,
+  },
   attributes: {
       customClassName: true,
       content: {

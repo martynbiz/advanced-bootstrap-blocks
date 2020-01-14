@@ -19,6 +19,7 @@ const settings = {
   keywords: [
       __('advanced-bootstrap-blocks'),
       __('button'),
+      __('btn'),
       __('group'),
   ],
   attributes: {

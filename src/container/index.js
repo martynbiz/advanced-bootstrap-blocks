@@ -21,6 +21,9 @@ const settings = {
       __('advanced-bootstrap-blocks'),
       __('container'),
   ],
+  supports: {
+    anchor: true,
+  },
   attributes: {
     classNameFilter: {
       type: 'string',
