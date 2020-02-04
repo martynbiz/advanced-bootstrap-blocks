@@ -43,6 +43,7 @@ export const modifyGetSaveElementContainer = (element, blockType, attributes ) =
     }
     return (
       <div 
+        {...attributes.anchor ? { id: attributes.anchor } : { } }
         className={ [element.props.className, (attributes.isFluid ? "container-fluid" : "container")].join(" ") }
         { // conditionally render style attribute with backgroundImage property
           ...attributes.backgroundImage.hasOwnProperty("full") ? {

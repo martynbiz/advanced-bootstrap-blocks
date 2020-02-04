@@ -27,20 +27,25 @@ The following Bootstrap components are available:
 
 == Frequently Asked Questions ==
 
+### This plugin broke my website!
+
+Probably not. Try disabling any other page-builder plugins you have activated.
+
 ### Does this plugin add Bootstrap styles or scripts to my theme? 
 
 This plugin does not add styles or scripts to your website. Necessary Bootstrap 4 will be available in the editor but needs to be added to your theme for these blocks to appear correctly on your public-facing website.
 
 ### This plugin is giving me trouble. Can you help?
 
-Yes. This plugin is under active development and maintenance--your feedback is important. 
-
-Please submit issues, feature requests through the [support page](http://wordpress.org/plugins/advanced-bootstrap-blocks), or browse the source at [https://gitlab.com/helpful.dev/advanced-bootstrap-blocks](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks). 
+Yes. This plugin is under active development and maintenance--your feedback is important. Please submit issues, feature requests through the [support page](http://wordpress.org/plugins/advanced-bootstrap-blocks), or browse the source at [https://gitlab.com/helpful.dev/advanced-bootstrap-blocks](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks). 
 
 == Changelog ==
 
+### 1.1.7 
+* Bugfix: Add'l fix to save Anchor (ID) when added to Container 
+
 ### 1.1.6
-* Bugfix: Save Anchor (ID) when added to Container, Row, Column, and Button blocks ;)
+* Bugfix: Save Anchor (ID) when added to Container, Row, Column, and Button blocks 
 
 ### 1.1.5
 * Add Anchor (ID) support to Container, Row, Column, and Button blocks
