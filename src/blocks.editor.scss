@@ -257,6 +257,8 @@
   //     margin-top: 50px;
   //   }
   // }
+  word-break: break-word;
+  
   [data-type="core/heading"] + [data-type="core/paragraph"] {
     margin-top: 10px;
   }

@@ -41,6 +41,9 @@ Yes. This plugin is under active development and maintenance--your feedback is i
 
 == Changelog ==
 
+### 1.1.8 
+* Bugfix: Prevent long words from forcing Column blocks onto next row 
+
 ### 1.1.7 
 * Bugfix: Add'l fix to save Anchor (ID) when added to Container 
 
