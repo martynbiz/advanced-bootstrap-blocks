@@ -40,6 +40,8 @@ This plugin does not add styles or scripts to your website. Necessary Bootstrap 
 Yes. This plugin is under active development and maintenance--your feedback is important. Please submit issues, feature requests through the [support page](http://wordpress.org/plugins/advanced-bootstrap-blocks), or browse the source at [https://gitlab.com/helpful.dev/advanced-bootstrap-blocks](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks). 
 
 == Changelog ==
+### 1.1.9 
+* Bugfix: Add outline to Row and Column blocks outside of Container
 
 ### 1.1.8 
 * Bugfix: Prevent long words from forcing Column blocks onto next row 

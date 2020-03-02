@@ -200,22 +200,14 @@
       margin-bottom: 0;
     }
   }
-  [data-type="advanced-bootstrap-blocks/row"] {
-    > .block-editor-block-list__block-edit {
-      border: 1px dashed orange; 
-    }
-  }
-  [data-type="advanced-bootstrap-blocks/column"] {
-    > .block-editor-block-list__block-edit {
-      border: 1px dashed green; 
-    }
-  }
 }
 [data-type="advanced-bootstrap-blocks/row"] {
   max-width: 100%; 
   width: 100%;
   padding: 0; 
-
+  > .block-editor-block-list__block-edit {
+    border: 1px dashed orange; 
+  }
   .block-editor-block-list__block-edit {
     padding: 0 !important; 
     margin: 0 !important; 
@@ -259,6 +251,10 @@
   // }
   word-break: break-word;
   
+  > .block-editor-block-list__block-edit {
+    border: 1px dashed green; 
+  }
+
   [data-type="core/heading"] + [data-type="core/paragraph"] {
     margin-top: 10px;
   }
