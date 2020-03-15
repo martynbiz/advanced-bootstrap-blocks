@@ -400,3 +400,12 @@
     pointer-events: all;
   }
 }
+
+.wp-block-advanced-bootstrap-blocks-column {
+  p:empty {
+    display: none; 
+  }
+  .wp-block-cover, .wp-block-cover-image {
+    margin: 0; 
+  }
+}

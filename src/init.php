@@ -42,12 +42,12 @@ function advanced_bootstrap_blocks_block_assets() { // phpcs:ignore
 	}, 10, 2 );
 
 	// Register block styles for both frontend + backend.
-	wp_register_style(
-		'advanced-bootstrap-blocks-style-css', // Handle.
-		plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
-		array( 'wp-editor' ), // Dependency to include the CSS after it.
-		null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: File modification time.
-	);
+	// wp_register_style(
+	// 	'advanced-bootstrap-blocks-style-css', // Handle.
+	// 	plugins_url( 'dist/blocks.style.build.css', dirname( __FILE__ ) ), // Block style CSS.
+	// 	array( 'wp-editor' ), // Dependency to include the CSS after it.
+	// 	null // filemtime( plugin_dir_path( __DIR__ ) . 'dist/blocks.style.build.css' ) // Version: File modification time.
+	// );
 
 	// Register block editor script for backend.
 	wp_register_script(
