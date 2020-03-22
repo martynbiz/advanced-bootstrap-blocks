@@ -1,5 +1,5 @@
 === Advanced Bootstrap Blocks ===
-Contributors: helpfuldev
+Contributors: helpfuldev, mannis82
 Tags: bootstrap, responsive, layout, grid, page builder, container, columns, blocks, button, group, editor, gutenberg
 Donate link: https://paypal.me/helpfuldev
 Requires at least: 5.0.0
@@ -24,6 +24,7 @@ The following Bootstrap components are available:
 * Row
 * Column
 * Button and Button Group
+* Card (Body, Header, Footer)
 
 == Frequently Asked Questions ==
 
