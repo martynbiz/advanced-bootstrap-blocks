@@ -3,17 +3,24 @@ const { createHigherOrderComponent } = wp.compose;
 
 import { CustomClassNameInspector } from './coreClassNameInspector.js';
 import { CustomPaddingInspector } from './corePaddingInspector.js';
-
-addFilter( 
-  'editor.BlockEdit', 
-  'advanced-custom-blocks/custom-classname-inspector', 
-  CustomClassNameInspector 
-);
+import { CustomMarginInspector } from './coreMarginInspector.js';
 
 addFilter( 
   'editor.BlockEdit', 
   'advanced-custom-blocks/custom-padding-inspector', 
   CustomPaddingInspector 
+);
+
+addFilter( 
+  'editor.BlockEdit', 
+  'advanced-custom-blocks/custom-margin-inspector', 
+  CustomMarginInspector 
+);
+
+addFilter( 
+  'editor.BlockEdit', 
+  'advanced-custom-blocks/custom-classname-inspector', 
+  CustomClassNameInspector 
 );
 
 const addSupportReusableCoreBlock = function( settings, name ) {

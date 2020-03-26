@@ -6,16 +6,16 @@ const { createHigherOrderComponent, withState } = wp.compose;
 
 const strToRegex = (property, breakpoint) => {
   // const regex = /(p{1}[trblxy]?[-]?\b(sm|md|lg|xl)?[-]{1}(auto\b|[0-5]\b){1}?)/;
-  const paddingProperty = property.replace('a', '');
-  const paddingBreakpoint = breakpoint.replace('xs', ''); 
-  const regexString = `p{1}(property)[-](breakpoint)[-]?([0-5]\\b)`
-    .replace('property', `${paddingProperty}`)
-    .replace('breakpoint', `${paddingBreakpoint}`);
+  const marginProperty = property.replace('a', '');
+  const marginBreakpoint = breakpoint.replace('xs', ''); 
+  const regexString = `m{1}(property)[-](breakpoint)[-]?([0-5]\\b)`
+    .replace('property', `${marginProperty}`)
+    .replace('breakpoint', `${marginBreakpoint}`);
 
   return new RegExp(regexString); 
 }
 
-const removePaddingClass = (classNameList, property, breakpoint) => {
+const removeMarginClass = (classNameList, property, breakpoint) => {
   if (typeof classNameList !== "undefined") {
     const regex = strToRegex(property, breakpoint); 
 
@@ -25,7 +25,7 @@ const removePaddingClass = (classNameList, property, breakpoint) => {
   }
 }
 
-const returnPaddingValue = (props, property, breakpoint) => {
+const returnMarginValue = (props, property, breakpoint) => {
   if (typeof props.attributes.className !== "undefined") {
     const regex = strToRegex(property, breakpoint); 
     const results = props.attributes.className.length && props.attributes.className.match(regex) ? Number(props.attributes.className.match(regex)[3]) : -1; 
@@ -37,19 +37,19 @@ const returnPaddingValue = (props, property, breakpoint) => {
   return '';
 }
 
-const PaddingControl = withState({
-  padding: -1,
-} )( ({ padding, setState, property, breakpoint, defaultValue, classNameList, setAttributes } ) => {
+const MarginControl = withState({
+  margin: -1,
+} )( ({ margin, setState, property, breakpoint, defaultValue, classNameList, setAttributes } ) => {
 
   useEffect(() => {
-    const classNameArray = removePaddingClass(classNameList, property, breakpoint) || [];
+    const classNameArray = removeMarginClass(classNameList, property, breakpoint) || [];
     let classNameListUpdated; 
 
-    if (typeof padding !== "undefined" && padding.toString().length && padding > -1) {
-      const newClassNamePaddingPrefix = `p${property}-${breakpoint}-`.replace('a','').replace('-xs', '');
-      const newClassNamePaddingClass = padding >= 0 ? `${newClassNamePaddingPrefix}${padding}` : ''; 
+    if (typeof margin !== "undefined" && margin.toString().length && margin > -1) {
+      const newClassNamemarginPrefix = `m${property}-${breakpoint}-`.replace('a','').replace('-xs', '');
+      const newClassNamemarginClass = margin >= 0 ? `${newClassNamemarginPrefix}${margin}` : ''; 
       classNameListUpdated = typeof classNameArray !== "undefined" && classNameArray
-        .concat(newClassNamePaddingClass)
+        .concat(newClassNamemarginClass)
         .join(' ')
         .trim()
         .replace(/\s\s+/, ' ');
@@ -63,18 +63,18 @@ const PaddingControl = withState({
     setAttributes( { 
       className: classNameListUpdated
     });  
-  }, [padding]); 
+  }, [margin]); 
 
   return (
     <PanelRow>
       <RangeControl
-        label={ `.p${property}-${breakpoint}` }
-        value={ padding > -1 ? padding : defaultValue }
+        label={ `.m${property}-${breakpoint}` }
+        value={ margin > -1 ? margin : defaultValue }
         allowReset
         onChange={ 
-          padding => {
+          margin => {
             setState({
-              padding: padding
+              margin: margin
             });
           }
         }
@@ -87,21 +87,21 @@ const PaddingControl = withState({
   );
 });
 
-export const CustomPaddingInspector = createHigherOrderComponent( ( BlockEdit ) => {
+export const CustomMarginInspector = createHigherOrderComponent( ( BlockEdit ) => {
 	return ( props ) => {
     if (props.name.includes("advanced-bootstrap-blocks") || props.name.includes("core")) {
       const properties = ['a','x','y','t','r','b','l'];
       const breakpoints = ['xs','sm','md','lg','xl'];
 
-      let paddingObject = paddingObject || {};
+      let marginObject = marginObject || {};
       breakpoints.map( breakpoint => {
         properties.map( property => { 
-          const paddingValue = returnPaddingValue(props, property, breakpoint); 
-          paddingObject[`p${property}-${breakpoint}`] = {
-            ref: useRef(`p${property}-${breakpoint}`),
+          const marginValue = returnMarginValue(props, property, breakpoint); 
+          marginObject[`m${property}-${breakpoint}`] = {
+            ref: useRef(`m${property}-${breakpoint}`),
             property: property,
             breakpoint: breakpoint,
-            defaultValue: typeof paddingValue !== "undefined" ? paddingValue : '',
+            defaultValue: typeof marginValue !== "undefined" ? marginValue : '',
           }
         });
       });  
@@ -111,16 +111,18 @@ export const CustomPaddingInspector = createHigherOrderComponent( ( BlockEdit ) 
           <BlockEdit { ...props } />
           <InspectorControls>
             <PanelBody
-              title={ __( 'Block Padding', 'advanced-bootstrap-blocks' ) }
+              title={ __( 'Block Margin', 'advanced-bootstrap-blocks' ) }
               initialOpen={false}
             >
             {
-              props.isSelected && Object.keys(paddingObject).map((key, index) => {
+              props.isSelected && Object.keys(marginObject).map((key, index) => {
                 return (
-                  <PaddingControl 
-                    property={ paddingObject[key].property } 
-                    breakpoint={ paddingObject[key].breakpoint }
-                    defaultValue={ paddingObject[key].defaultValue }
+                  <MarginControl 
+                    // key={ marginObject[key].ref.current } 
+                    // id={ marginObject[key].ref.current }
+                    property={ marginObject[key].property } 
+                    breakpoint={ marginObject[key].breakpoint }
+                    defaultValue={ marginObject[key].defaultValue }
                     classNameList={ props.attributes.className }
                     setAttributes={ props.setAttributes }
                   />
@@ -135,5 +137,5 @@ export const CustomPaddingInspector = createHigherOrderComponent( ( BlockEdit ) 
       return <BlockEdit { ...props } />; 
     }
 	};
-}, 'CustomPaddingInspector' );
+}, 'CustommarginInspector' );
 

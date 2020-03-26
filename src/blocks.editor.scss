@@ -144,6 +144,19 @@
 /*
  * Gutenberg Overrides
  */
+
+.components-base-control {
+  &.components-range-control {
+    .components-base-control__field {
+      .components-base-control__label {
+        max-width: 100%; 
+      }
+      .components-text-control__input {
+      }
+    }
+  }
+}
+
 [data-type="advanced-bootstrap-blocks/container"],
 [data-type="advanced-bootstrap-blocks/row"],
 [data-type="advanced-bootstrap-blocks/column"],
@@ -158,6 +171,7 @@
     .container, 
     .container-fluid {
       padding: 0; 
+      width: auto; 
     }
   }
   .block-editor-default-block-appender {
@@ -322,17 +336,17 @@
     .components-base-control {
       margin: 0;
       padding: $spacer / 2; 
-      width: 50%;
+      // width: 50%;
       .components-base-control__field {
         text-align: left; 
-        width: 100%;
+        // width: 100%;
         padding: 0;
         .components-base-control__label {
           font-weight: bold;
           color: $gray-900; 
         }
         .components-text-control__input {
-          width: 100%;
+          // width: 100%;
         }
       }
     }
