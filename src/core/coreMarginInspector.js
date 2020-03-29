@@ -5,10 +5,9 @@ const { PanelBody, PanelRow, RangeControl } = wp.components;
 const { createHigherOrderComponent, withState } = wp.compose;
 
 const strToRegex = (property, breakpoint) => {
-  // const regex = /(m{1}[trblxy]?[-]?\b(sm|md|lg|xl)?[-]{1}(auto\b|[0-5]\b){1}?)/;
   const marginProperty = property.replace('a', '');
   const marginBreakpoint = breakpoint.replace('xs', ''); 
-  const regexString = `m{1}(property)[-](breakpoint)[-]?(auto\\b|[0-5]\\b)`
+  const regexString = `(?<!-)m{1}(property)[-](breakpoint)[-]?(auto\\b|[0-5]\\b)`
     .replace('property', `${marginProperty}`)
     .replace('breakpoint', `${marginBreakpoint}`);
 
@@ -21,7 +20,7 @@ const removeMarginClass = (classNameList, property, breakpoint) => {
 
     return classNameList
       .split(" ")
-      .filter(name => !name.match(regex)); 
+      .filter(name => { const result = name.match(regex); return !result || result.index !== 0 }); 
   }
 }
 

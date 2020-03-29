@@ -5,10 +5,9 @@ const { PanelBody, PanelRow, RangeControl } = wp.components;
 const { createHigherOrderComponent, withState } = wp.compose;
 
 const strToRegex = (property, breakpoint) => {
-  // const regex = /(p{1}[trblxy]?[-]?\b(sm|md|lg|xl)?[-]{1}(auto\b|[0-5]\b){1}?)/;
   const paddingProperty = property.replace('a', '');
   const paddingBreakpoint = breakpoint.replace('xs', ''); 
-  const regexString = `p{1}(property)[-](breakpoint)[-]?([0-5]\\b)`
+  const regexString = `(?<!-)[p]{1}(property)[-](breakpoint)[-]?([0-5]\\b)`
     .replace('property', `${paddingProperty}`)
     .replace('breakpoint', `${paddingBreakpoint}`);
 
@@ -32,8 +31,7 @@ const returnPaddingValue = (props, property, breakpoint) => {
     if (results > -1) {
       return results;
     }
-  } 
-  
+  }   
   return '';
 }
 
@@ -70,28 +68,26 @@ const PaddingControl = withState({
   }
 
   return (
-    <PanelRow>
-      <RangeControl
-        label={ 
-          `.p${property}-${breakpoint}-${getPaddingValue(padding, defaultValue)}`
-            .replace('a', '')
-            .replace('-xs', '')
+    <RangeControl
+      label={ 
+        `.p${property}-${breakpoint}-${getPaddingValue(padding, defaultValue)}`
+          .replace('a', '')
+          .replace('-xs', '')
+      }
+      value={ getPaddingValue(padding, defaultValue) }
+      allowReset
+      onChange={ 
+        padding => {
+          setState({
+            padding: padding
+          });
         }
-        value={ getPaddingValue(padding, defaultValue) }
-        allowReset
-        onChange={ 
-          padding => {
-            setState({
-              padding: padding
-            });
-          }
-        }
-        min={ 0 }
-        max={ 5 }
-        step={ 1 }
-        marks={["0","1","2","3","4","5"]}
-      />
-    </PanelRow>
+      }
+      min={ 0 }
+      max={ 5 }
+      step={ 1 }
+      marks={["0","1","2","3","4","5"]}
+    />
   );
 });
 
@@ -124,18 +120,17 @@ export const CustomPaddingInspector = createHigherOrderComponent( ( BlockEdit ) 
             >
             {
               props.isSelected && Object.keys(paddingObject).map((key, index) => {
-                if (paddingObject[key].breakpoint === "xs")
                   return (
-                    <PaddingControl 
-                      property={ paddingObject[key].property } 
-                      breakpoint={ paddingObject[key].breakpoint }
-                      defaultValue={ paddingObject[key].defaultValue }
-                      classNameList={ props.attributes.className }
-                      setAttributes={ props.setAttributes }
-                    />
-                  )
-                else
-                    return; 
+                    <PanelRow>
+                      <PaddingControl 
+                        property={ paddingObject[key].property } 
+                        breakpoint={ paddingObject[key].breakpoint }
+                        defaultValue={ paddingObject[key].defaultValue }
+                        classNameList={ props.attributes.className }
+                        setAttributes={ props.setAttributes }
+                      />
+                    </PanelRow>
+                  );
               })
             }
             </PanelBody>
