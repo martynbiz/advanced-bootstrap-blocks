@@ -42,6 +42,11 @@ Yes. This plugin is under active development and maintenance--your feedback is i
 
 == Changelog ==
 
+### 1.2.0
+* Feature: Add Block Padding and Block Margin controls
+* Bugfix: Improve 'Bootstrap Classes' filtering
+* Bugfix: Fix bad link in readme.txt
+
 ### 1.1.10
 * Bugfix: Remove front-end dependency injection
 
