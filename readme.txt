@@ -38,7 +38,7 @@ This plugin does not add styles or scripts to your website. Necessary Bootstrap 
 
 ### This plugin is giving me trouble. Can you help?
 
-Yes. This plugin is under active development and maintenance--your feedback is important. Please submit issues, feature requests through the [support page](http://wordpress.org/plugins/advanced-bootstrap-blocks), or browse the source at [https://gitlab.com/helpful.dev/advanced-bootstrap-blocks](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks). 
+Yes. This plugin is under active development and maintenance--your feedback is important. Please submit issues, feature requests through the [support page](https://wordpress.org/support/plugin/advanced-bootstrap-blocks/), or browse the source at [https://gitlab.com/helpful.dev/advanced-bootstrap-blocks](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks). 
 
 == Changelog ==
 
