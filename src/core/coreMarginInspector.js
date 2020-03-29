@@ -5,10 +5,10 @@ const { PanelBody, PanelRow, RangeControl } = wp.components;
 const { createHigherOrderComponent, withState } = wp.compose;
 
 const strToRegex = (property, breakpoint) => {
-  // const regex = /(p{1}[trblxy]?[-]?\b(sm|md|lg|xl)?[-]{1}(auto\b|[0-5]\b){1}?)/;
+  // const regex = /(m{1}[trblxy]?[-]?\b(sm|md|lg|xl)?[-]{1}(auto\b|[0-5]\b){1}?)/;
   const marginProperty = property.replace('a', '');
   const marginBreakpoint = breakpoint.replace('xs', ''); 
-  const regexString = `m{1}(property)[-](breakpoint)[-]?([0-5]\\b)`
+  const regexString = `m{1}(property)[-](breakpoint)[-]?(auto\\b|[0-5]\\b)`
     .replace('property', `${marginProperty}`)
     .replace('breakpoint', `${marginBreakpoint}`);
 
@@ -28,26 +28,24 @@ const removeMarginClass = (classNameList, property, breakpoint) => {
 const returnMarginValue = (props, property, breakpoint) => {
   if (typeof props.attributes.className !== "undefined") {
     const regex = strToRegex(property, breakpoint); 
-    const results = props.attributes.className.length && props.attributes.className.match(regex) ? Number(props.attributes.className.match(regex)[3]) : -1; 
-    if (results > -1) {
+    const results = props.attributes.className.length && props.attributes.className.match(regex) ? Number(props.attributes.className.match(regex)[3].replace("auto", -1)) : -2; 
+    if (results > -2) {
       return results;
     }
   } 
-  
   return '';
 }
 
 const MarginControl = withState({
-  margin: -1,
+  margin: -2,
 } )( ({ margin, setState, property, breakpoint, defaultValue, classNameList, setAttributes } ) => {
 
   useEffect(() => {
     const classNameArray = removeMarginClass(classNameList, property, breakpoint) || [];
     let classNameListUpdated; 
-
-    if (typeof margin !== "undefined" && margin.toString().length && margin > -1) {
+    if (typeof margin !== "undefined" && margin.toString().length && margin > -2) {
       const newClassNamemarginPrefix = `m${property}-${breakpoint}-`.replace('a','').replace('-xs', '');
-      const newClassNamemarginClass = margin >= 0 ? `${newClassNamemarginPrefix}${margin}` : ''; 
+      const newClassNamemarginClass = margin >= -1 ? Number(margin) === -1 ? `${newClassNamemarginPrefix}auto` : `${newClassNamemarginPrefix}${margin}` : ''; 
       classNameListUpdated = typeof classNameArray !== "undefined" && classNameArray
         .concat(newClassNamemarginClass)
         .join(' ')
@@ -59,17 +57,24 @@ const MarginControl = withState({
         .trim()
         .replace(/\s\s+/, ' ');
     }
-    
     setAttributes( { 
       className: classNameListUpdated
     });  
   }, [margin]); 
 
+  const getMarginValue = (margin, defaultValue) => {
+    return Number(margin) > -2 ? Number(margin) : defaultValue; 
+  }
+
   return (
-    <PanelRow>
       <RangeControl
-        label={ `.m${property}-${breakpoint}` }
-        value={ margin > -1 ? margin : defaultValue }
+        label={ 
+          `.m${property}-${breakpoint}-${getMarginValue(margin, defaultValue)}`
+            .replace('a', '')
+            .replace('-xs', '')
+            .replace(/--1/, '-auto') 
+        }
+        value={ getMarginValue(margin, defaultValue) }
         allowReset
         onChange={ 
           margin => {
@@ -78,12 +83,12 @@ const MarginControl = withState({
             });
           }
         }
-        min={ 0 }
+        min={ -1 }
         max={ 5 }
         step={ 1 }
-        marks={["0","1","2","3","4","5"]}
+        marks={["auto", "0", "1", "2", "3", "4", "5"]}
+        separatorType="none"
       />
-    </PanelRow>
   );
 });
 
@@ -92,8 +97,8 @@ export const CustomMarginInspector = createHigherOrderComponent( ( BlockEdit ) =
     if (props.name.includes("advanced-bootstrap-blocks") || props.name.includes("core")) {
       const properties = ['a','x','y','t','r','b','l'];
       const breakpoints = ['xs','sm','md','lg','xl'];
-
       let marginObject = marginObject || {};
+
       breakpoints.map( breakpoint => {
         properties.map( property => { 
           const marginValue = returnMarginValue(props, property, breakpoint); 
@@ -117,15 +122,15 @@ export const CustomMarginInspector = createHigherOrderComponent( ( BlockEdit ) =
             {
               props.isSelected && Object.keys(marginObject).map((key, index) => {
                 return (
-                  <MarginControl 
-                    // key={ marginObject[key].ref.current } 
-                    // id={ marginObject[key].ref.current }
-                    property={ marginObject[key].property } 
-                    breakpoint={ marginObject[key].breakpoint }
-                    defaultValue={ marginObject[key].defaultValue }
-                    classNameList={ props.attributes.className }
-                    setAttributes={ props.setAttributes }
-                  />
+                  <PanelRow>
+                    <MarginControl 
+                        property={ marginObject[key].property } 
+                        breakpoint={ marginObject[key].breakpoint }
+                        defaultValue={ marginObject[key].defaultValue }
+                        classNameList={ props.attributes.className }
+                        setAttributes={ props.setAttributes }
+                      />
+                  </PanelRow>
                 );
               })
             }
@@ -137,5 +142,5 @@ export const CustomMarginInspector = createHigherOrderComponent( ( BlockEdit ) =
       return <BlockEdit { ...props } />; 
     }
 	};
-}, 'CustommarginInspector' );
+}, 'CustomMarginInspector' );
 

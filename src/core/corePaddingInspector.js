@@ -65,11 +65,19 @@ const PaddingControl = withState({
     });  
   }, [padding]); 
 
+  const getPaddingValue = (padding, defaultValue) => {
+    return padding > -1 ? padding : defaultValue;
+  }
+
   return (
     <PanelRow>
       <RangeControl
-        label={ `.p${property}-${breakpoint}` }
-        value={ padding > -1 ? padding : defaultValue }
+        label={ 
+          `.p${property}-${breakpoint}-${getPaddingValue(padding, defaultValue)}`
+            .replace('a', '')
+            .replace('-xs', '')
+        }
+        value={ getPaddingValue(padding, defaultValue) }
         allowReset
         onChange={ 
           padding => {
@@ -116,15 +124,18 @@ export const CustomPaddingInspector = createHigherOrderComponent( ( BlockEdit ) 
             >
             {
               props.isSelected && Object.keys(paddingObject).map((key, index) => {
-                return (
-                  <PaddingControl 
-                    property={ paddingObject[key].property } 
-                    breakpoint={ paddingObject[key].breakpoint }
-                    defaultValue={ paddingObject[key].defaultValue }
-                    classNameList={ props.attributes.className }
-                    setAttributes={ props.setAttributes }
-                  />
-                );
+                if (paddingObject[key].breakpoint === "xs")
+                  return (
+                    <PaddingControl 
+                      property={ paddingObject[key].property } 
+                      breakpoint={ paddingObject[key].breakpoint }
+                      defaultValue={ paddingObject[key].defaultValue }
+                      classNameList={ props.attributes.className }
+                      setAttributes={ props.setAttributes }
+                    />
+                  )
+                else
+                    return; 
               })
             }
             </PanelBody>

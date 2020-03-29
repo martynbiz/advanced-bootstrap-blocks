@@ -55,7 +55,7 @@ export const CustomClassNameInspector = createHigherOrderComponent( ( BlockEdit 
                   type="text"
                   placeholder="Filter class names"
                   className="d-block w-100 mb-3"
-                  onChange={e => props.setAttributes({ classNameFilter: e.target.value }) }
+                  onChange={e => props.setAttributes({ classNameFilter: e.target.value.replace(".", "") }) }
                 />
               </PanelRow>
               
@@ -71,7 +71,7 @@ export const CustomClassNameInspector = createHigherOrderComponent( ( BlockEdit 
                             type="checkbox" 
                             checked={
                               typeof props.attributes.className !== "undefined" && 
-                              props.attributes.className.indexOf(item.className) != -1 ? true : false
+                              props.attributes.className.split(" ").indexOf(item.className) != -1 ? true : false
                             }
                             onClick={() =>  {
                                 const classNameList = typeof props.attributes.className !== "undefined" ? props.attributes.className.split(" ") : []; 

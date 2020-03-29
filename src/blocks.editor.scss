@@ -147,9 +147,11 @@
 
 .components-base-control {
   &.components-range-control {
+    margin-bottom: 0 !important;
     .components-base-control__field {
       .components-base-control__label {
-        max-width: 100%; 
+        // max-width: 100%; 
+        width: auto;
       }
       .components-text-control__input {
       }
