@@ -24,7 +24,6 @@ The following Bootstrap components are available:
 * Row
 * Column
 * Button and Button Group
-* Card (Body, Header, Footer)
 
 == Frequently Asked Questions ==
 
@@ -41,6 +40,10 @@ This plugin does not add styles or scripts to your website. Necessary Bootstrap 
 Yes. This plugin is under active development and maintenance--your feedback is important. Please submit issues, feature requests through the [support page](http://wordpress.org/plugins/advanced-bootstrap-blocks), or browse the source at [https://gitlab.com/helpful.dev/advanced-bootstrap-blocks](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks). 
 
 == Changelog ==
+
+### 1.1.10
+* Bugfix: Remove front-end dependency injection
+
 ### 1.1.9 
 * Bugfix: Add outline to Row and Column blocks outside of Container
 
