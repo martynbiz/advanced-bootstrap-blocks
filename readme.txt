@@ -42,6 +42,9 @@ Yes. This plugin is under active development and maintenance--your feedback is i
 
 == Changelog ==
 
+### 1.2.1
+* Bugfix: Remove unsupported regex from Padding and Block margin controls
+
 ### 1.2.0
 * Feature: Add Block Padding and Block Margin controls
 * Bugfix: Improve 'Bootstrap Classes' filtering

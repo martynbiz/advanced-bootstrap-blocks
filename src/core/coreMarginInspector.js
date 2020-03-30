@@ -7,7 +7,7 @@ const { createHigherOrderComponent, withState } = wp.compose;
 const strToRegex = (property, breakpoint) => {
   const marginProperty = property.replace('a', '');
   const marginBreakpoint = breakpoint.replace('xs', ''); 
-  const regexString = `(?<!-)m{1}(property)[-](breakpoint)[-]?(auto\\b|[0-5]\\b)`
+  const regexString = `[m]{1}(property)[-](breakpoint)[-]?(auto\\b|[0-5]\\b)`
     .replace('property', `${marginProperty}`)
     .replace('breakpoint', `${marginBreakpoint}`);
 

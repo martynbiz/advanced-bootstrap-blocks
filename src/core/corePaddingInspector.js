@@ -7,7 +7,7 @@ const { createHigherOrderComponent, withState } = wp.compose;
 const strToRegex = (property, breakpoint) => {
   const paddingProperty = property.replace('a', '');
   const paddingBreakpoint = breakpoint.replace('xs', ''); 
-  const regexString = `(?<!-)[p]{1}(property)[-](breakpoint)[-]?([0-5]\\b)`
+  const regexString = `[p]{1}(property)[-](breakpoint)[-]?([0-5]\\b)`
     .replace('property', `${paddingProperty}`)
     .replace('breakpoint', `${paddingBreakpoint}`);
 
