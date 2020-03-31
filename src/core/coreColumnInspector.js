@@ -41,8 +41,8 @@ const removeOffsetClass = (classNameList, breakpoint) => {
 const returnColumnValue = (props, breakpoint) => {
   if (typeof props.attributes.className !== "undefined") {
     const regex = strToRegexColumn(breakpoint); 
-    const results = props.attributes.className.length && props.attributes.className.match(regex) ? Number(props.attributes.className.match(regex)[3].replace("auto", -1)) : -2; 
-    if (results > -2) {
+    const results = props.attributes.className.length && props.attributes.className.match(regex) ? Number(props.attributes.className.match(regex)[3].replace("auto", 0)) : -2; 
+    if (results > -1) {
       return results;
     }
   } 
@@ -61,15 +61,15 @@ const returnOffsetValue = (props, breakpoint) => {
 }
 
 const ColumnControl = withState({
-  column: -2,
+  column: -1,
 } )( ({ column, setState, breakpoint, defaultValue, classNameList, setAttributes } ) => {
 
   useEffect(() => {
     const classNameArray = removeColumnClass(classNameList, breakpoint) || [];
     let classNameListUpdated; 
-    if (typeof column !== "undefined" && column.toString().length && column > -2) {
+    if (typeof column !== "undefined" && column.toString().length && column > -1) {
       const newClassNameColumnPrefix = `col-${breakpoint}-`.replace('a','').replace('-xs', '');
-      const newClassNameColumnClass = column >= -1 ? Number(column) === -1 ? `${newClassNameColumnPrefix}auto` : `${newClassNameColumnPrefix}${column}` : ''; 
+      const newClassNameColumnClass = column >= 0 ? Number(column) === 0 ? `${newClassNameColumnPrefix}auto` : `${newClassNameColumnPrefix}${column}` : ''; 
       classNameListUpdated = typeof classNameArray !== "undefined" && classNameArray
         .concat(newClassNameColumnClass)
         .join(' ')
@@ -87,7 +87,7 @@ const ColumnControl = withState({
   }, [column]); 
 
   const getColumnValue = (column, defaultValue) => {
-    return Number(column) > -2 ? Number(column) : defaultValue; 
+    return Number(column) > -1 ? Number(column) : defaultValue; 
   }
 
   return (
@@ -96,7 +96,7 @@ const ColumnControl = withState({
           `.col-${breakpoint}-${getColumnValue(column, defaultValue)}`
             .replace('a', '')
             .replace('-xs', '')
-            .replace(/--1/, '-auto') 
+            .replace('-0', '-auto')
         }
         value={ getColumnValue(column, defaultValue) }
         allowReset
@@ -107,10 +107,10 @@ const ColumnControl = withState({
             });
           }
         }
-        min={ -1 }
+        min={ 0 }
         max={ 12 }
         step={ 1 }
-        marks={["auto", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]}
+        marks={["auto", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]}
         separatorType="none"
       />
   );
@@ -164,9 +164,9 @@ const OffsetControl = withState({
             }
           }
           min={ 0 }
-          max={ 12 }
+          max={ 11 }
           step={ 1 }
-          marks={["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]}
+          marks={["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"]}
           separatorType="none"
         />
       </Fragment>
