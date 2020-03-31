@@ -84,8 +84,8 @@ Yes. This plugin is under active development and maintenance--your feedback is i
 
 == Changelog ==
 
-### 1.2.4
-* Hotfix: Fix missing block outlines in WP 5.4
+### 1.2.4-1.2.5
+* Hotfix: Fix and improve missing block outlines in WP 5.4
 
 ### 1.2.3
 * Feature: Add Offset controls to Column inspector

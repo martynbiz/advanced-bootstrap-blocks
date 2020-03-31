@@ -217,7 +217,7 @@
 [data-type="advanced-bootstrap-blocks/container"] {
   > .container, > .container-fluid,
   > .block-editor-block-list__block-edit {
-    outline: 1px dashed red; 
+    border: 1px dashed red; 
     > [data-block] {
       margin-top: 0;
       margin-bottom: 0;
@@ -231,7 +231,7 @@
   
   // > .block-editor-block-list__block-edit,
   &.row {
-    outline: 1px dashed orange; 
+    border: 1px dashed orange; 
   }
   
   .block-editor-block-list__block-edit {
@@ -279,8 +279,7 @@
   
   // > .block-editor-block-list__block-edit,
   &.col {
-    outline: 1px dashed green; 
-    outline-offset: -6px;
+    border: 1px dashed green; 
   }
 
   [data-type="core/heading"] + [data-type="core/paragraph"] {
