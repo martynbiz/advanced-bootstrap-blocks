@@ -3,7 +3,7 @@ Contributors: helpfuldev, mannis82
 Tags: bootstrap, responsive, layout, grid, page builder, container, columns, blocks, button, group, editor, gutenberg
 Donate link: https://paypal.me/helpfuldev
 Requires at least: 5.0.0
-Tested up to: 5.3.2
+Tested up to: 5.4
 Stable tag: trunk
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
@@ -83,6 +83,9 @@ This plugin does not add styles or scripts to your website. Necessary Bootstrap 
 Yes. This plugin is under active development and maintenance--your feedback is important. Please submit issues, feature requests through the [support page](https://wordpress.org/support/plugin/advanced-bootstrap-blocks/), or browse the source at [https://gitlab.com/helpful.dev/advanced-bootstrap-blocks](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks). 
 
 == Changelog ==
+
+### 1.2.4
+* Hotfix: Fix missing block outlines in WP 5.4
 
 ### 1.2.3
 * Feature: Add Offset controls to Column inspector
