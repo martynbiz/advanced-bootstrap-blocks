@@ -4,29 +4,56 @@ const { InspectorControls } = wp.blockEditor;
 const { PanelBody, PanelRow, RangeControl } = wp.components;
 const { createHigherOrderComponent, withState } = wp.compose;
 
-const strToRegex = (breakpoint) => {
+const strToRegexColumn = (breakpoint) => {
   const columnBreakpoint = breakpoint.replace('xs', ''); 
   const regexString = `(col){1}[-](breakpoint)[-]?(auto\\b|[0-9][0-9]?\\b)`
     .replace('breakpoint', `${columnBreakpoint}`);
-  console.log('regexString: ', regexString);
+  return new RegExp(regexString); 
+}
+
+const strToRegexOffset = (breakpoint) => {
+  const offsetBreakpoint = breakpoint.replace('xs', ''); 
+  const regexString = `(offset){1}[-](breakpoint)[-]?([0-9][0-9]?\\b)`
+    .replace('breakpoint', `${offsetBreakpoint}`);
   return new RegExp(regexString); 
 }
 
 const removeColumnClass = (classNameList, breakpoint) => {
   if (typeof classNameList !== "undefined") {
-    const regex = strToRegex(breakpoint); 
+    const regex = strToRegexColumn(breakpoint); 
 
     return classNameList
       .split(" ")
-      .filter(name => { const result = name.match(regex); console.log(result); return !result || result.index !== 0 }); 
+      .filter(name => { const result = name.match(regex); return !result || result.index !== 0 }); 
+  }
+}
+
+const removeOffsetClass = (classNameList, breakpoint) => {
+  if (typeof classNameList !== "undefined") {
+    const regex = strToRegexOffset(breakpoint); 
+
+    return classNameList
+      .split(" ")
+      .filter(name => { const result = name.match(regex); return !result || result.index !== 0 }); 
   }
 }
 
 const returnColumnValue = (props, breakpoint) => {
   if (typeof props.attributes.className !== "undefined") {
-    const regex = strToRegex(breakpoint); 
+    const regex = strToRegexColumn(breakpoint); 
     const results = props.attributes.className.length && props.attributes.className.match(regex) ? Number(props.attributes.className.match(regex)[3].replace("auto", -1)) : -2; 
     if (results > -2) {
+      return results;
+    }
+  } 
+  return '';
+}
+
+const returnOffsetValue = (props, breakpoint) => {
+  if (typeof props.attributes.className !== "undefined") {
+    const regex = strToRegexOffset(breakpoint); 
+    const results = props.attributes.className.length && props.attributes.className.match(regex) ? Number(props.attributes.className.match(regex)[3]) : -1; 
+    if (results > -1) {
       return results;
     }
   } 
@@ -89,18 +116,76 @@ const ColumnControl = withState({
   );
 });
 
+const OffsetControl = withState({
+  offset: -1,
+} )( ({ offset, setState, breakpoint, defaultValue, classNameList, setAttributes } ) => {
+
+  useEffect(() => {
+    const classNameArray = removeOffsetClass(classNameList, breakpoint) || [];
+    let classNameListUpdated; 
+    if (typeof offset !== "undefined" && offset.toString().length && offset > -2) {
+      const newClassNameOffsetPrefix = `offset-${breakpoint}-`.replace('a','').replace('-xs', '');
+      const newClassNameOffsetClass = offset >= 0 ? `${newClassNameOffsetPrefix}${offset}` : ''; 
+      classNameListUpdated = typeof classNameArray !== "undefined" && classNameArray
+        .concat(newClassNameOffsetClass)
+        .join(' ')
+        .trim()
+        .replace(/\s\s+/, ' ');
+    } else {
+      classNameListUpdated = typeof classNameArray !== "undefined" && classNameArray
+        .join(' ')
+        .trim()
+        .replace(/\s\s+/, ' ');
+    }
+    setAttributes( { 
+      className: classNameListUpdated
+    });  
+  }, [offset]); 
+
+  const getOffsetValue = (offset, defaultValue) => {
+    return Number(offset) > -1 ? Number(offset) : defaultValue; 
+  }
+  
+  return (
+      <Fragment>
+        <RangeControl
+          label={ 
+            `.offset-${breakpoint}-${getOffsetValue(offset, defaultValue)}`
+              .replace('a', '')
+              .replace('-xs', '')
+          }
+          value={ getOffsetValue(offset, defaultValue) }
+          allowReset
+          onChange={ 
+            offset => {
+              setState({
+                offset: offset
+              });
+            }
+          }
+          min={ 0 }
+          max={ 12 }
+          step={ 1 }
+          marks={["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]}
+          separatorType="none"
+        />
+      </Fragment>
+  );
+});
+
 export const CustomColumnInspector = createHigherOrderComponent( ( BlockEdit ) => {
 	return ( props ) => {
-    if (props.name.includes("advanced-bootstrap-blocks")) {
+    if (props.name.includes("advanced-bootstrap-blocks/column")) {
       const breakpoints = ['xs','sm','md','lg','xl'];
       let columnObject = columnObject || {};
 
       breakpoints.map( breakpoint => {
         const columnValue = returnColumnValue(props, breakpoint); 
+        const offsetValue = returnOffsetValue(props, breakpoint); 
         columnObject[`col-${breakpoint}`] = {
-          ref: useRef(`col-${breakpoint}`),
           breakpoint: breakpoint,
-          defaultValue: typeof columnValue !== "undefined" ? columnValue : '',
+          defaultColumnValue: typeof columnValue !== "undefined" ? columnValue : '',
+          defaultOffsetValue: typeof offsetValue !== "undefined" ? offsetValue : '',
         }
       });  
 
@@ -115,14 +200,24 @@ export const CustomColumnInspector = createHigherOrderComponent( ( BlockEdit ) =
             {
               props.isSelected && Object.keys(columnObject).map((key, index) => {
                 return (
-                  <PanelRow>
-                    <ColumnControl 
+                  <Fragment>
+                    <PanelRow>
+                      <ColumnControl 
                         breakpoint={ columnObject[key].breakpoint }
-                        defaultValue={ columnObject[key].defaultValue }
+                        defaultValue={ columnObject[key].defaultColumnValue }
                         classNameList={ props.attributes.className }
                         setAttributes={ props.setAttributes }
                       />
-                  </PanelRow>
+                    </PanelRow>
+                    <PanelRow className="mt-1">
+                      <OffsetControl 
+                        breakpoint={ columnObject[key].breakpoint }
+                        defaultValue={ columnObject[key].defaultOffsetValue }
+                        classNameList={ props.attributes.className }
+                        setAttributes={ props.setAttributes }
+                      />
+                    </PanelRow>
+                  </Fragment>
                 );
               })
             }

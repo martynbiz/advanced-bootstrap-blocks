@@ -70,8 +70,14 @@
       // counting up to zero for using !important flag with mobile-first breakpoints... ;)
       @for $i from -($columns - 1) through 0 {
         @if not ($infix == "" and $i == 0) { // Avoid emitting useless .offset-0
-          .offset#{$infix}#{$i} {
-            @include make-advanced-col-offset($i, $columns);
+          @if ($i == 0) {
+            .offset#{$infix}-#{$i} {
+              @include make-advanced-col-offset($i, $columns);
+            }
+          } @else {
+            .offset#{$infix}#{$i} {
+              @include make-advanced-col-offset($i, $columns);
+            }
           }
         }
       }
