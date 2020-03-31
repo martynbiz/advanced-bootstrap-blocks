@@ -1,9 +1,15 @@
 const { addFilter } = wp.hooks;
 const { createHigherOrderComponent } = wp.compose;
-
-import { CustomClassNameInspector } from './coreClassNameInspector.js';
+import { CustomColumnInspector } from './coreColumnInspector.js';
 import { CustomPaddingInspector } from './corePaddingInspector.js';
 import { CustomMarginInspector } from './coreMarginInspector.js';
+import { CustomClassNameInspector } from './coreClassNameInspector.js';
+
+addFilter( 
+  'editor.BlockEdit', 
+  'advanced-custom-blocks/custom-column-inspector', 
+  CustomColumnInspector 
+);
 
 addFilter( 
   'editor.BlockEdit', 
