@@ -84,6 +84,9 @@ Yes. This plugin is under active development and maintenance--your feedback is i
 
 == Changelog ==
 
+### 1.2.3
+* Feature: Add Offset controls to Column inspector
+
 ### 1.2.2
 * Feature: Add Column class controls
 * Add block template example to README
