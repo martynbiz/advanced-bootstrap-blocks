@@ -14,11 +14,11 @@ Build responsive Bootstrap 4 layouts inside the Gutenberg editor.
 
 This plugin adds flexible Bootstrap 4 blocks to the WordPress editor for creating custom page layouts using the Bootstrap grid. 
 
-Are you using Advanced Bootstrap Blocks? Please [write a review](https://wordpress.org/plugins/advanced-bootstrap-blocks/#reviews)!
+Are you using Advanced Bootstrap Blocks? [Write a review](https://wordpress.org/plugins/advanced-bootstrap-blocks/#reviews)!
 
-== Blocks & Features == 
+== Blocks == 
 
-The following Bootstrap components are available: 
+Advanced Bootstrap Blocks adds the following Bootstrap 4 blocks to the WordPress editor: 
 
 * Container (fixed-width or fluid, with background image settings)
 * Row
@@ -30,44 +30,43 @@ The following Bootstrap components are available:
 
 Do you need to create standard templates for pages or posts? The WordPress editor lets you define custom block templates inside your theme. 
 
-The example below may get you started but, please visit the [WordpPress Block Editor Handbook](https://developer.wordpress.org/block-editor/developers/block-api/block-templates/) to learn more about supercharging your WordPress themes with blocks templates. 
+The example below may get you started. Visit the [WordpPress Block Editor Handbook](https://developer.wordpress.org/block-editor/developers/block-api/block-templates/) to learn more about supercharging your WordPress themes with blocks templates. 
 
-```
-<?php
-if(in_array('advanced-bootstrap-blocks/advanced-bootstrap-blocks.php', apply_filters('active_plugins', get_option('active_plugins')))){ 
-	// do stuff only if the Advanced Bootstrap Blocks plugin is active				
-	add_action( 'init', 'advancedbootstrapblocks_register_page_template' );
-	function advancedbootstrapblocks_register_page_template() {
-		$post_type_object = get_post_type_object( 'page' );
-		$isFluid = get_theme_mod( 'understrap_container_type' ) === 'container-fluid'; 
-		$post_type_object->template = [
-			[ 'advanced-bootstrap-blocks/container', 
-				['className'=>'py-5', 'isWrapped' => $isFluid, 'isFluid' => false ], 
-				[
-					[ 'advanced-bootstrap-blocks/row', 
-						[],
-						[
-							[ 'advanced-bootstrap-blocks/column', 
-								['className'=>'col-md-8 offset-md-2 text-center'], 
-								[
-									['core/heading', 
-										[ 'className' => 'display-4', 'level' => 1, 'placeholder' => 'Hello, World!', ], 
-										[]
-								],
-									[ 'core/paragraph', 
-										['className' => 'lead', 'placeholder' => 'Lorem ipsum dolor sit amet.', ], 
-										[]
+	<?php
+	if(in_array('advanced-bootstrap-blocks/advanced-bootstrap-blocks.php', apply_filters('active_plugins', get_option('active_plugins')))){ 
+		// do stuff only if the Advanced Bootstrap Blocks plugin is active				
+		add_action( 'init', 'advancedbootstrapblocks_register_page_template' );
+		function advancedbootstrapblocks_register_page_template() {
+			$post_type_object = get_post_type_object( 'page' );
+			$isFluid = get_theme_mod( 'understrap_container_type' ) === 'container-fluid'; 
+			$post_type_object->template = [
+				[ 'advanced-bootstrap-blocks/container', 
+					['className'=>'py-5', 'isWrapped' => $isFluid, 'isFluid' => false ], 
+					[
+						[ 'advanced-bootstrap-blocks/row', 
+							[],
+							[
+								[ 'advanced-bootstrap-blocks/column', 
+									['className'=>'col-md-8 offset-md-2 text-center'], 
+									[
+										['core/heading', 
+											[ 'className' => 'display-4', 'level' => 1, 'placeholder' => 'Hello, World!', ], 
+											[]
 									],
+										[ 'core/paragraph', 
+											['className' => 'lead', 'placeholder' => 'Lorem ipsum dolor sit amet.', ], 
+											[]
+										],
+									]
 								]
 							]
 						]
 					]
-				]
-			],
-		];
+				],
+			];
+		}
 	}
-}
-```
+
 
 == Frequently Asked Questions ==
 
