@@ -2,6 +2,18 @@ const {
   createHigherOrderComponent 
 } = wp.compose;
 
+const {
+  getBlockDefaultClassName
+} = wp.blocks;
+
+const defaultClassName = getBlockDefaultClassName("advanced-bootstrap-blocks/card-footer");
+
+export const setBlockCustomClassName = ( blockName ) => {
+	return blockName === defaultClassName ?
+    [] :
+		blockName;
+}
+
 export const modifyBlockListBlockCardFooter = createHigherOrderComponent( ( BlockListBlock ) => {
   return ( props ) => {
     if (props.block.name == 'advanced-bootstrap-blocks/card-footer') {
@@ -17,7 +29,7 @@ export const modifyGetSaveElementCardFooter = (element, blockType, attributes ) 
   }
   if (blockType.name == 'advanced-bootstrap-blocks/card-footer') {
     return (
-      <div className={ [element.props.className, "card-footer"].join(" ") }>
+      <div className={ ["card-footer", element.props.className].join(" ") }>
         {element}
       </div>
     )

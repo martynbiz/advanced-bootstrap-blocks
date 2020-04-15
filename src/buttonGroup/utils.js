@@ -2,6 +2,18 @@ const {
   createHigherOrderComponent 
 } = wp.compose;
 
+const {
+  getBlockDefaultClassName
+} = wp.blocks;
+
+const defaultClassName = getBlockDefaultClassName("advanced-bootstrap-blocks/button-group");
+
+export const setBlockCustomClassName = ( blockName ) => {
+	return blockName === defaultClassName ?
+    [] :
+		blockName;
+}
+
 export const modifyBlockListBlockButtonGroup = createHigherOrderComponent( ( BlockListBlock ) => {
   return ( props ) => {
     if (props.block.name == "advanced-bootstrap-blocks/button-group") {
@@ -19,7 +31,7 @@ export const modifyGetSaveElementButtonGroup = (element, blockType, attributes) 
   if (blockType.name == 'advanced-bootstrap-blocks/button-group') {
     return (
       <div 
-        className={ [element.props.className, "btn-group"].join(" ") }
+        className={ ["btn-group", element.props.className].join(" ") }
         role="group"
         aria-label={attributes.ariaLabel}>
         {element}

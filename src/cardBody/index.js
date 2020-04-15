@@ -8,7 +8,8 @@ import { edit } from './edit';
 import { save } from './save'; 
 import { 
   modifyBlockListBlockCardBody,
-  modifyGetSaveElementCardBody 
+  modifyGetSaveElementCardBody,
+  setBlockCustomClassName,
 } from './utils';
 
 const settings = {
@@ -50,4 +51,10 @@ wp.hooks.addFilter(
   'blocks.getSaveElement', 
   'advanced-bootstrap-blocks/card-body/modify-element-save', 
   modifyGetSaveElementCardBody
+);
+
+wp.hooks.addFilter(
+	'blocks.getBlockDefaultClassName',
+	'advanced-bootstrap-blocks/card-body/set-block-custom-class-name',
+	setBlockCustomClassName
 );

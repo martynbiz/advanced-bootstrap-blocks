@@ -2,6 +2,18 @@ const {
   createHigherOrderComponent 
 } = wp.compose;
 
+const {
+  getBlockDefaultClassName
+} = wp.blocks;
+
+const defaultClassName = getBlockDefaultClassName("advanced-bootstrap-blocks/column");
+
+export const setBlockCustomClassName = ( blockName ) => {
+	return blockName === defaultClassName ?
+    [] :
+		blockName;
+}
+
 export const modifyBlockListBlockColumn = createHigherOrderComponent( ( BlockListBlock ) => {
   return ( props ) => {
     if (props.block.name == "advanced-bootstrap-blocks/column") {
@@ -19,7 +31,7 @@ export const modifyGetSaveElementColumn = (element, blockType, attributes ) => {
     return (
       <div 
         {...attributes.anchor ? { id: attributes.anchor } : { } }
-        className={ [element.props.className, "col"].join(" ") }
+        className={ ["col", element.props.className].join(" ") }
       >
         {element}
       </div>

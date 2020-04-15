@@ -2,6 +2,25 @@ const {
   createHigherOrderComponent 
 } = wp.compose;
 
+const { 
+  getBlockDefaultClassName 
+} = wp.blocks;
+
+const defaultClassName = getBlockDefaultClassName("advanced-bootstrap-blocks/container");
+
+export const setBlockCustomClassName = ( blockName ) => {
+	return blockName === defaultClassName ?
+    [] :
+		blockName;
+}
+
+export const setBlockAttributes = ( attributes ) => {
+  if (typeof attributes.className !== "undefined")
+    attributes.className = attributes.className.replace(`${defaultClassName} `, "");
+  
+	return attributes;
+}
+
 export const modifyBlockListBlockContainer = createHigherOrderComponent( ( BlockListBlock ) => {
   return ( props ) => {
     if (props.block.name == "advanced-bootstrap-blocks/container") {
@@ -44,7 +63,7 @@ export const modifyGetSaveElementContainer = (element, blockType, attributes ) =
     return (
       <div 
         {...attributes.anchor ? { id: attributes.anchor } : { } }
-        className={ [element.props.className, (attributes.isFluid ? "container-fluid" : "container")].join(" ") }
+        className={ [(attributes.isFluid ? "container-fluid" : "container"), element.props.className].join(" ").trim() }
         { // conditionally render style attribute with backgroundImage property
           ...attributes.backgroundImage.hasOwnProperty("full") ? {
             style: {

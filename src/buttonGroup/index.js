@@ -8,7 +8,8 @@ import { edit } from './edit';
 import { save } from './save'; 
 import { 
   modifyBlockListBlockButtonGroup,
-  modifyGetSaveElementButtonGroup 
+  modifyGetSaveElementButtonGroup,
+  setBlockCustomClassName,
 } from './utils';
 
 const settings = {
@@ -55,4 +56,10 @@ wp.hooks.addFilter(
   'blocks.getSaveElement', 
   'advanced-bootstrap-blocks/button-group/modify-element-save', 
   modifyGetSaveElementButtonGroup
+);
+
+wp.hooks.addFilter(
+	'blocks.getBlockDefaultClassName',
+	'advanced-bootstrap-blocks/button-group/set-block-custom-class-name',
+	setBlockCustomClassName
 );

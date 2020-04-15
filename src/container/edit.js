@@ -53,9 +53,9 @@ export const edit = (props) => {
 
   const classNameAttribute = () => {
     const containerClass = isFluid ? "container-fluid" : "container"; 
-    return [className, containerClass].join(" ");
+    return [className, containerClass].join(" ").trim();
   }
-  if (typeof anchor != "undefined") console.log(anchor);
+
   return (
     <Fragment>
       <Fragment>

@@ -6,6 +6,9 @@ const {
 
 import { edit } from './edit'; 
 import { save } from './save'; 
+import {
+  setBlockCustomClassName
+} from './utils'; 
 
 const settings = {
   title: __( 'Button (BS4)', 'advanced-bootstrap-blocks' ),
@@ -61,4 +64,10 @@ const settings = {
 registerBlockType(
   'advanced-bootstrap-blocks/button', 
   settings
+);
+
+wp.hooks.addFilter(
+	'blocks.getBlockDefaultClassName',
+	'advanced-bootstrap-blocks/button/set-block-custom-class-name',
+	setBlockCustomClassName
 );

@@ -5,7 +5,8 @@ const {
 } = wp.compose;
 
 const { 
-  registerBlockType 
+  registerBlockType,
+  getBlockDefaultClassName
 } = wp.blocks;
 
 const {
@@ -93,6 +94,20 @@ registerBlockType('advanced-bootstrap-blocks/row', {
   }
 });
 
+const defaultClassName = getBlockDefaultClassName("advanced-bootstrap-blocks/row");
+
+const setBlockCustomClassName = ( blockName ) => {
+	return blockName === defaultClassName ?
+    [] :
+		blockName;
+}
+
+wp.hooks.addFilter(
+	'blocks.getBlockDefaultClassName',
+	'advanced-bootstrap-blocks/row/set-block-custom-class-name',
+	setBlockCustomClassName
+);
+
 const modifyBlockListBlockRow = createHigherOrderComponent( ( BlockListBlock ) => {
     return ( props ) => {
       if (props.block.name == "advanced-bootstrap-blocks/row") {
@@ -117,7 +132,7 @@ const modifyGetSaveElementRow = (element, blockType, attributes ) => {
     return (
       <div 
         {...attributes.anchor ? { id: attributes.anchor } : { } } 
-        className={ [element.props.className, "row"].join(" ") }
+        className={ ["row", element.props.className].join(" ").trim() }
       >
         {element}
       </div>

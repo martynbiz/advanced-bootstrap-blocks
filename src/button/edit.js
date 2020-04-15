@@ -78,7 +78,7 @@ export const edit = (props) => {
 
   return (
     <Fragment>
-      <div className={[block ? "d-flex" : "d-inline-flex", "align-items-start"].join(" ")}>
+      <div className={[block ? "d-flex" : "d-inline-flex", "align-items-center"].join(" ")}>
         <a
           {...anchor ? { id: anchor } : { } }
           className={[className, size, buttonStyle(props.attributes), "btn"].join(" ")} 

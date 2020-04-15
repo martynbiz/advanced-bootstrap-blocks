@@ -9,7 +9,8 @@ import { edit } from './edit';
 import { save } from './save'; 
 import { 
   modifyBlockListBlockCard,
-  modifyGetSaveElementCard
+  modifyGetSaveElementCard,
+  setBlockCustomClassName,
 } from './utils';
 
 const settings = {
@@ -53,4 +54,10 @@ wp.hooks.addFilter(
   'blocks.getSaveElement', 
   'advanced-bootstrap-blocks/card/modify-element-save', 
   modifyGetSaveElementCard
+);
+
+wp.hooks.addFilter(
+	'blocks.getBlockDefaultClassName',
+	'advanced-bootstrap-blocks/card/set-block-custom-class-name',
+	setBlockCustomClassName
 );

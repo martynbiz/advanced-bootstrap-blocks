@@ -1,3 +1,15 @@
+const {
+  getBlockDefaultClassName
+} = wp.blocks;
+
+const defaultClassName = getBlockDefaultClassName("advanced-bootstrap-blocks/button");
+
+export const setBlockCustomClassName = ( blockName ) => {
+	return blockName === defaultClassName ?
+    [] :
+		blockName;
+}
+
 export const buttonStyle = ({ style, outline, block }) => {
   let styles = style; 
   if (outline)

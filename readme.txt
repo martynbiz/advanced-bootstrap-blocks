@@ -2,7 +2,7 @@
 Contributors: helpfuldev, mannis82
 Tags: bootstrap, responsive, layout, grid, page builder, container, columns, blocks, button, group, editor, gutenberg
 Donate link: https://paypal.me/helpfuldev
-Requires at least: 5.0.0
+Requires at least: 5.1
 Tested up to: 5.4
 Stable tag: trunk
 License: GPLv3 or later
