@@ -84,6 +84,12 @@ Yes. This plugin is under active development and maintenance--your feedback is i
 
 == Changelog ==
 
+### 1.3
+* Remove default block classnames
+* Improve editor block outlines
+* Legacy support for wp 5.1+
+* Bugfix: fix issue with inline svg icon
+
 ### 1.2.4-1.2.6
 * Hotfix: Fix and improve missing block outlines in WP 5.4
 * Improve Column block display
