@@ -60,7 +60,6 @@ export const edit = (props) => {
     <Fragment>
       <Fragment>
         <div 
-          // style={{outline: '1px dashed red'}}
           {...anchor ? { id: anchor } : { } }
           className={classNameAttribute()}
           { // conditionally render style attribute with backgroundImage property

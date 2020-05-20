@@ -35,10 +35,12 @@ const {
 
 let uniqueId = _uniqueId('id'); 
 
+import icon from '../core/icon-bootstrap.svg'; 
+
 registerBlockType('advanced-bootstrap-blocks/collapse', {
   title: __('Collapse (BS4)', 'advanced-bootstrap-blocks'),
   description: __(''),
-  icon: 'layout',
+  icon: icon,
   category: 'advanced-bootstrap-blocks',
   keywords: [
       __('advanced-bootstrap-blocks'),
