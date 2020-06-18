@@ -130,8 +130,6 @@ async function build( webpackConfig ) {
 			'\n\n'
 		);
 
-		console.log( '\n👌 ', chalk.dim( ' Support Awais via VSCode Power User at https://VSCode.pro → \n' ) );
-
 		return true;
 	} );
 }
