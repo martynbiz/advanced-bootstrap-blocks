@@ -165,13 +165,14 @@
   }
 }
 
-[data-type="advanced-bootstrap-blocks/container"],
-[data-type="advanced-bootstrap-blocks/row"],
-[data-type="advanced-bootstrap-blocks/column"],
-[data-type="advanced-bootstrap-blocks/card"],
-[data-type="advanced-bootstrap-blocks/card-body"],
-[data-type="advanced-bootstrap-blocks/card-header"],
-[data-type="advanced-bootstrap-blocks/card-footer"] {
+// [data-type="advanced-bootstrap-blocks/container"],
+// [data-type="advanced-bootstrap-blocks/row"],
+// [data-type="advanced-bootstrap-blocks/column"],
+// [data-type="advanced-bootstrap-blocks/card"],
+// [data-type="advanced-bootstrap-blocks/card-body"],
+// [data-type="advanced-bootstrap-blocks/card-header"],
+// [data-type="advanced-bootstrap-blocks/card-footer"],
+[data-type^="advanced-bootstrap-blocks/"] {
   &.wp-block {
     max-width: 100%; 
     margin-left: initial;
@@ -183,14 +184,6 @@
       border: 1px dashed red; 
       padding: 0; 
       width: auto; 
-    }
-  }
-  .block-editor-default-block-appender {
-    display: none;
-  }
-  &.is-selected {
-    .block-editor-default-block-appender {
-      display: block;
     }
   }
 }
@@ -213,12 +206,13 @@
   }
   .block-editor-block-list__block {
     // margin: 0;
-    // padding: 0 !important; 
+    padding: 0 !important; 
     max-width: 100%;
     width: 100%; 
   }
 }
-[data-type="advanced-bootstrap-blocks/container"] {
+  [data-type="advanced-bootstrap-blocks/container"],
+  [data-type="advanced-bootstrap-blocks/card"] {
   > .block-editor-block-list__block-edit {
     padding: 0 !important; 
     margin: 0 !important; 
@@ -281,8 +275,7 @@
 
   [data-type="core/heading"],
   [data-type="core/paragraph"] {
-    margin-top: 0;
-    margin-bottom: 0; 
+    margin: 0; 
     &.is-selected {
       // margin-top: 50px;
     }
@@ -314,8 +307,56 @@
   }
 }
 
+[data-type="advanced-bootstrap-blocks/accordion"] {
+  border: 1px dashed purple;
+}
+
+[data-type="advanced-bootstrap-blocks/accordion"],
+[data-type^="advanced-bootstrap-blocks/card"] {
+  .block-list-appender,
+  .block-editor-default-block-appender {
+    display: none;
+    // &:not(:first-child) { 
+    //   position: absolute;
+    //   bottom: 8px;
+    //   right: 8px;
+    // }
+    .block-editor-button-block-appender,
+    .block-list-appender__toggle {
+      // padding: 8px;
+      // border: 0;
+      // outline: 0;
+      &:focus {
+        // outline: 1px solid;
+      }
+    }
+  }
+  &.is-selected > .block-editor-inner-blocks > .block-editor-block-list__layout,
+  &.is-selected > div > .block-editor-inner-blocks > .block-editor-block-list__layout {
+    // position: relative; 
+    .block-list-appender,
+    .block-editor-default-block-appender {
+      display: block;
+    }
+  }
+}
+
 [data-type="advanced-bootstrap-blocks/card"] {
+  &.wp-block,
+  > .block-editor-inner-blocks > .block-editor-block-list__layout,
   > .block-editor-block-list__block-edit > [data-block] > .block-editor-inner-blocks > .block-editor-block-list__layout {
+    padding: 0;
+  }
+}
+[data-type="advanced-bootstrap-blocks/card-header"] {
+  [data-type="core/heading"] {
+    h1,h2,h3,h4,h5,h6,p {
+      margin-top: 0; 
+    }
+  }
+  > [data-type="core/paragraph"] {
+    margin-top: 0;
+    margin-bottom: 0;
     padding: 0;
   }
 }
@@ -372,30 +413,6 @@
       }
     }
   }
-  // .components-toolbar {
-  //   // @media (min-width: 600px) {
-  //   //   display: flex;
-  //   //   align-items: center;
-  //   // }
-  //   .components-base-control {
-  //     margin: 0;
-  //     padding: $spacer / 2; 
-  //     // width: 50%;
-  //     .components-base-control__field {
-  //       text-align: left; 
-  //       // width: 100%;
-  //       padding: 0;
-  //       margin-bottom: 0; 
-  //       .components-base-control__label {
-  //         font-weight: bold;
-  //         color: $gray-900; 
-  //       }
-  //       .components-text-control__input {
-  //         // width: 100%;
-  //       }
-  //     }
-  //   }
-  // }
 }
 
 .block-editor-block-list__layout {
@@ -404,7 +421,7 @@
     padding-right: 85px;
   }
   .block-editor-block-list__block {
-    padding: 5px;
+    // padding: 5px;
     .block-editor-block-list__block-edit:before {
       left: 0;
       right: 0;
@@ -444,7 +461,7 @@
       }
     }
   }
-  .block-editor-default-block-appender>.block-editor-default-block-appender__content {
+  .block-editor-default-block-appender > .block-editor-default-block-appender__content {
     margin-top: 0;
     margin-bottom: 0; 
   }

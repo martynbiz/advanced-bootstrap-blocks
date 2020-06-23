@@ -31,7 +31,7 @@ export const modifyGetSaveElementColumn = (element, blockType, attributes ) => {
     return (
       <div 
         {...attributes.anchor ? { id: attributes.anchor } : { } }
-        className={ ["col", element.props.className].join(" ") }
+        className={ ["col", element.props.className].join(" ").trim() }
       >
         {element}
       </div>

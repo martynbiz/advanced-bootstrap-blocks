@@ -31,7 +31,7 @@ export const modifyGetSaveElementButtonGroup = (element, blockType, attributes) 
   if (blockType.name == 'advanced-bootstrap-blocks/button-group') {
     return (
       <div 
-        className={ ["btn-group", element.props.className].join(" ") }
+        className={ ["btn-group", element.props.className].join(" ").trim() }
         role="group"
         aria-label={attributes.ariaLabel}>
         {element}

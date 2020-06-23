@@ -111,7 +111,7 @@ wp.hooks.addFilter(
 const modifyBlockListBlockRow = createHigherOrderComponent( ( BlockListBlock ) => {
     return ( props ) => {
       if (props.block.name == "advanced-bootstrap-blocks/row") {
-        props.className = [props.className, "row"].join(" ");
+        props.className = ["row", props.className].join(" ").trim();
       }
       return <BlockListBlock { ...props } />;
     };

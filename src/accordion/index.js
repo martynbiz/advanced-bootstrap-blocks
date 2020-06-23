@@ -6,7 +6,8 @@ const {
 } = wp.compose;
 
 const { 
-  registerBlockType 
+  registerBlockType,
+  getBlockDefaultClassName
 } = wp.blocks;
 
 const {
@@ -45,7 +46,6 @@ registerBlockType('advanced-bootstrap-blocks/accordion', {
   keywords: [
       __('advanced-bootstrap-blocks'),
       __('accordion'),
-      __('collapse'),
   ],
   attributes: {
       customClassName: true,
@@ -53,25 +53,27 @@ registerBlockType('advanced-bootstrap-blocks/accordion', {
           type: 'array',
           source: 'children',
       },
-      allowedBlocks: ['advanced-bootstrap-blocks/accordion'],
+      // allowedBlocks: ['advanced-bootstrap-blocks/accordion'],
       TEMPLATE: {
         type: 'array',
         default: [
-          ['advanced-bootstrap-blocks/card', {} ,[
-            [ 
-              'advanced-bootstrap-blocks/card-header', {}, 
-              [
-                ['core/group', { anchor: 't'+uniqueId, className: 'h3 mb-0', }, [
-                  ['advanced-bootstrap-blocks/button', { className: 'text-left', style: 'link', block: true, text: 'Text', link: uniqueId }, []]
-                ]],
-              ]
-            ],
-            ['core/group', {
-              anchor: uniqueId
-            }, [
-              ['advanced-bootstrap-blocks/card-body', {} ,[]],
-            ]]
-          ]],
+          [
+            'advanced-bootstrap-blocks/card', {} ,[
+              [ 
+                'advanced-bootstrap-blocks/card-header', {}, 
+                [
+                  ['core/group', { anchor: 't'+uniqueId, className: 'h3 mb-0', }, [
+                    ['advanced-bootstrap-blocks/button', { className: 'text-left', style: 'link', block: true, text: 'Text', link: uniqueId }, []]
+                  ]],
+                ]
+              ],
+              ['core/group', {
+                anchor: uniqueId
+              }, [
+                ['advanced-bootstrap-blocks/card-body', {} ,[]],
+              ]]
+            ]
+          ],
         ]
       },
   },
@@ -81,6 +83,7 @@ registerBlockType('advanced-bootstrap-blocks/accordion', {
       attributes: {
         TEMPLATE,
       },
+      attributes,
       setAttributes
     } = props;
 
@@ -104,10 +107,24 @@ registerBlockType('advanced-bootstrap-blocks/accordion', {
   }
 });
 
+const defaultClassName = getBlockDefaultClassName("advanced-bootstrap-blocks/accordion");
+
+const setBlockCustomClassName = ( blockName ) => {
+	return blockName === defaultClassName ?
+    [] :
+		blockName;
+}
+
+wp.hooks.addFilter(
+	'blocks.getBlockDefaultClassName',
+	'advanced-bootstrap-blocks/accordion/set-block-custom-class-name',
+	setBlockCustomClassName
+);
+
 const modifyBlockListBlockAccordion = createHigherOrderComponent( ( BlockListBlock ) => {
     return ( props ) => {
       if (props.block.name == "advanced-bootstrap-blocks/accordion") {
-        props.className = [props.className, "accordion"].join(" ");
+        props.className = ["accordion", props.className].join(" ").trim();
       }
       return <BlockListBlock { ...props } />;
     };
@@ -126,7 +143,7 @@ const modifyGetSaveElementAccordion = (element, blockType, attributes ) => {
 
   if (blockType.name == 'advanced-bootstrap-blocks/accordion') {
     return (
-      <div className={ [element.props.className, "accordion"].join(" ") }>
+      <div className={ ["accordion", element.props.className].join(" ").trim() }>
         {element}
       </div>
     )
