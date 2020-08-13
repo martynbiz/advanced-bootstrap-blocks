@@ -189,7 +189,8 @@
 }
 [data-type="advanced-bootstrap-blocks/container"],
 [data-type="advanced-bootstrap-blocks/row"],
-[data-type="advanced-bootstrap-blocks/jumbotron"] {
+[data-type="advanced-bootstrap-blocks/jumbotron"],
+[data-type="advanced-bootstrap-blocks/card-deck"] {
   padding: 0 !important; 
   .block-editor-inner-blocks > .block-editor-block-list__layout {
     @include make-container();
@@ -214,7 +215,8 @@
 }
   [data-type="advanced-bootstrap-blocks/container"],
   [data-type="advanced-bootstrap-blocks/card"],
-  [data-type="advanced-bootstrap-blocks/jumbotron"] {
+  [data-type="advanced-bootstrap-blocks/jumbotron"],
+  [data-type="advanced-bootstrap-blocks/card-deck"] {
   > .block-editor-block-list__block-edit {
     padding: 0 !important; 
     margin: 0 !important; 
@@ -229,7 +231,8 @@
   }
 }
 [data-type="advanced-bootstrap-blocks/row"],
-[data-type="advanced-bootstrap-blocks/jumbotron"] {
+[data-type="advanced-bootstrap-blocks/jumbotron"],
+[data-type="advanced-bootstrap-blocks/card-deck"] {
   max-width: 100%; 
   width: 100%;
   padding: 0; 
