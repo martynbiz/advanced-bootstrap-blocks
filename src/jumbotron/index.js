@@ -1,42 +1,33 @@
 const { __ } = wp.i18n;
 
 const { 
-  createHigherOrderComponent 
-} = wp.compose;
-
-const { 
   registerBlockType,
   getBlockDefaultClassName
 } = wp.blocks;
-
-const {
-  Toolbar,
-  Button,
-  Tooltip,
-  Panel,
-  PanelBody,
-  PanelRow,
-  FormToggle,
-  RangeControl
-} = wp.components;
 
 const {
   Fragment
 } = wp.element; 
 
 const {
-  RichText,
-  AlignmentToolbar,
-  BlockControls,
-  BlockAlignmentToolbar,
-  InspectorControls,
   InnerBlocks
 } = wp.blockEditor;
 
+import { edit } from './edit'; 
+import { save } from './save'; 
+import {
+  modifyBlockListBlockJumbotron, 
+  modifyGetSaveElementJumbotron,
+  setBlockCustomClassName,
+  setBlockAttributes,
+} from './utils'; 
+
 import icon from '../core/icon-bootstrap.svg'; 
 
-registerBlockType('advanced-bootstrap-blocks/jumbotron', {
-  title: __('Jumbotron (BS4)', 'advanced-bootstrap-blocks'),
+const defaultClassName = getBlockDefaultClassName("advanced-bootstrap-blocks/jumbotron");
+
+const settings = {
+  title: __( 'Jumbotron (BS4)', 'advanced-bootstrap-blocks' ),
   description: __(''),
   icon: icon,
   category: 'advanced-bootstrap-blocks',
@@ -48,54 +39,66 @@ registerBlockType('advanced-bootstrap-blocks/jumbotron', {
     anchor: true,
   },
   attributes: {
-      customClassName: true,
-      content: {
-          type: 'array',
-          source: 'children',
-      },
-      // allowedBlocks: ['advanced-bootstrap-blocks/card'],
-      TEMPLATE: {
-        type: 'array'
-      },
+    classNameFilter: {
+      type: 'string',
+      default: ''
+    },
+    isFluid: {
+      type: 'bool',
+      default: false
+    },
+    // isWrapped: {
+    //   type: 'bool',
+    //   default: false
+    // },
+    backgroundImage: {
+      type: 'object',
+      default: {},
+    },
+    backgroundSize: {
+      type: 'string',
+      default: ''
+    },
+    backgroundRepeat: {
+      type: 'string',
+      default: ''
+    },
+    backgroundPosition: {
+      type: 'object',
+      default: {},
+    },
+    backgroundAttachment: {
+      type: 'string',
+      default: ''
+    },
+    // allowedBlocks: ['advanced-bootstrap-blocks/row'],
+    TEMPLATE: {
+      type: 'array',
+      default: [
+        // ['advanced-bootstrap-blocks/row', {} ,[]]
+      ]
+    }
   },
-  edit: function( props ) {
-    const {
-      className,
-      attributes: {
-        anchor,
-        TEMPLATE,
-      },
-      setAttributes
-    } = props;
+  edit: edit,
+  save: save,
+} 
 
-    return (
-      <div 
-        {...anchor ? { id: anchor } : { } }
-        className={props.className}
-      >
-        <InnerBlocks 
-          template={ TEMPLATE }
-          // allowedBlocks={['advanced-bootstrap-blocks/card']}
-        /> 
-      </div>
-    );
-  },
-  save: function( props ) {
-    return (
-      <Fragment>
-          <InnerBlocks.Content />
-      </Fragment>
-    );  
-  }
-});
+registerBlockType( 
+  'advanced-bootstrap-blocks/jumbotron', 
+  settings
+);
 
-const defaultClassName = getBlockDefaultClassName("advanced-bootstrap-blocks/jumbotron");
+wp.hooks.addFilter( 
+  'editor.BlockListBlock', 
+  'advanced-bootstrap-blocks/jumbotron/modify-element-edit', 
+  modifyBlockListBlockJumbotron
+);
 
-const setBlockCustomClassName = ( blockName ) => {
-	return blockName === defaultClassName ?
-    [] :
-		blockName;
-}
+wp.hooks.addFilter(
+  'blocks.getSaveElement', 
+  'advanced-bootstrap-blocks/jumbotron/modify-element-save', 
+  modifyGetSaveElementJumbotron
+);
 
 wp.hooks.addFilter(
 	'blocks.getBlockDefaultClassName',
@@ -103,42 +106,24 @@ wp.hooks.addFilter(
 	setBlockCustomClassName
 );
 
-const modifyBlockListBlockRow = createHigherOrderComponent( ( BlockListBlock ) => {
-    return ( props ) => {
-      if (props.block.name == "advanced-bootstrap-blocks/jumbotron") {
-        props.className = [props.className, "jumbotron"].join(" ");
-      }
-      return <BlockListBlock { ...props } />;
-    };
-}, 'modifyBlockListBlockRow' );
+// wp.hooks.addFilter(
+// 	'blocks.getBlockAttributes',
+// 	'advanced-bootstrap-blocks/jumbotron/set-block-attributes',
+// 	setBlockAttributes
+// );
 
-wp.hooks.addFilter( 
-  'editor.BlockListBlock', 
-  'advanced-bootstrap-blocks/jumbotron/modify-element-edit', 
-  modifyBlockListBlockRow 
-);
 
-const modifyGetSaveElementRow = (element, blockType, attributes ) => {
-	if (!element) {
-		return;
-	}
+// const fixForRenamedBlockClassNames = (props, blockType, attributes) => {
+//   if (blockType.name === 'advanced-bootstrap-blocks/jumbotron') {
+//       if (props.className.includes(defaultClassName)) {
+//           props.className = props.className.replace(`${defaultClassName} `, '');
+//       }
+//   }
+//   return props;
+// };
 
-  if (blockType.name == 'advanced-bootstrap-blocks/jumbotron') {
-    return (
-      <div 
-        {...attributes.anchor ? { id: attributes.anchor } : { } } 
-        className={ ["jumbotron", element.props.className].join(" ").trim() }
-      >
-        {element}
-      </div>
-    )
-  }
-
-	return element;
-}
-
-wp.hooks.addFilter(
-  'blocks.getSaveElement', 
-  'advanced-bootstrap-blocks/jumbotron/modify-element-save', 
-  modifyGetSaveElementRow
-);
+// wp.hooks.addFilter(
+//   'blocks.getSaveContent.extraProps',
+//   'advanced-bootstrap-blocks/jumbotron/block-filters',
+//   fixForRenamedBlockClassNames
+// );
