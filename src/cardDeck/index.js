@@ -35,14 +35,14 @@ const {
 
 import icon from '../core/icon-bootstrap.svg'; 
 
-registerBlockType('advanced-bootstrap-blocks/jumbotron', {
-  title: __('Jumbotron (BS4)', 'advanced-bootstrap-blocks'),
+registerBlockType('advanced-bootstrap-blocks/card-deck', {
+  title: __('Card Deck (BS4)', 'advanced-bootstrap-blocks'),
   description: __(''),
   icon: icon,
   category: 'advanced-bootstrap-blocks',
   keywords: [
       __('advanced-bootstrap-blocks'),
-      __('jumbotron'),
+      __('card-deck'),
   ],
   supports: {
     anchor: true,
@@ -53,9 +53,14 @@ registerBlockType('advanced-bootstrap-blocks/jumbotron', {
           type: 'array',
           source: 'children',
       },
-      // allowedBlocks: ['advanced-bootstrap-blocks/card'],
+      allowedBlocks: ['advanced-bootstrap-blocks/card'],
       TEMPLATE: {
-        type: 'array'
+        type: 'array',
+        default: [
+          ['advanced-bootstrap-blocks/card', {} ,[]],
+          ['advanced-bootstrap-blocks/card', {} ,[]],
+          // ['advanced-bootstrap-blocks/card', {} ,[]]
+        ]
       },
   },
   edit: function( props ) {
@@ -75,7 +80,7 @@ registerBlockType('advanced-bootstrap-blocks/jumbotron', {
       >
         <InnerBlocks 
           template={ TEMPLATE }
-          // allowedBlocks={['advanced-bootstrap-blocks/card']}
+          allowedBlocks={['advanced-bootstrap-blocks/card']}
         /> 
       </div>
     );
@@ -89,7 +94,7 @@ registerBlockType('advanced-bootstrap-blocks/jumbotron', {
   }
 });
 
-const defaultClassName = getBlockDefaultClassName("advanced-bootstrap-blocks/jumbotron");
+const defaultClassName = getBlockDefaultClassName("advanced-bootstrap-blocks/card-deck");
 
 const setBlockCustomClassName = ( blockName ) => {
 	return blockName === defaultClassName ?
@@ -99,14 +104,14 @@ const setBlockCustomClassName = ( blockName ) => {
 
 wp.hooks.addFilter(
 	'blocks.getBlockDefaultClassName',
-	'advanced-bootstrap-blocks/jumbotron/set-block-custom-class-name',
+	'advanced-bootstrap-blocks/card-deck/set-block-custom-class-name',
 	setBlockCustomClassName
 );
 
 const modifyBlockListBlockRow = createHigherOrderComponent( ( BlockListBlock ) => {
     return ( props ) => {
-      if (props.block.name == "advanced-bootstrap-blocks/jumbotron") {
-        props.className = [props.className, "jumbotron"].join(" ");
+      if (props.block.name == "advanced-bootstrap-blocks/card-deck") {
+        props.className = [props.className, "card-deck"].join(" ");
       }
       return <BlockListBlock { ...props } />;
     };
@@ -114,7 +119,7 @@ const modifyBlockListBlockRow = createHigherOrderComponent( ( BlockListBlock ) =
 
 wp.hooks.addFilter( 
   'editor.BlockListBlock', 
-  'advanced-bootstrap-blocks/jumbotron/modify-element-edit', 
+  'advanced-bootstrap-blocks/card-deck/modify-element-edit', 
   modifyBlockListBlockRow 
 );
 
@@ -123,11 +128,11 @@ const modifyGetSaveElementRow = (element, blockType, attributes ) => {
 		return;
 	}
 
-  if (blockType.name == 'advanced-bootstrap-blocks/jumbotron') {
+  if (blockType.name == 'advanced-bootstrap-blocks/card-deck') {
     return (
       <div 
         {...attributes.anchor ? { id: attributes.anchor } : { } } 
-        className={ ["jumbotron", element.props.className].join(" ").trim() }
+        className={ ["card-deck", element.props.className].join(" ").trim() }
       >
         {element}
       </div>
@@ -139,6 +144,6 @@ const modifyGetSaveElementRow = (element, blockType, attributes ) => {
 
 wp.hooks.addFilter(
   'blocks.getSaveElement', 
-  'advanced-bootstrap-blocks/jumbotron/modify-element-save', 
+  'advanced-bootstrap-blocks/card-deck/modify-element-save', 
   modifyGetSaveElementRow
 );
