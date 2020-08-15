@@ -78,7 +78,7 @@ export const edit = (props) => {
         >
           <InnerBlocks 
             template={ TEMPLATE }
-            allowedBlocks={['advanced-bootstrap-blocks/row']}
+            // allowedBlocks={['advanced-bootstrap-blocks/row']}
           />
         </div>
       </Fragment>

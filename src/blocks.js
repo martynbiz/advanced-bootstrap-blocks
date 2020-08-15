@@ -10,6 +10,7 @@ import './cardBody';
 import './cardFooter';
 import './accordion';
 // import './collapse';
+import './jumbotron';
 
 import './blocks.editor.scss';
 import './blocks.style.scss';

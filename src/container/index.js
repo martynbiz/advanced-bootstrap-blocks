@@ -71,7 +71,7 @@ const settings = {
       type: 'string',
       default: ''
     },
-    allowedBlocks: ['advanced-bootstrap-blocks/row'],
+    // allowedBlocks: ['advanced-bootstrap-blocks/row'],
     TEMPLATE: {
       type: 'array',
       default: [
