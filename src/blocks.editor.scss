@@ -367,7 +367,8 @@
 
 [data-type="advanced-bootstrap-blocks/container"],
 [data-type="advanced-bootstrap-blocks/card"],
-[data-type="advanced-bootstrap-blocks/jumbotron"] {
+[data-type="advanced-bootstrap-blocks/jumbotron"],
+[data-type="advanced-bootstrap-blocks/alert"] {
 	>.block-editor-block-list__block-edit {
 		padding: 0 !important;
 		margin: 0 !important;
