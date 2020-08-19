@@ -2,8 +2,8 @@
 Contributors: helpfuldev, mannis82
 Tags: bootstrap, responsive, layout, grid, page builder, container, columns, blocks, button, group, editor, gutenberg
 Donate link: https://paypal.me/helpfuldev
-Requires at least: 5.1
-Tested up to: 5.4
+Requires at least: 5.2
+Tested up to: 5.5
 Stable tag: trunk
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.txt
@@ -12,7 +12,7 @@ Build responsive Bootstrap 4 layouts inside the Gutenberg editor.
 
 == Description ==
 
-This plugin adds flexible Bootstrap 4 blocks to the WordPress editor for creating custom page layouts using the Bootstrap grid. 
+This plugin adds flexible Bootstrap 4 blocks to the WordPress editor for creating custom page layouts with the Bootstrap grid.
 
 Are you using Advanced Bootstrap Blocks? [Write a review](https://wordpress.org/plugins/advanced-bootstrap-blocks/#reviews)!
 
@@ -24,11 +24,12 @@ Advanced Bootstrap Blocks adds the following Bootstrap 4 blocks to the WordPress
 * Row
 * Column
 * Button and Button Group
-* Card (with CardHeader, CardBody, CardFooter)
+* Card with Header, Body, Footer
+* Jumbotron
 
 == Block Templates == 
 
-Do you need to create standard templates for pages or posts? The WordPress editor lets you define custom block templates inside your theme. 
+Do you need to create standard block layouts for WordPress pages and posts? The WordPress editor lets you define custom block templates inside your theme. 
 
 The example below may get you started. Visit the [WordpPress Block Editor Handbook](https://developer.wordpress.org/block-editor/developers/block-api/block-templates/) to learn more about supercharging your WordPress themes with blocks templates. 
 
@@ -70,19 +71,19 @@ The example below may get you started. Visit the [WordpPress Block Editor Handbo
 
 == Frequently Asked Questions ==
 
-### This plugin broke my website!
-
-Probably not. Try disabling any other page-builder plugins you have activated.
-
 ### Does this plugin add Bootstrap styles or scripts to my theme? 
 
-This plugin does not add styles or scripts to your website. Necessary Bootstrap 4 will be available in the editor but needs to be added to your theme for these blocks to appear correctly on your public-facing website.
+This plugin does not add Bootstrap stylesheets or scripts to your website.
 
 ### This plugin is giving me trouble. Can you help?
 
-Yes. This plugin is under active development and maintenance--your feedback is important. Please submit issues, feature requests through the [support page](https://wordpress.org/support/plugin/advanced-bootstrap-blocks/), or browse the source at [https://gitlab.com/helpful.dev/advanced-bootstrap-blocks](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks). 
+Yes. Please submit issues, bugs, and feature requests through the [plugin support page](https://wordpress.org/support/plugin/advanced-bootstrap-blocks/) or browse the source and contribute at [GitHub](https://github.com/advanced-bootstrap-blocks/advanced-bootstrap-blocks) or [GitLab](https://gitlab.com/helpful.dev/advanced-bootstrap-blocks) (mirror). 
 
 == Changelog ==
+
+### 1.4
+* Add Jumbotron block
+* Remove allowed block restriction from Container
 
 ### 1.3
 * Remove default block classnames
